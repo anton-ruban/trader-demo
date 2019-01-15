@@ -48,6 +48,7 @@ export default {
   margin-left: 0 !important;
   margin-top: 0 !important; /* reset default styling */
   height: 8px !important;
+  left: 0 !important;
   background: #eee;
 }
 </style>
