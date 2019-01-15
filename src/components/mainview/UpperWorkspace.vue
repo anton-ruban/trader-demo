@@ -4,7 +4,7 @@
       <InstrumentPanel/>
     </div>
     <multipane-resizer></multipane-resizer>
-    <div :style="{ flexGrow: 1 }">
+    <div :style="{ flexGrow: 1, zIndex: 0, }">
       <TradingChartPanel/>
     </div>
   </multipane>

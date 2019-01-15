@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <template v-if="$store.getters.isLoggedIn">
+    <template v-if="isLoggedIn">
       <Header />
       <MainView />
       <Footer />
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Header from './components/header/Header.vue';
 import MainView from './components/mainview/MainView.vue';
 import Footer from './components/footer/Footer.vue';
@@ -22,6 +23,11 @@ export default {
     MainView,
     Footer,
     LoginPage
+  },
+  computed: {
+    ...mapState('others', {
+      isLoggedIn: state => state.isLoggedIn,
+    }),
   }
 }
 </script>

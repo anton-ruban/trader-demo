@@ -1,7 +1,7 @@
-import shop from '../../api/shop'
-
 // initial state
 const state = {
+  isOpenContractDialog: false,
+  isOpenWatchlistPicker: false,
   watchlist: {
     selectedStandardWatchId: null,
     myWatchlists: [
@@ -100,15 +100,18 @@ const actions = {
 
 // mutations
 const mutations = {
-  selectStandardWatchId (state, id) {
+  selectStandardWatchId(state, id) {
     state.watchlist.selectedStandardWatchId = id
   },
-  toggleWatchlistPicker (state, isOpen) {
+  toggleWatchlistPicker(state, isOpen) {
     state.isOpenWatchlistPicker = isOpen;
 
     if (!isOpen) {
       state.watchlist.selectedStandardWatchId = null;
     }
+  },
+  toggleOpenContractDialog(state, isOpen) {
+    state.isOpenContractDialog = isOpen
   }
 }
 

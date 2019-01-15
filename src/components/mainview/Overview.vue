@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="overview-body">
-      <div v-for="(value, key) in $store.getters.overview" :key="key" class="item">
+      <div v-for="(value, key) in overview" :key="key" class="item">
         <div class="item-label">{{value.label}}</div>
         <div>{{value.value}}</div>
       </div>
@@ -33,10 +33,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: 'Overview',
   components: {
   },
+  computed: {
+    ...mapState('others', {
+      overview: state => state.overview,
+    }),
+  }
 }
 </script>
 

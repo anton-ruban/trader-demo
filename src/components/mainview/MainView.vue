@@ -5,7 +5,7 @@
         <UpperWorkspace />
       </div>
       <multipane-resizer></multipane-resizer>
-      <div :style="{ flexGrow: 1 }" class="panel-container">
+      <div :style="{ flexGrow: 1, zIndex: 0 }" class="panel-container">
         <BottomPanel />
       </div>
     </multipane>
@@ -43,7 +43,6 @@ export default {
   display: flex;
   width: 100%;
   height: 0;
-  z-index: 0;
 }
 .multipane-resizer {
   margin: 0; top: 0; /* reset default styling */

@@ -14,8 +14,8 @@
     <div class="content">
       <div class="content-section">
         <v-data-table
-          :headers="$store.getters.positions.headers"
-          :items="$store.getters.positions.data"
+          :headers="positions.headers"
+          :items="positions.data"
           hide-actions
         >
           <template slot="items" slot-scope="props">
@@ -43,9 +43,15 @@
 
 <script>
 
+import { mapState } from 'vuex';
 export default {
   name: 'BottomPanel',
   components: {
+  },
+  computed: {
+    ...mapState('others', {
+      positions: state => state.positions,
+    }),
   }
 }
 </script>

@@ -5,7 +5,10 @@
     @input="toggleWatchlistPicker($event)"
     offset-y
   >
-    <v-btn slot="activator" depressed small color="#bbb">我的观察列表</v-btn>
+    <v-btn slot="activator" depressed small color="#bbb">
+      我的观察列表
+      <v-icon>{{isOpenWatchlistPicker ? 'expand_less' : 'expand_more'}}</v-icon>
+    </v-btn>
     <div class="picker">
       <div :class="[{ 'show-child': detailStandardWatch }, 'picker-container']">
         <div class="pick-section">
@@ -73,26 +76,26 @@
 
 <script>
 
-import { mapGetters, mapState, mapActions } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex';
 
 export default {
   name: 'WatchlistPicker',
   methods: {
-    ...mapActions([
+    ...mapActions('watch', [
       'selectStandardWatchId'
     ]),
     toggleWatchlistPicker (e) {
-      this.$store.commit('toggleWatchlistPicker', e);
+      this.$store.commit('watch/toggleWatchlistPicker', e);
     }
   },
   computed: {
-    ...mapState({
+    ...mapState('watch', {
       myWatchlists: state => state.watchlist.myWatchlists,
       standardWatchlist: state => state.watchlist.standardWatchlist,
       recent: state => state.watchlist.recent,
       isOpenWatchlistPicker: state => state.isOpenWatchlistPicker
     }),
-    ...mapGetters({
+    ...mapGetters('watch', {
       detailStandardWatch: 'selectedStandardWatch',
     })
   },

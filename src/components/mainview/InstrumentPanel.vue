@@ -1,8 +1,11 @@
 <template>
   <div class="instrument-panel">
     <div class="head">
-      <span class="panel-title active">Watchlists</span>
-      <span class="panel-title">Alerts</span>
+      <div>
+        <span class="panel-title active">Watchlists</span>
+        <span class="panel-title">Alerts</span>
+      </div>
+      <OpenContractDialogOpener />
     </div>
     <div class="content">
       <div class="content-section">
@@ -12,8 +15,8 @@
         </div>
         <div class="content-body">
           <v-data-table
-            :headers="$store.getters.products.headers"
-            :items="$store.getters.products.data"
+            :headers="products.headers"
+            :items="products.data"
             hide-actions
           >
             <template slot="items" slot-scope="props">
@@ -31,11 +34,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import WatchlistPicker from '../popovers/WatchlistPicker.vue';
+import OpenContractDialogOpener from '../dialogs/OpenContractDialogOpener.vue';
 export default {
   name: 'InstrumentPanel',
   components: {
-    WatchlistPicker
+    WatchlistPicker,
+    OpenContractDialogOpener
+  },
+  computed: {
+    ...mapState('others', {
+      products: state => state.products,
+    }),
   }
 }
 </script>
@@ -51,6 +62,9 @@ export default {
     padding-left: 8px;
     padding-right: 8px;
     height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     .panel-title {
       padding-right: 16px;
       color: #777;
