@@ -34,9 +34,8 @@ export default {
 }
 .multipane-resizer {
   margin-left: 0 !important;
-  margin-top: 0 !important; /* reset default styling */
-  height: 8px !important;
-  top: 0 !important;
+  width: 8px !important;
+  left: 0 !important;
   background: #eee;
 }
 </style>
