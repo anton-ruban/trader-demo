@@ -1,6 +1,6 @@
 <template>
   <multipane class="upper-workspace" layout="vertical">
-    <div :style="{ width: '50%', maxWidth: '90%', minHeight: '100%' }">
+    <div :style="{ width: '50%', maxWidth: '90%', minWidth: '300px', minHeight: '100%' }">
       <InstrumentPanel/>
     </div>
     <multipane-resizer></multipane-resizer>

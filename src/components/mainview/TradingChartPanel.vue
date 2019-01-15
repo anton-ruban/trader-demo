@@ -6,6 +6,9 @@
     </div>
     <div class="content">
       <Overview />
+      <div class="divider"></div>
+        <DeepMarketPrice />
+      <div class="divider"></div>
       <div class="chart-section">
         <VueTradingView :options="{
           symbol: 'BITFINEX:BTCUSD',
@@ -13,6 +16,7 @@
           height: 300,
           theme: 'light',
           style: 2,
+          withdateranges: true,
         }"/>
       </div>
     </div>
@@ -22,12 +26,14 @@
 <script>
 import Overview from './Overview.vue';
 import VueTradingView from 'vue-trading-view';
+import DeepMarketPrice from './DeepMarketPrice.vue';
 
 export default {
   name: 'TradingChartPanel',
   components: {
     Overview,
     VueTradingView,
+    DeepMarketPrice,
   }
 }
 </script>
@@ -67,9 +73,11 @@ export default {
     padding-top: 0;
     background-color: #ccc;
     height: calc(100% - 32px);
+    .divider {
+      margin-top: 8px;
+    }
     .chart-section {
       width: 100%;
-      margin-top: 8px;
       height: calc(100% - 110px);
       background: #fff;
     }
