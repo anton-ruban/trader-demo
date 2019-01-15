@@ -36,7 +36,6 @@ export default {
   width: 100%;
 }
 .workspace {
-  position: relative;
   height: 100%;
   width: 100%;
 }
@@ -44,10 +43,12 @@ export default {
   display: flex;
   width: 100%;
   height: 0;
+  z-index: 0;
 }
 .multipane-resizer {
   margin: 0; top: 0; /* reset default styling */
   height: 8px;
   background: #eee;
+  z-index: 0;
 }
 </style>

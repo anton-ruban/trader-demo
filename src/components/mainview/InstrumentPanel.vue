@@ -7,13 +7,13 @@
     <div class="content">
       <div class="content-section">
         <div class="content-head">
-          <v-btn depressed small color="#bbb">我的观察列表</v-btn>
+          <WatchlistPicker />
           <v-btn depressed small color="#d5d5d5">EDIT</v-btn>
         </div>
         <div class="content-body">
           <v-data-table
-            :headers="$store.getters.watchlists.headers"
-            :items="$store.getters.watchlists.data"
+            :headers="$store.getters.products.headers"
+            :items="$store.getters.products.data"
             hide-actions
           >
             <template slot="items" slot-scope="props">
@@ -31,10 +31,11 @@
 </template>
 
 <script>
-
+import WatchlistPicker from '../popovers/WatchlistPicker.vue';
 export default {
   name: 'InstrumentPanel',
   components: {
+    WatchlistPicker
   }
 }
 </script>

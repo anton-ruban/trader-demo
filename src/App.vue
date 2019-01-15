@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <Header />
-    <MainView />
-    <Footer />
+    <template v-if="$store.getters.isLoggedIn">
+      <Header />
+      <MainView />
+      <Footer />
+    </template>
+    <LoginPage v-else/>
   </div>
 </template>
 
@@ -10,13 +13,15 @@
 import Header from './components/header/Header.vue';
 import MainView from './components/mainview/MainView.vue';
 import Footer from './components/footer/Footer.vue';
+import LoginPage from './components/login/LoginPage.vue';
 
 export default {
   name: 'app',
   components: {
     Header,
     MainView,
-    Footer
+    Footer,
+    LoginPage
   }
 }
 </script>
@@ -26,6 +31,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, pre, dl, dd, ol, ul, menu, form, table, t
   margin: 0;
   padding: 0;
 }
+
 html, body {
   width: 100%;
   height: 100%;
@@ -127,4 +133,8 @@ button, input, optgroup, select, textarea {
   background: rgba(120, 122, 147, 0.5); // 'slate gray' with opacity 0.5
 }
 
+// fix conflict css of multipan and vuetify popover
+.multipane > div {
+  position: initial;
+}
 </style>

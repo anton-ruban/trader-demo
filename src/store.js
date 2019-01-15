@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { _ } from 'vue-underscore';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    watchlists: {
+    isLoggedIn: true,
+    isOpenWatchlistPicker: false,
+    products: {
       headers: [
         {
           text: 'Instrument',
@@ -330,15 +331,113 @@ const store = new Vuex.Store({
         label: 'Ask Size',
         value: 30,
       }
+    },
+    watchlist: {
+      selectedStandardWatchId: null,
+      myWatchlists: [
+        {
+          id: 3,
+          title: '我的观察列表',
+        },
+        {
+          id: 4,
+          title: 'Popular Products',
+        }
+      ],
+      standardWatchlist: [
+        {
+          id: 0,
+          type: 'fx',
+          title: 'Forex',
+          children: [
+            {
+              id: 7,
+              type: 'fx',
+              title: 'FX Top 10'
+            },
+            {
+              type: 'fx',
+              title: 'FX Top 20'
+            }
+          ]
+        },
+        {
+          id: 1,
+          type: 'cfd',
+          title: 'CFDs by region',
+          children: [
+            {
+              id: 8,
+              type: 'cfd',
+              title: 'CFDs Asian'
+            },
+            {
+              id: 9,
+              type: 'cfd',
+              title: 'CFDs Australia'
+            },
+            {
+              id: 10,
+              type: 'cfd',
+              title: 'CFDs Austria'
+            }
+          ]
+        },
+        {
+          id: 2,
+          type: 'bonds',
+          title: 'Bonds Online',
+        },
+      ],
+      recent: [
+        {
+          id: 5,
+          type: 'bonds',
+          title: 'Bonds Online',
+        },
+        {
+          id: 6,
+          type: 'cfd',
+          title: 'CFDs Austria'
+        }
+      ]
+    }
+  },
+  actions: {
+    selectStandardWatchId ({ state, commit }, id) {
+      const standardWatch = state.watchlist.standardWatchlist.find(item => item.id === id);
+
+      if ((standardWatch && standardWatch.children && standardWatch.children.length > 0) || id === null) {
+        commit('selectStandardWatchId', id);
+      } else {
+        commit('toggleWatchlistPicker', false);
+      }
     }
   },
   mutations: {
+    selectStandardWatchId (state, id) {
+      state.watchlist.selectedStandardWatchId = id
+    },
+    toggleWatchlistPicker (state, isOpen) {
+      state.isOpenWatchlistPicker = isOpen;
+
+      if (!isOpen) {
+        state.watchlist.selectedStandardWatchId = null;
+      }
+    }
   },
   getters: {
-    watchlists: state => state.watchlists,
+    products: state => state.products,
     positions: state => state.positions,
     overview: state => state.overview,
-    overviewKeys: state => _.keys(state.overview),
+    isLoggedIn: state => state.isLoggedIn,
+    selectedStandardWatch: state => {
+      if (state.watchlist.selectedStandardWatchId === null) {
+        return null;
+      }
+
+      return state.watchlist.standardWatchlist.find(item => item.id === state.watchlist.selectedStandardWatchId);
+    }
   }
 });
 

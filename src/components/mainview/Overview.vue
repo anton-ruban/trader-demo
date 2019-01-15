@@ -17,9 +17,9 @@
       </div>
     </div>
     <div class="overview-body">
-      <div v-for="itemKey in $store.getters.overviewKeys" :key="itemKey" class="item">
-        <div class="item-label">{{$store.getters.overview[itemKey].label}}</div>
-        <div>{{$store.getters.overview[itemKey].value}}</div>
+      <div v-for="(value, key) in $store.getters.overview" :key="key" class="item">
+        <div class="item-label">{{value.label}}</div>
+        <div>{{value.value}}</div>
       </div>
     </div>
     <div class="overview-foot">

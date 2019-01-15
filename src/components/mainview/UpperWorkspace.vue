@@ -36,5 +36,6 @@ export default {
   margin: 0; left: 0; /* reset default styling */
   width: 8px;
   background: #eee;
+  z-index: 0;
 }
 </style>
