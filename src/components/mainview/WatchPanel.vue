@@ -11,7 +11,7 @@
       <div class="content-section">
         <div class="content-head">
           <WatchlistPicker />
-          <v-btn depressed small color="#d5d5d5">编辑</v-btn>
+          <!-- <v-btn depressed small color="#d5d5d5">编辑</v-btn> -->
         </div>
         <div class="content-body">
           <v-data-table

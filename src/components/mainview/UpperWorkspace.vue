@@ -5,7 +5,7 @@
     </div>
     <multipane-resizer></multipane-resizer>
     <div :style="{ flexGrow: 1, zIndex: 0, }">
-      <TradingChartPanel/>
+      <WatchDetailPanel/>
     </div>
   </multipane>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import { Multipane, MultipaneResizer } from 'vue-multipane';
 import WatchPanel from './WatchPanel.vue';
-import TradingChartPanel from './TradingChartPanel.vue';
+import WatchDetailPanel from './WatchDetailPanel.vue';
 
 export default {
   name: 'MainView',
@@ -21,7 +21,7 @@ export default {
     Multipane,
     MultipaneResizer,
     WatchPanel,
-    TradingChartPanel
+    WatchDetailPanel
   }
 }
 </script>

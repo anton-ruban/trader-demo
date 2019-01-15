@@ -34,18 +34,12 @@
 
 <script>
 import TitleBar from '../controls/TitleBar.vue';
-import AvailableStatus from '../controls/AvailableStatus.vue';
-import SelectByArrow from '../controls/SelectByArrow.vue';
-import Counter from '../controls/Counter.vue';
 import { mapState } from 'vuex';
 
 export default {
   name: 'TradingPanelDialog',
   components: {
     TitleBar,
-    AvailableStatus,
-    SelectByArrow,
-    Counter
   },
   methods: {
     toggleConfirmOrderDialog (e) {

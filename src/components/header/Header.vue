@@ -10,7 +10,6 @@
           <div class="app-title">Intelligent Pricing Engine</div>
           <div class="app-subtitle">Demo</div>
         </div>
-        <!-- <img alt="logo" src="../../assets/logo-text.svg" width="138" height="33"/> -->
       </div>
       <MainMenu/>
       <ActionMenu/>
