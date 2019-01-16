@@ -7,17 +7,19 @@
     <div class="content">
       <Overview />
       <div class="divider"></div>
+      <div class="scroll-panel">
         <DeepMarketPrice />
-      <div class="divider"></div>
-      <div class="chart-section">
-        <VueTradingView :options="{
-          symbol: 'BITFINEX:BTCUSD',
-          width: '100%',
-          height: 300,
-          theme: 'light',
-          style: 2,
-          withdateranges: true,
-        }"/>
+        <div class="divider"></div>
+        <div class="chart-section">
+          <VueTradingView :options="{
+            symbol: 'BITFINEX:BTCUSD',
+            width: '100%',
+            height: 300,
+            theme: 'light',
+            style: 2,
+            withdateranges: true,
+          }"/>
+        </div>
       </div>
     </div>
   </div>
@@ -43,6 +45,9 @@ export default {
 .trading-chart-panel {
   width: 100%;
   height: 100%;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
   .head {
     border: 0;
     background-color: #ccc;
@@ -69,17 +74,22 @@ export default {
     }
   }
   .content {
-    padding: 8px;
-    padding-top: 0;
-    background-color: #ccc;
-    height: calc(100% - 32px);
+    margin: 8px;
+    margin-top: 0;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
     .divider {
       margin-top: 8px;
     }
-    .chart-section {
-      width: 100%;
-      height: calc(100% - 110px);
-      background: #fff;
+    .scroll-panel {
+      flex: 1 1 auto;
+      overflow: auto;
+      .chart-section {
+        width: 100%;
+        height: calc(100% - 110px);
+        background: #fff;
+      }
     }
   }
 }

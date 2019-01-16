@@ -6,8 +6,8 @@
       hide-actions
     >
       <template slot="items" slot-scope="props">
-        <td class="text-xs-right">{{ props.item.pendingOrder1 }}</td>
-        <td class="text-xs-right">{{ props.item.sellingPrice }}</td>
+        <td>{{ props.item.pendingOrder1 }}</td>
+        <td>{{ props.item.sellingPrice }}</td>
         <td class="graph-td">
           <div class="graph">
             <div class="left">
@@ -18,8 +18,8 @@
             </div>
           </div>
         </td>
-        <td class="text-xs-left">{{ props.item.buyingPrice }}</td>
-        <td class="text-xs-right">{{ props.item.pendingOrder2 }}</td>
+        <td>{{ props.item.buyingPrice }}</td>
+        <td>{{ props.item.pendingOrder2 }}</td>
       </template>
     </v-data-table>
     <div class="text-section" v-if="isOpenDetails">

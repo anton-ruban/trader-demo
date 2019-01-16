@@ -5,13 +5,14 @@ const state = {
     headers: [
       {
         text: '挂单量',
-        align: 'right',
-        value: 'pendingOrder1'
+        align: 'center',
+        value: 'pendingOrder1',
+        sortable: false
       },
-      { text: '卖出价', value: 'sellingPrice', align: 'right' },
-      { text: '', value: 'graph' },
-      { text: '买入价', value: 'buyingPrice'},
-      { text: '挂单量', value: 'pendingOrder2', align: 'right' }
+      { text: '卖出价', value: 'sellingPrice', align: 'center', sortable: false },
+      { text: '', value: 'graph', sortable: false },
+      { text: '买入价', value: 'buyingPrice', align: 'center', sortable: false},
+      { text: '挂单量', value: 'pendingOrder2', align: 'center', sortable: false}
     ],
     data: [
       {
