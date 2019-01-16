@@ -1,12 +1,16 @@
 <template>
   <header class="has-signupbanner">
-    <a target="_blank" href="https://www.home.saxo/accounts/openaccount?int_cmpid=OA_GO_classic_demo" class="signupbanner">
+    <a target="_blank" href="#" class="signupbanner">
     Open an account and start trading - click here
     </a>
     <div class="masthead">
       <div class="logos">
-        <img alt="logo" src="../../assets/saxobank.svg" width="44" height="33"/>
-        <img alt="logo" src="../../assets/logo-text.svg" width="138" height="33"/>
+        <img alt="logo" src="../../assets/logo.png"/>
+        <div>
+          <div class="app-title">Intelligent Pricing Engine</div>
+          <div class="app-subtitle">Demo</div>
+        </div>
+        <!-- <img alt="logo" src="../../assets/logo-text.svg" width="138" height="33"/> -->
       </div>
       <MainMenu/>
       <ActionMenu/>
@@ -61,6 +65,23 @@ header {
   flex: 1 0 auto;
   .logos {
     height: 33px;
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10px;
+    }
+    .app-title {
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 15px;
+      text-transform: uppercase;
+    }
+    .app-subtitle {
+      font-size: 12px;
+      color: #4ae;
+      margin-top: 3px;
+      line-height: 12px;
+    }
   }
 }
 </style>

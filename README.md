@@ -1,4 +1,4 @@
-# saxotrader-demo
+# IPE
 
 ## Project setup
 ```
