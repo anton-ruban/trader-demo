@@ -1,8 +1,8 @@
 <template>
   <div class="trading-chart-panel">
     <div class="head">
-      <span class="panel-title active">Overview</span>
-      <span class="panel-title">Charts</span>
+      <span class="panel-title active">概览</span>
+      <span class="panel-title">图表</span>
     </div>
     <div class="content">
       <Overview />

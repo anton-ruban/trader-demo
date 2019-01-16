@@ -8,6 +8,7 @@
       </template>
       <LoginPage v-else/>
       <TradingPanelDialog/>
+      <ConfirmOrderDialog/>
     </div>
   </v-app>
 </template>
@@ -19,6 +20,7 @@ import MainView from './components/mainview/MainView.vue';
 import Footer from './components/footer/Footer.vue';
 import LoginPage from './components/login/LoginPage.vue';
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
+import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 
 export default {
   name: 'app',
@@ -27,7 +29,8 @@ export default {
     MainView,
     Footer,
     LoginPage,
-    TradingPanelDialog
+    TradingPanelDialog,
+    ConfirmOrderDialog
   },
   computed: {
     ...mapState('others', {

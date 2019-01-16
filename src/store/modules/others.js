@@ -1,7 +1,6 @@
 // initial state
 const state = {
   isLoggedIn: true,
-  isOpenTradingPanelDialog: false,
   products: {
     headers: [
       {
@@ -348,9 +347,6 @@ const actions = {
 
 // mutations
 const mutations = {
-  toggleTradingPanelDialog(state, isOpen) {
-    state.isOpenTradingPanelDialog = isOpen;
-  },
 }
 
 export default {

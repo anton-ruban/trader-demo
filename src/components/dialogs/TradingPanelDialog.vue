@@ -58,15 +58,15 @@
           </div>
           <div class="edit-row">
             <div class="label">数量</div>
-            <Counter stepValue="1" value="0"></Counter>
+            <Counter :stepValue="1" :value="0"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">价格</div>
-            <Counter stepValue="0.01" value="110.05"></Counter>
+            <Counter :stepValue="0.01" :value="110.05"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">止损限价价格</div>
-            <Counter stepValue="0.01" value="110.05"></Counter>
+            <Counter :stepValue="0.01" :value="110.05"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">有效期</div>
@@ -75,16 +75,26 @@
         </div>
         <div class="section-divider">
           <v-divider></v-divider>
-          <a>添加止盈/止损</a>
+          <a @click="toggleAddStopPanel(!isAddStopPanel)">{{isAddStopPanel ? '移除止盈/止损' : '添加止盈/止损'}}</a>
           <v-divider></v-divider>
         </div>
-        <v-btn class="order-button" small depressed color="#39d">建立订单</v-btn>
+        <div class="edit-list" v-if="isAddStopPanel">
+          <div class="edit-row">
+            <div class="label">止盈</div>
+            <Counter :stepValue="0.01" :value="0"></Counter>
+          </div>
+          <div class="edit-row">
+            <div class="label">止损</div>
+            <Counter :stepValue="0.01" :value="0"></Counter>
+          </div>
+        </div>
+        <v-btn class="order-button" small depressed color="#39d" @click="toggleConfirmOrderDialog(true)">建立订单</v-btn>
         <div class="section-divider">
           <v-divider></v-divider>
-          <a>隐藏详细信息</a>
+          <a @click="toggleShowDetails(!isShowDetails)">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
           <v-divider></v-divider>
         </div>
-        <div class="details">
+        <div class="details" v-if="isShowDetails">
           <v-divider></v-divider>
           <div class="item-row">
             <span class="label">佣金</span>
@@ -118,13 +128,24 @@ export default {
     Counter
   },
   methods: {
+    toggleConfirmOrderDialog (e) {
+      this.$store.commit('tradingPanel/toggleConfirmOrderDialog', e);
+    },
+    toggleAddStopPanel(e) {
+      this.$store.commit('tradingPanel/toggleAddStopPanel', e);
+    },
     toggleTradingPanelDialog (e) {
-      this.$store.commit('others/toggleTradingPanelDialog', e);
+      this.$store.commit('tradingPanel/toggleTradingPanelDialog', e);
+    },
+    toggleShowDetails (e) {
+      this.$store.commit('tradingPanel/toggleShowDetails', e);
     }
   },
   computed: {
-    ...mapState('others', {
-      isOpenTradingPanelDialog: state => state.isOpenTradingPanelDialog
+    ...mapState('tradingPanel', {
+      isOpenTradingPanelDialog: state => state.isOpenTradingPanelDialog,
+      isAddStopPanel: state => state.isAddStopPanel,
+      isShowDetails: state => state.isShowDetails,
     })
   }
 }

@@ -2,8 +2,8 @@
   <div class="product-panel">
     <div class="head">
       <div>
-        <span class="panel-title active">Watchlists</span>
-        <span class="panel-title">Alerts</span>
+        <span class="panel-title active">观察列表</span>
+        <span class="panel-title">提示</span>
       </div>
       <OpenContractDialogOpener />
     </div>
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     toggleTradingPanelDialog (e) {
-      this.$store.commit('others/toggleTradingPanelDialog', e);
+      this.$store.commit('tradingPanel/toggleTradingPanelDialog', e);
     }
   },
   computed: {

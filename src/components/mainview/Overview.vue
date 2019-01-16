@@ -13,7 +13,7 @@
         <button class="btn action-button"><i class="fa fa-star"></i></button>
         <button class="btn action-button"><i class="fa fa-bell"></i></button>
         <button class="btn action-button"><i class="fa fa-adjust"></i></button>
-        <v-btn depressed small color="#39d">交易</v-btn>
+        <v-btn depressed small color="#39d" @click="toggleTradingPanelDialog(true)">交易</v-btn>
       </div>
     </div>
     <div class="overview-body">
@@ -39,6 +39,11 @@ export default {
   name: 'Overview',
   components: {
     AvailableStatus
+  },
+  methods: {
+    toggleTradingPanelDialog (e) {
+      this.$store.commit('tradingPanel/toggleTradingPanelDialog', e);
+    }
   },
   computed: {
     ...mapState('others', {
