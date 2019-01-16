@@ -13,7 +13,7 @@
         <button class="btn action-button"><i class="fa fa-star"></i></button>
         <button class="btn action-button"><i class="fa fa-bell"></i></button>
         <button class="btn action-button"><i class="fa fa-adjust"></i></button>
-        <v-btn depressed small color="#39d">TRADE</v-btn>
+        <v-btn depressed small color="#39d">交易</v-btn>
       </div>
     </div>
     <div class="overview-body">

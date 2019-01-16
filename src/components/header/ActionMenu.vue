@@ -12,7 +12,7 @@
     <button class="btn" type="button" title="Settings">
       <i class="fa fa-cog"></i>
     </button>
-    <button class="logout btn" type="button">Log out</button>
+    <button class="logout btn" type="button">登出</button>
   </div>
 </template>
 

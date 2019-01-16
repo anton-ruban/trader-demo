@@ -84,6 +84,19 @@
           <a>隐藏详细信息</a>
           <v-divider></v-divider>
         </div>
+        <div class="details">
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">佣金</span>
+            <span>0 CAD</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">名义值</span>
+            <span>0 CAD</span>
+          </div>
+          <v-divider></v-divider>
+        </div>
       </div>
     </v-layout>
   </v-dialog>
@@ -196,6 +209,17 @@ export default {
     a {
       margin: 0 8px;
       color: #39d;
+    }
+  }
+  .details {
+    .item-row {
+      display: flex;
+      align-items: center;
+      height: 21px;
+      justify-content: space-between;
+      .label {
+        color: #888;
+      }
     }
   }
   .order-button {

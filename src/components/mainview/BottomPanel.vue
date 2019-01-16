@@ -2,8 +2,8 @@
   <div class="bottom-panel">
     <div class="head">
       <div>
-        <span class="panel-title active">Positions</span>
-        <span class="panel-title">Orders</span>
+        <span class="panel-title active">仓位</span>
+        <span class="panel-title">订单</span>
       </div>
       <div>
         <button class="btn" type="button" title="Settings">

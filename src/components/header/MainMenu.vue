@@ -2,19 +2,19 @@
   <div class="main-menu">
     <div>
       <nav>
-        <button class="menu-item is-active" type="button" title="Trading">
-          Trading
+        <button class="menu-item is-active" type="button" title="交易">
+          交易
         </button>
-        <button class="menu-item" type="button" title="News &amp; Research">
-          News &amp; Research
+        <button class="menu-item" type="button" title="新闻与研究">
+          新闻与研究
         </button>
-        <button class="menu-item" type="button" title="Account">
-          Account
+        <button class="menu-item" type="button" title="账户">
+          账户
         </button>
       </nav>
     </div>
     <div class="search">
-      <input type="search" placeholder="Find Instrument" value=""/>
+      <input type="search" placeholder="搜索产品" value=""/>
       <i class="fa fa-search"></i>
       <div></div>
       <button class="search-dropdown btn" type="button">
