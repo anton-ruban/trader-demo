@@ -19,7 +19,7 @@
           hide-actions
         >
           <template slot="items" slot-scope="props">
-            <td><img src="../../assets/cfd.png" class="instrument-icon" width="16"/>{{ props.item.instrument }}</td>
+            <td><img src="../../assets/cfd.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
             <td class="text-xs-right">{{ props.item.status }}</td>
             <td class="text-xs-right">{{ props.item.ls }}</td>
             <td class="text-xs-right">{{ props.item.amount }}</td>
@@ -107,7 +107,7 @@ export default {
       width: 100%;
       height: calc(100% - 8px);
       overflow: auto;
-      .instrument-icon {
+      .product-icon {
         vertical-align: -20%;
         margin-right: 4px;
       }

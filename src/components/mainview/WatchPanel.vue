@@ -1,5 +1,5 @@
 <template>
-  <div class="instrument-panel">
+  <div class="product-panel">
     <div class="head">
       <div>
         <span class="panel-title active">Watchlists</span>
@@ -20,11 +20,14 @@
             hide-actions
           >
             <template slot="items" slot-scope="props">
-              <td valign="middle"><img src="../../assets/cfd.png" width="16" class="instrument-icon"/>{{ props.item.instrument }}</td>
-              <td class="text-xs-right"><div>{{ props.item.bid }}</div></td>
-              <td class="text-xs-right">{{ props.item.bidSize }}</td>
-              <td class="text-xs-right">{{ props.item.ask }}</td>
-              <td class="text-xs-right">{{ props.item.askSize }}</td>
+              <td valign="middle"><img src="../../assets/cfd.png" width="16" class="product-icon"/>{{ props.item.product }}</td>
+              <td class="text-xs-right">{{ props.item.sellAmount > 0 ? props.item.sellAmount : '-' }}</td>
+              <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.sellingPrice }}</div></td>
+              <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.buyingPrice }}</div></td>
+              <td class="text-xs-right">{{ props.item.buyAmount > 0 ? props.item.buyAmount : '-' }}</td>
+              <td class="text-xs-right">{{ props.item.marketPrice }}<AvailableStatus /></td>
+              <td class="text-xs-right">{{ props.item.percent }}</td>
+              <td class="text-xs-right">{{ props.item.fallAndRaise }}</td>
             </template>
           </v-data-table>
         </div>
@@ -37,11 +40,18 @@
 import { mapState } from 'vuex';
 import WatchlistPicker from '../popovers/WatchlistPicker.vue';
 import OpenContractDialogOpener from '../dialogs/OpenContractDialogOpener.vue';
+import AvailableStatus from '../controls/AvailableStatus.vue';
 export default {
   name: 'InstrumentPanel',
   components: {
     WatchlistPicker,
-    OpenContractDialogOpener
+    OpenContractDialogOpener,
+    AvailableStatus
+  },
+  methods: {
+    toggleTradingPanelDialog (e) {
+      this.$store.commit('others/toggleTradingPanelDialog', e);
+    }
   },
   computed: {
     ...mapState('others', {
@@ -53,7 +63,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.instrument-panel {
+.product-panel {
   width: 100%;
   height: 100%;
   .head {
@@ -104,7 +114,16 @@ export default {
       .content-body {
         height: calc(100% - 32px);
         overflow: auto;
-        .instrument-icon {
+        .clickable-div {
+          cursor: pointer;
+          background: #e5e5e5;
+          padding-right: 5px;
+          border-radius: 2px;
+          &:hover {
+            background: #d5d5d5;
+          }
+        }
+        .product-icon {
           margin-right: 4px;
           vertical-align: -20%;
         }

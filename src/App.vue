@@ -1,12 +1,15 @@
 <template>
-  <div id="app">
-    <template v-if="isLoggedIn">
-      <Header />
-      <MainView />
-      <Footer />
-    </template>
-    <LoginPage v-else/>
-  </div>
+  <v-app>
+    <div id="app">
+      <template v-if="isLoggedIn">
+        <Header />
+        <MainView />
+        <Footer />
+      </template>
+      <LoginPage v-else/>
+      <TradingPanelDialog/>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -15,6 +18,7 @@ import Header from './components/header/Header.vue';
 import MainView from './components/mainview/MainView.vue';
 import Footer from './components/footer/Footer.vue';
 import LoginPage from './components/login/LoginPage.vue';
+import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 
 export default {
   name: 'app',
@@ -22,7 +26,8 @@ export default {
     Header,
     MainView,
     Footer,
-    LoginPage
+    LoginPage,
+    TradingPanelDialog
   },
   computed: {
     ...mapState('others', {

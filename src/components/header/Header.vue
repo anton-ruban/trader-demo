@@ -1,7 +1,7 @@
 <template>
   <header class="has-signupbanner">
     <a target="_blank" href="#" class="signupbanner">
-    Open an account and start trading - click here
+    点击这里开立账户并开始交易
     </a>
     <div class="masthead">
       <div class="logos">

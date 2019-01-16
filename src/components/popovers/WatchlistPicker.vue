@@ -12,12 +12,7 @@
     <div class="picker">
       <div :class="[{ 'show-child': detailStandardWatch }, 'picker-container']">
         <div class="pick-section">
-          <div class="head">
-            <h2>Select Watchlist</h2>
-            <v-btn small icon @click="toggleWatchlistPicker(false)" class="close-button">
-              <v-icon>close</v-icon>
-            </v-btn>
-          </div>
+          <TitleBar title="Select Watchlist" @close="toggleWatchlistPicker(false)" hideBack />
           <v-divider></v-divider>
           <div class="content">
             <div class="subheader">My Watchlists</div>
@@ -49,15 +44,7 @@
           </div>
         </div>
         <div class='pick-section'>
-          <div class="head">
-            <v-btn small icon class="back-button" @click="selectStandardWatchId(null)">
-              <v-icon>chevron_left</v-icon>
-            </v-btn>
-            <h2>{{detailStandardWatch ? detailStandardWatch.title : ''}}</h2>
-            <v-btn small icon @click="toggleWatchlistPicker(false)" class="close-button">
-              <v-icon>close</v-icon>
-            </v-btn>
-          </div>
+          <TitleBar :title="detailStandardWatch ? detailStandardWatch.title : ''" @back="selectStandardWatchId(null)" @close="toggleWatchlistPicker(false)" />
           <v-divider></v-divider>
           <div class="content" v-if="detailStandardWatch">
             <ul class="list-body">
@@ -77,9 +64,13 @@
 <script>
 
 import { mapGetters, mapState, mapActions } from 'vuex';
+import TitleBar from '../controls/TitleBar.vue';
 
 export default {
   name: 'WatchlistPicker',
+  components: {
+    TitleBar
+  },
   methods: {
     ...mapActions('watch', [
       'selectStandardWatchId'
@@ -118,35 +109,6 @@ export default {
     .pick-section {
       width: 50%;
       position: relative;
-      .head {
-        height: 41px;
-        line-height: 41px;
-        h2 {
-          font-size: 14px;
-          text-align: center;
-          color: #888;
-        }
-        .back-button {
-          color: #888;
-          position: absolute;
-          margin: 0;
-          left: 6px;
-          top: 6px;
-          .v-icon {
-            font-size: 15px;
-          }
-        }
-        .close-button {
-          color: #888;
-          position: absolute;
-          margin: 0;
-          right: 6px;
-          top: 6px;
-          .v-icon {
-            font-size: 15px;
-          }
-        }
-      }
       .content {
         .subheader {
           padding: 0 8px;

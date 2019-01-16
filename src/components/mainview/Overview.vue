@@ -27,16 +27,18 @@
         <img src="../../assets/real-time.png"/>
         <span>Realtime process</span>
       </div>
-      <div class="green-circle"></div>
+      <AvailableStatus />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import AvailableStatus from '../controls/AvailableStatus.vue';
 export default {
   name: 'Overview',
   components: {
+    AvailableStatus
   },
   computed: {
     ...mapState('others', {
@@ -120,13 +122,6 @@ export default {
         align-items: center;
         font-size: 11px;
         color: #888;
-      }
-      .green-circle {
-        width: 10px;
-        height: 10px;
-        margin: 3px;
-        background: #00a800;
-        border-radius: 50%;
       }
     }
   }

@@ -7,12 +7,7 @@
     >
       <v-btn class="open-button" depressed slot="activator" small>申请开通合约权限</v-btn>
       <v-card>
-        <v-card-title
-          class="headline grey lighten-2"
-          primary-title
-        >
-          申请开通合约权限
-        </v-card-title>
+        <TitleBar title="申请开通合约权限" hideBack hideClose/>
         <v-card-text>
           尊敬的客户您好，如果您想开通合约权限，请发送邮件到***@***.com。 请注明账号用户名，交易所和合约名称，谢谢配合！
         </v-card-text>
@@ -33,9 +28,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import TitleBar from '../controls/TitleBar.vue';
 
 export default {
   name: 'OpenContractDialogOpener',
+  components: {
+    TitleBar,
+  },
   methods: {
     toggleOpenContractDialog (e) {
       this.$store.commit('watch/toggleOpenContractDialog', e);

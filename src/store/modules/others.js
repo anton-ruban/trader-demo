@@ -1,43 +1,53 @@
 // initial state
 const state = {
   isLoggedIn: true,
+  isOpenTradingPanelDialog: false,
   products: {
     headers: [
       {
-        text: 'Instrument',
+        text: '产品',
         align: 'left',
-        value: 'instrument'
+        value: 'product'
       },
-      { text: 'Bid', value: 'bid', align: 'right' },
-      { text: 'Bid Size', value: 'bidSize', align: 'right' },
-      { text: 'Ask', value: 'ask', align: 'right' },
-      { text: 'Ask Size', value: 'askSize', align: 'right' }
+      { text: '卖出数量', value: 'sellAmount', align: 'right'},
+      { text: '卖出价', value: 'sellingPrice', align: 'right' },
+      { text: '买入价', value: 'buyingPrice', align: 'right' },
+      { text: '买入数量', value: 'buyAmount', align: 'right' },
+      { text: '市价', value: 'marketPrice', align: 'right' },
+      { text: '%', value: 'percent', align: 'right' },
+      { text: '净涨跌', value: 'fallAndRaise', align: 'right' }
     ],
     data: [
       {
         value: false,
-        instrument: 'UK 100',
-        bid: 6906.20,
-        bidSize: 120,
-        ask: 6908.20,
-        askSize: 150
+        product: 'UK 100',
+        sellAmount: 0,
+        sellingPrice: 6906.20,
+        buyingPrice: 6906.500,
+        buyAmount: 0,
+        marketPrice: 'TSE',
+        percent: '0.00%',
+        fallAndRaise: 0.00,
       },
       {
         value: false,
-        instrument: 'CK Hutchison Holdings Ltd',
-        bid: 77.500,
-        bidSize: 21000,
-        ask: 77.550,
-        askSize: 10000
+        product: 'CK Hutchison Holdings Ltd',
+        sellAmount: 0,
+        sellingPrice: 77.500,
+        buyingPrice: 77.500,
+        buyAmount: 0,
+        marketPrice: 'TSE',
+        percent: '0.00%',
+        fallAndRaise: 0.00,
       },
     ]
   },
   positions: {
     headers: [
       {
-        text: 'Instrument',
+        text: '产品',
         align: 'left',
-        value: 'instrument'
+        value: 'product'
       },
       { text: 'Status', value: 'status', align: 'right' },
       { text: 'L/S', value: 'ls', align: 'right' },
@@ -55,7 +65,7 @@ const state = {
     data: [
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -70,7 +80,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -85,7 +95,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -100,7 +110,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -115,7 +125,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -130,7 +140,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -145,7 +155,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -160,7 +170,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -175,7 +185,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -190,7 +200,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -205,7 +215,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -220,7 +230,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -235,7 +245,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -250,7 +260,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -265,7 +275,7 @@ const state = {
       },
       {
         value: false,
-        instrument: 'US Tech 100 NAS',
+        product: 'US Tech 100 NAS',
         status: 'Open',
         ls: 'Long',
         amount: 2,
@@ -330,9 +340,6 @@ const state = {
 
 // getters
 const getters = {
-  positions: state => state.positions,
-  overview: state => state.overview,
-  isLoggedIn: state => state.isLoggedIn,
 }
 
 // actions
@@ -341,6 +348,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  toggleTradingPanelDialog(state, isOpen) {
+    state.isOpenTradingPanelDialog = isOpen;
+  },
 }
 
 export default {

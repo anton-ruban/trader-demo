@@ -1,7 +1,7 @@
 <template>
   <multipane class="upper-workspace" layout="vertical">
     <div :style="{ width: '50%', maxWidth: '90%', minWidth: '300px', minHeight: '100%' }">
-      <InstrumentPanel/>
+      <WatchPanel/>
     </div>
     <multipane-resizer></multipane-resizer>
     <div :style="{ flexGrow: 1, zIndex: 0, }">
@@ -12,7 +12,7 @@
 
 <script>
 import { Multipane, MultipaneResizer } from 'vue-multipane';
-import InstrumentPanel from './InstrumentPanel.vue';
+import WatchPanel from './WatchPanel.vue';
 import TradingChartPanel from './TradingChartPanel.vue';
 
 export default {
@@ -20,7 +20,7 @@ export default {
   components: {
     Multipane,
     MultipaneResizer,
-    InstrumentPanel,
+    WatchPanel,
     TradingChartPanel
   }
 }
