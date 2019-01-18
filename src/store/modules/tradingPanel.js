@@ -20,6 +20,9 @@ const mutations = {
     state.isOpenConfirmOrderDialog = isOpen;
   },
   toggleTradingPanelDialog(state, isOpen) {
+    if (!isOpen) {
+      state.isOpenConfirmOrderDialog = false;
+    }
     state.isOpenTradingPanelDialog = isOpen;
   },
   toggleAddStopPanel(state, isOpen) {

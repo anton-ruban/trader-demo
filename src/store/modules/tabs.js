@@ -2,13 +2,27 @@
 const state = {
   selectedWatchDetailTabIndex: 0,
   watchDetailTabs: [
-    '概览',
-    '图表',
-    '期权链'
+    {name: '概览'},
+    {name: '图表'},
+    {name: '期权链'}
   ],
   selectedWatchTabIndex: 0,
   watchTabs: [
-    '观察列表', '提示'
+    {name: '观察列表'},
+    // {name: '提示'}
+  ],
+  selectedBottomTabIndex: 0,
+  bottomTabs: [
+    {name: '仓位'},
+    {
+      name: '订单',
+      selectedSubItemIndex: 0,
+      subItems: [
+        {name: '活动委托'},
+        {name: '已成交'},
+        {name: '委托历史'}
+      ]
+    }
   ]
 }
 
@@ -27,6 +41,12 @@ const mutations = {
   },
   selectWatchTab(state, index) {
     state.selectedWatchTabIndex = index;
+  },
+  selectBottomTab(state, index) {
+    state.selectedBottomTabIndex = index;
+    if (state.bottomTabs[index].subItems) {
+      state.bottomTabs[index].selectedSubItemIndex = 0;
+    }
   }
 }
 

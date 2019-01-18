@@ -6,10 +6,7 @@
     <div class="masthead">
       <div class="logos">
         <img alt="logo" src="../../assets/logo.png"/>
-        <div>
-          <div class="app-title">Intelligent Pricing Engine</div>
-          <div class="app-subtitle">Demo</div>
-        </div>
+        <div class="app-title">Intelligent Pricing Engine</div>
       </div>
       <MainMenu/>
       <ActionMenu/>
@@ -74,12 +71,6 @@ header {
       font-weight: bold;
       line-height: 15px;
       text-transform: uppercase;
-    }
-    .app-subtitle {
-      font-size: 12px;
-      color: #4ae;
-      margin-top: 3px;
-      line-height: 12px;
     }
   }
 }

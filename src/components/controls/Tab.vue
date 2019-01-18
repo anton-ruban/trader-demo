@@ -1,7 +1,10 @@
 <template>
   <div>
     <span :class="[{'active': selectedTabIndex === index},'panel-title']" v-for="(tab, index) in tabs" :key="index" @click="$emit('change', index)">
-      {{tab}}
+      {{tab.name}}
+      <template v-if="tab.subItems && selectedTabIndex === index">
+        <a>( {{tab.subItems[tab.selectedSubItemIndex].name}} )</a>
+      </template>
     </span>
   </div>
 </template>

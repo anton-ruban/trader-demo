@@ -2,8 +2,7 @@
   <div class="product-panel">
     <div class="head">
       <div>
-        <span class="panel-title active">观察列表</span>
-        <span class="panel-title">提示</span>
+        <Tab :tabs="watchTabs" :selectedTabIndex="selectedWatchTabIndex" @change="selectWatchTab($event)"/>
       </div>
       <OpenContractDialogOpener />
     </div>
@@ -41,21 +40,31 @@ import { mapState } from 'vuex';
 import WatchlistPicker from '../popovers/WatchlistPicker.vue';
 import OpenContractDialogOpener from '../dialogs/OpenContractDialogOpener.vue';
 import AvailableStatus from '../controls/AvailableStatus.vue';
+import Tab from '../controls/Tab.vue';
+
 export default {
   name: 'InstrumentPanel',
   components: {
     WatchlistPicker,
     OpenContractDialogOpener,
-    AvailableStatus
+    AvailableStatus,
+    Tab
   },
   methods: {
     toggleTradingPanelDialog (e) {
       this.$store.commit('tradingPanel/toggleTradingPanelDialog', e);
+    },
+    selectWatchTab(e) {
+      this.$store.commit('tabs/selectWatchTab', e);
     }
   },
   computed: {
     ...mapState('others', {
       products: state => state.products,
+    }),
+    ...mapState('tabs', {
+      watchTabs: state => state.watchTabs,
+      selectedWatchTabIndex: state => state.selectedWatchTabIndex
     }),
   }
 }
@@ -75,24 +84,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .panel-title {
-      padding-right: 16px;
-      color: #777;
-      max-width: 100%;
-      overflow: hidden;
-      line-height: 32px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      &:hover {
-        color: #111;
-      }
-      &.active {
-        color: #111;
-      }
-    }
   }
   .content {
     padding: 8px;

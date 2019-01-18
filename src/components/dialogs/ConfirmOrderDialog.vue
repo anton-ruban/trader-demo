@@ -25,7 +25,7 @@
         </div>
         <div class="action-bar">
           <v-btn small depressed color="#ebebeb" @click="toggleConfirmOrderDialog(false)">取消</v-btn>
-          <v-btn small depressed color="#39d" class="ok-button">确认</v-btn>
+          <v-btn small depressed color="#39d" class="ok-button" @click="toggleTradingPanelDialog(false)">确认</v-btn>
         </div>
       </div>
     </v-layout>
@@ -42,6 +42,9 @@ export default {
     TitleBar,
   },
   methods: {
+    toggleTradingPanelDialog (e) {
+      this.$store.commit('tradingPanel/toggleTradingPanelDialog', e);
+    },
     toggleConfirmOrderDialog (e) {
       this.$store.commit('tradingPanel/toggleConfirmOrderDialog', e);
     },

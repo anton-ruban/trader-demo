@@ -2,8 +2,7 @@
   <div class="bottom-panel">
     <div class="head">
       <div>
-        <span class="panel-title active">仓位</span>
-        <span class="panel-title">订单</span>
+        <Tab :tabs="bottomTabs" :selectedTabIndex="selectedBottomTabIndex" @change="selectBottomTab($event)"/>
       </div>
       <div>
         <button class="btn" type="button" title="Settings">
@@ -44,15 +43,26 @@
 <script>
 
 import { mapState } from 'vuex';
+import Tab from '../controls/Tab.vue';
 export default {
   name: 'BottomPanel',
   components: {
+    Tab,
   },
   computed: {
     ...mapState('others', {
       positions: state => state.positions,
     }),
-  }
+    ...mapState('tabs', {
+      bottomTabs: state => state.bottomTabs,
+      selectedBottomTabIndex: state => state.selectedBottomTabIndex
+    }),
+  },
+  methods: {
+    selectBottomTab(e) {
+      this.$store.commit('tabs/selectBottomTab', e);
+    }
+  },
 }
 </script>
 
@@ -68,24 +78,6 @@ export default {
     display: flex;
     justify-content: space-between;
     height: 32px;
-    .panel-title {
-      padding-right: 16px;
-      color: #777;
-      max-width: 100%;
-      overflow: hidden;
-      line-height: 32px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      &:hover {
-        color: #111;
-      }
-      &.active {
-        color: #111;
-      }
-    }
     button {
       background: transparent;
       color: #888;
