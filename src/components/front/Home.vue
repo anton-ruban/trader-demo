@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getStarted () {
-      // this.$router.push({ path: 'warning' })
+      this.$router.push({ path: 'warning' })
     },
   }
 }
