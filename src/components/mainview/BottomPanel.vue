@@ -2,7 +2,7 @@
   <div class="bottom-panel">
     <div class="head">
       <div>
-        <Tab :tabs="bottomTabs" :selectedTabIndex="selectedBottomTabIndex" @change="selectBottomTab($event)"/>
+        <Tab :tabs="bottomTabs" :selectedTabIndex="selectedBottomTabIndex" @change="selectBottomTab($event)" @subChange="selectBottomTabSubItem($event)"/>
       </div>
       <div>
         <button class="btn" type="button" title="Settings">
@@ -61,6 +61,9 @@ export default {
   methods: {
     selectBottomTab(e) {
       this.$store.commit('tabs/selectBottomTab', e);
+    },
+    selectBottomTabSubItem(e) {
+      this.$store.commit('tabs/selectBottomTabSubItem', e);
     }
   },
 }

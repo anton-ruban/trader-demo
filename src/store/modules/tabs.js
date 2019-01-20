@@ -47,6 +47,12 @@ const mutations = {
     if (state.bottomTabs[index].subItems) {
       state.bottomTabs[index].selectedSubItemIndex = 0;
     }
+  },
+  selectBottomTabSubItem(state, {tabIndex, subItemIndex}) {
+    state.selectedBottomTabIndex = tabIndex;
+    if (state.bottomTabs[tabIndex].subItems) {
+      state.bottomTabs[tabIndex].selectedSubItemIndex = subItemIndex;
+    }
   }
 }
 

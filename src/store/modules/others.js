@@ -1,6 +1,5 @@
 // initial state
 const state = {
-  isLoggedIn: true,
   products: {
     headers: [
       {

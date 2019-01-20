@@ -1,12 +1,7 @@
 <template>
   <v-app>
     <div id="app">
-      <template v-if="isLoggedIn">
-        <Header />
-        <MainView />
-        <Footer />
-      </template>
-      <LoginPage v-else/>
+      <router-view></router-view>
       <TradingPanelDialog/>
       <ConfirmOrderDialog/>
     </div>
@@ -15,27 +10,14 @@
 
 <script>
 import { mapState } from 'vuex';
-import Header from './components/header/Header.vue';
-import MainView from './components/mainview/MainView.vue';
-import Footer from './components/footer/Footer.vue';
-import LoginPage from './components/login/LoginPage.vue';
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 
 export default {
   name: 'app',
   components: {
-    Header,
-    MainView,
-    Footer,
-    LoginPage,
     TradingPanelDialog,
     ConfirmOrderDialog
-  },
-  computed: {
-    ...mapState('others', {
-      isLoggedIn: state => state.isLoggedIn,
-    }),
   }
 }
 </script>
@@ -82,8 +64,8 @@ a {
   height: 100%;
   min-width: 1024px;
   min-height: 300px;
-  background-color: #eee;
-  overflow: hidden;
+  background-color: #f5f9fe;
+  overflow: auto;
 }
 button, select {
   text-transform: none;

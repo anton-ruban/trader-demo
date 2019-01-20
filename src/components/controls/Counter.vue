@@ -1,10 +1,10 @@
 <template>
   <div class="select-control">
-    <v-btn depressed small icon>
+    <v-btn depressed small icon @click="decrease()" :disabled="count === 0">
       -
     </v-btn>
-    <span>{{value}}</span>
-    <v-btn depressed small icon>
+    <span>{{count}}</span>
+    <v-btn depressed small icon @click="increase()">
       +
     </v-btn>
   </div>
@@ -15,9 +15,17 @@
 export default {
   name: 'SelectByArrow',
   props: {
-    value: Number,
+    count: Number,
     stepValue: Number
-  }
+  },
+  methods: {
+    decrease() {
+      this.$emit('change', +(this.count - this.stepValue).toFixed(12));
+    },
+    increase() {
+      this.$emit('change', +(this.count + this.stepValue).toFixed(12));
+    }
+  },
 }
 </script>
 
