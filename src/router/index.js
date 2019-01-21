@@ -4,6 +4,7 @@ import TradingPage from '../components/pages/TradingPage';
 import FrontPage from '../components/pages/FrontPage';
 import Home from '../components/front/Home';
 import Warning from '../components/front/Warning';
+import SignUp from '../components/front/SignUp';
 
 Vue.use(Router)
 
@@ -20,6 +21,10 @@ export default new Router({
         {
           path: 'warning',
           component: Warning
+        },
+        {
+          path: 'signup',
+          component: SignUp
         }
       ]
     },

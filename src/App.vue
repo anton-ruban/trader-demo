@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 

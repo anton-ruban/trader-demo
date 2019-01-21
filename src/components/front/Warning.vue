@@ -35,7 +35,7 @@
       ></v-checkbox>
     </div>
     <div class="actions">
-      <v-btn large color="primary" :disabled="!checkbox1 || !checkbox2" @click="register()">继续注册</v-btn>
+      <v-btn large color="primary" :disabled="!checkbox1 || !checkbox2" @click="signup()">继续注册</v-btn>
       <v-btn large color="warning" @click="cancel()">取消</v-btn>
     </div>
   </div>
@@ -52,10 +52,10 @@ export default {
   },
   methods: {
     cancel () {
-      this.$router.push({ path: '/' })
+      history.back()
     },
-    register() {
-      this.$router.push({ path: 'register' })
+    signup() {
+      this.$router.push({ path: 'signup' })
     }
   },
   components: {
