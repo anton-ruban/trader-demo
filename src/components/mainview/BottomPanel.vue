@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="content">
-      <div class="content-section">
+      <div class="content-section" v-if="selectedBottomTabIndex === 0">
         <v-data-table
           :headers="positions.headers"
           :items="positions.data"
@@ -36,6 +36,26 @@
           </template>
         </v-data-table>
       </div>
+      <div class="content-section" v-if="selectedBottomTabIndex === 1">
+        <v-data-table
+          :headers="orders.headers"
+          :items="filteredOrders"
+          hide-actions
+        >
+          <template slot="items" slot-scope="props">
+            <td><img src="../../assets/cfd.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
+            <td>{{ props.item.type }}</td>
+            <td>{{ props.item.buySell }}</td>
+            <td class="text-xs-right">{{ props.item.quantity }}</td>
+            <td class="text-xs-right">{{ props.item.price }}</td>
+            <td class="text-xs-right">{{ props.item.currentPrice }}</td>
+            <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
+            <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
+            <td class="text-xs-right">{{ props.item.validPeriod }}</td>
+            <td class="text-xs-right">{{ props.item.orderDate }}</td>
+          </template>
+        </v-data-table>
+      </div>
     </div>
   </div>
 </template>
@@ -53,10 +73,22 @@ export default {
     ...mapState('others', {
       positions: state => state.positions,
     }),
+    ...mapState('orders', {
+      orders: state => state.orders,
+    }),
     ...mapState('tabs', {
       bottomTabs: state => state.bottomTabs,
       selectedBottomTabIndex: state => state.selectedBottomTabIndex
     }),
+    filteredOrders: function () {
+      if (this.bottomTabs[1].selectedSubItemIndex === 0) {
+        return this.orders.data.filter(item => item.isPending);
+      } else if (this.bottomTabs[1].selectedSubItemIndex === 1) {
+        return this.orders.data.filter(item => !item.isPending);
+      } else {
+        return this.orders.data;
+      }
+    }
   },
   methods: {
     selectBottomTab(e) {
