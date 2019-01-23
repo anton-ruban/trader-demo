@@ -18,7 +18,7 @@
           hide-actions
         >
           <template slot="items" slot-scope="props">
-            <td><img src="../../assets/cfd.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
+            <td><img src="../../assets/fu.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
             <td class="text-xs-right">{{ props.item.status }}</td>
             <td class="text-xs-right">{{ props.item.ls }}</td>
             <td class="text-xs-right">{{ props.item.amount }}</td>
@@ -43,7 +43,7 @@
           hide-actions
         >
           <template slot="items" slot-scope="props">
-            <td><img src="../../assets/cfd.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
+            <td><img src="../../assets/fu.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
             <td>{{ props.item.type }}</td>
             <td>{{ props.item.buySell }}</td>
             <td class="text-xs-right">{{ props.item.quantity }}</td>

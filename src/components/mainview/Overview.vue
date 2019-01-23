@@ -2,10 +2,10 @@
   <div class="content-head">
     <div class="overview-head">
       <div class="flex-container">
-        <img src="../../assets/cfd.png"/>
+        <img src="../../assets/fu.png"/>
         <div>
-          <div class="instr-name">UK 100</div>
-          <div class="instr-desc">UK100.1 * GBP</div>
+          <div class="instr-name">{{selectedContract.product}}</div>
+          <div class="instr-desc">{{selectedContract.description}}</div>
         </div>
       </div>
       <div class="flex-container">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="overview-body">
-      <div v-for="(value, key) in overview" :key="key" class="item">
+      <div v-for="(value, key) in overviews[selectedOverviewId]" :key="key" class="item">
         <div class="item-label">{{value.label}}</div>
         <div>{{value.value}}</div>
       </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import AvailableStatus from '../controls/AvailableStatus.vue';
 export default {
   name: 'Overview',
@@ -47,8 +47,12 @@ export default {
   },
   computed: {
     ...mapState('others', {
-      overview: state => state.overview,
+      overviews: state => state.overviews,
+      selectedOverviewId: state => state.selectedOverviewId
     }),
+    ...mapGetters('contracts', {
+      selectedContract: 'selectedContract',
+    })
   }
 }
 </script>
@@ -77,6 +81,7 @@ export default {
           font-size: 11px;
           color: #888;
           line-height: 11px;
+          margin-top: 3px;
         }
         .action-button {
           margin-right: 8px;

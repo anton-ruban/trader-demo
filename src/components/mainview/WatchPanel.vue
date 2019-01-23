@@ -14,19 +14,21 @@
         </div>
         <div class="content-body">
           <v-data-table
-            :headers="products.headers"
-            :items="products.data"
+            :headers="contracts.headers"
+            :items="contracts.data[selectedContractsId]"
             hide-actions
           >
             <template slot="items" slot-scope="props">
-              <td valign="middle"><img src="../../assets/cfd.png" width="16" class="product-icon"/>{{ props.item.product }}</td>
-              <td class="text-xs-right">{{ props.item.sellAmount > 0 ? props.item.sellAmount : '-' }}</td>
-              <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.sellingPrice }}</div></td>
-              <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.buyingPrice }}</div></td>
-              <td class="text-xs-right">{{ props.item.buyAmount > 0 ? props.item.buyAmount : '-' }}</td>
-              <td class="text-xs-right">{{ props.item.marketPrice }}<AvailableStatus /></td>
-              <td class="text-xs-right">{{ props.item.percent }}</td>
-              <td class="text-xs-right">{{ props.item.fallAndRaise }}</td>
+              <tr @click="selectRow(props.item)">
+                <td valign="middle"><img src="../../assets/fu.png" width="16" class="product-icon"/>{{ props.item.product }}</td>
+                <td class="text-xs-right">{{ props.item.sellAmount > 0 ? props.item.sellAmount : '-' }}</td>
+                <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.sellingPrice }}</div></td>
+                <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.buyingPrice }}</div></td>
+                <td class="text-xs-right">{{ props.item.buyAmount > 0 ? props.item.buyAmount : '-' }}</td>
+                <td class="text-xs-right">{{ props.item.marketPrice }}<AvailableStatus /></td>
+                <td class="text-xs-right">{{ props.item.percent }}</td>
+                <td class="text-xs-right">{{ props.item.fallAndRaise }}</td>
+              </tr>
             </template>
           </v-data-table>
         </div>
@@ -56,11 +58,16 @@ export default {
     },
     selectWatchTab(e) {
       this.$store.commit('tabs/selectWatchTab', e);
+    },
+    selectRow(e) {
+      this.$store.commit('contracts/selectContract', e.id);
+      this.$store.commit('others/selectOverview', e.overviewId);
     }
   },
   computed: {
-    ...mapState('others', {
-      products: state => state.products,
+    ...mapState('contracts', {
+      contracts: state => state.contracts,
+      selectedContractsId: state => state.selectedContractsId,
     }),
     ...mapState('tabs', {
       watchTabs: state => state.watchTabs,

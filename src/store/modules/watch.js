@@ -3,31 +3,55 @@ const state = {
   isOpenContractDialog: false,
   isOpenWatchlistPicker: false,
   watchlist: {
-    selectedStandardWatchId: null,
+    selectedWatch: null,
     myWatchlists: [
       {
-        id: 3,
+        id: 'watch3',
         title: '我的观察列表',
+        contractId: 'contracts1'
       },
       {
-        id: 4,
+        id: 'watch4',
         title: 'Popular Products',
+        contractId: 'contracts2'
       }
     ],
     standardWatchlist: [
       {
-        id: 0,
+        id: 'watch12',
+        type: 'fu',
+        title: '期货',
+        children: [
+          {
+            id: 'watch13',
+            type: 'fu',
+            title: '商品期货',
+            contractId: 'contracts3'
+          },
+          {
+            id: 'watch14',
+            type: 'fu',
+            title: '货币期货',
+            contractId: 'contracts3'
+          },
+        ]
+      },
+      {
+        id: 'watch0',
         type: 'fx',
         title: 'Forex',
         children: [
           {
-            id: 7,
+            id: 'watch7',
             type: 'fx',
-            title: 'FX Top 10'
+            title: 'FX Top 10',
+            contractId: 'contracts1'
           },
           {
+            id: 'watch11',
             type: 'fx',
-            title: 'FX Top 20'
+            title: 'FX Top 20',
+            contractId: 'contracts2'
           }
         ]
       },
@@ -37,38 +61,44 @@ const state = {
         title: 'CFDs by region',
         children: [
           {
-            id: 8,
+            id: 'watch8',
             type: 'cfd',
-            title: 'CFDs Asian'
+            title: 'CFDs Asian',
+            contractId: 'contracts1'
           },
           {
-            id: 9,
+            id: 'watch9',
             type: 'cfd',
-            title: 'CFDs Australia'
+            title: 'CFDs Australia',
+            contractId: 'contracts2'
           },
           {
-            id: 10,
+            id: 'watch10',
             type: 'cfd',
-            title: 'CFDs Austria'
+            title: 'CFDs Austria',
+            contractId: 'contracts1'
           }
         ]
       },
       {
-        id: 2,
+        id: 'watch2',
         type: 'bonds',
         title: 'Bonds Online',
+        contractId: 'contracts1'
       },
     ],
     recent: [
       {
-        id: 5,
-        type: 'bonds',
-        title: 'Bonds Online',
+        id: 'watch7',
+        type: 'fx',
+        title: 'FX Top 10',
+        contractId: 'contracts1'
       },
       {
-        id: 6,
-        type: 'cfd',
-        title: 'CFDs Austria'
+        id: 'watch11',
+        type: 'fx',
+        title: 'FX Top 20',
+        contractId: 'contracts2'
       }
     ]
   }
@@ -77,22 +107,17 @@ const state = {
 // getters
 const getters = {
   selectedStandardWatch: state => {
-    if (state.watchlist.selectedStandardWatchId === null) {
-      return null;
-    }
-
-    return state.watchlist.standardWatchlist.find(item => item.id === state.watchlist.selectedStandardWatchId);
+    return state.watchlist.selectedWatch;
   }
 }
 
 // actions
 const actions = {
-  selectStandardWatchId ({ state, commit }, id) {
-    const standardWatch = state.watchlist.standardWatchlist.find(item => item.id === id);
+  selectWatch ({ state, commit }, watch) {
+    commit('selectWatch', watch);
 
-    if ((standardWatch && standardWatch.children && standardWatch.children.length > 0) || id === null) {
-      commit('selectStandardWatchId', id);
-    } else {
+    if ((!watch || !watch.children || watch.children.length === 0)) {
+      commit('contracts/selectContractsId', watch.contractId, { root: true })
       commit('toggleWatchlistPicker', false);
     }
   }
@@ -100,14 +125,14 @@ const actions = {
 
 // mutations
 const mutations = {
-  selectStandardWatchId(state, id) {
-    state.watchlist.selectedStandardWatchId = id
+  selectWatch(state, watch) {
+    state.watchlist.selectedWatch = watch;
   },
   toggleWatchlistPicker(state, isOpen) {
     state.isOpenWatchlistPicker = isOpen;
 
     if (!isOpen) {
-      state.watchlist.selectedStandardWatchId = null;
+      state.watchlist.selectedWatch = null;
     }
   },
   toggleOpenContractDialog(state, isOpen) {

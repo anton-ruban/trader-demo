@@ -7,6 +7,7 @@ import tradingPanel from './modules/tradingPanel';
 import tabs from './modules/tabs';
 import auth from './modules/auth';
 import orders from './modules/orders';
+import contracts from './modules/contracts';
 
 Vue.use(Vuex);
 
@@ -19,5 +20,6 @@ export default new Vuex.Store({
     tabs,
     auth,
     orders,
+    contracts,
   },
 });

@@ -4,7 +4,7 @@
       <TitleBar title="确认订单" hideBack hideClose/>
       <div class="dialog-body">
         <div class="summary">
-          <img src="../../assets/cfd.png"/>
+          <img src="../../assets/fu.png"/>
           <div class="text">
             <span class="company-name">Canadian Pacific Railway Ltd</span>
             <span class="desc">CP:xtse•CAD</span>

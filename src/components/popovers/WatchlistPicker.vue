@@ -17,7 +17,7 @@
           <div class="content">
             <div class="subheader">My Watchlists</div>
             <ul class="list-body">
-              <li class="list-item" v-for="item in myWatchlists" :key="item.id" @click="selectStandardWatchId(item.id)">
+              <li class="list-item" v-for="item in myWatchlists" :key="item.id" @click="selectWatch(item)">
                 <v-icon>star</v-icon>
                 <span>{{item.title}}</span>
               </li>
@@ -28,7 +28,7 @@
             </div>
             <div class="subheader">Standard Watchlists</div>
             <ul class="list-body">
-              <li class="list-item" v-for="item in standardWatchlist" :key="item.id" @click="selectStandardWatchId(item.id)">
+              <li class="list-item" v-for="item in standardWatchlist" :key="item.id" @click="selectWatch(item)">
                 <img :src='"../../assets/" + item.type + ".png"'/>
                 <span>{{item.title}}</span>
                 <v-icon v-if="item.children && item.children.length > 0" class="arrow-icon">keyboard_arrow_right</v-icon>
@@ -36,7 +36,7 @@
             </ul>
             <div class="subheader">Recent</div>
             <ul class="list-body">
-              <li class="list-item" v-for="item in recent" :key="item.id" @click="selectStandardWatchId(item.id)">
+              <li class="list-item" v-for="item in recent" :key="item.id" @click="selectWatch(item)">
                 <img :src='"../../assets/" + item.type + ".png"'/>
                 <span>{{item.title}}</span>
               </li>
@@ -44,11 +44,11 @@
           </div>
         </div>
         <div class='pick-section'>
-          <TitleBar :title="detailStandardWatch ? detailStandardWatch.title : ''" @back="selectStandardWatchId(null)" @close="toggleWatchlistPicker(false)" />
+          <TitleBar :title="detailStandardWatch ? detailStandardWatch.title : ''" @back="selectWatch(null)" @close="toggleWatchlistPicker(false)" />
           <v-divider></v-divider>
           <div class="content" v-if="detailStandardWatch">
             <ul class="list-body">
-              <li class="list-item" v-for="item in detailStandardWatch.children" :key="item.id" @click="selectStandardWatchId(item.id)">
+              <li class="list-item" v-for="item in detailStandardWatch.children" :key="item.id" @click="selectWatch(item)">
                 <img :src='"../../assets/" + item.type + ".png"'/>
                 <span>{{item.title}}</span>
                 <v-icon v-if="item.children && item.children.length > 0" class="arrow-icon">keyboard_arrow_right</v-icon>
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     ...mapActions('watch', [
-      'selectStandardWatchId'
+      'selectWatch'
     ]),
     toggleWatchlistPicker (e) {
       this.$store.commit('watch/toggleWatchlistPicker', e);

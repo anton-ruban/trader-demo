@@ -1,45 +1,6 @@
 // initial state
 const state = {
-  products: {
-    headers: [
-      {
-        text: '产品',
-        align: 'left',
-        value: 'product'
-      },
-      { text: '卖出数量', value: 'sellAmount', align: 'right'},
-      { text: '卖出价', value: 'sellingPrice', align: 'right' },
-      { text: '买入价', value: 'buyingPrice', align: 'right' },
-      { text: '买入数量', value: 'buyAmount', align: 'right' },
-      { text: '市价', value: 'marketPrice', align: 'right' },
-      { text: '%', value: 'percent', align: 'right' },
-      { text: '净涨跌', value: 'fallAndRaise', align: 'right' }
-    ],
-    data: [
-      {
-        value: false,
-        product: 'UK 100',
-        sellAmount: 0,
-        sellingPrice: 6906.20,
-        buyingPrice: 6906.500,
-        buyAmount: 0,
-        marketPrice: 'TSE',
-        percent: '0.00%',
-        fallAndRaise: 0.00,
-      },
-      {
-        value: false,
-        product: 'CK Hutchison Holdings Ltd',
-        sellAmount: 0,
-        sellingPrice: 77.500,
-        buyingPrice: 77.500,
-        buyAmount: 0,
-        marketPrice: 'TSE',
-        percent: '0.00%',
-        fallAndRaise: 0.00,
-      },
-    ]
-  },
+  selectedOverviewId: 'overview1',
   positions: {
     headers: [
       {
@@ -288,50 +249,44 @@ const state = {
       },
     ]
   },
-  overview: {
-    bid: {
-      label: 'Bid',
-      value: 6924.90
-    },
-    ask: {
-      label: 'Ask',
-      value: 6926.40,
-    },
-    netChange: {
-      label: 'Net change',
-      value: 39.45
-    },
-    percentChange: {
-      label: '% change',
-      value: '0.53%'
-    },
-    open: {
-      label: 'Open',
-      value: 6899.7,
-    },
-    low: {
-      label: 'Low',
-      value: 6891.76,
-    },
-    high: {
-      label: 'High',
-      value: 6946.7,
-    },
-    prevClose: {
-      label: 'Prev. close',
-      value: 6887.7,
-    },
-    lastUpdate: {
-      label: 'Last update',
-      value: '15:07:28',
-    },
-    bidSize: {
-      label: 'Bid Size',
-      value: 180
-    },
-    askSize: {
-      label: 'Ask Size',
-      value: 30,
+  overviews: {
+    overview1: {
+      latestPrice: {
+        label: '最新价',
+        value: 6924.90
+      },
+      riseAndFall: {
+        label: '净涨跌',
+        value: 39.45
+      },
+      percentChange: {
+        label: '涨跌幅%',
+        value: '0.53%'
+      },
+      open: {
+        label: '开市价',
+        value: 6899.7,
+      },
+      low: {
+        label: '最低价',
+        value: 6891.76,
+      },
+      high: {
+        label: '最高价',
+        value: 6946.7,
+      },
+      expireDate: {
+        label: '到期日',
+        value: '14-Mar-2019',
+      },
+      lastUpdate: {
+        label: '上次更新',
+        value: '15:07:28',
+      },
+      tradingAmount: {
+        label: '交易量',
+        value: 180
+      }
     }
   },
 }
@@ -346,6 +301,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  selectOverview(state, overviewId) {
+    state.selectedOverviewId = overviewId
+  }
 }
 
 export default {
