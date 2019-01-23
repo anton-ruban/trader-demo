@@ -19,7 +19,7 @@
             hide-actions
           >
             <template slot="items" slot-scope="props">
-              <tr @click="selectRow(props.item)">
+              <tr @click="selectRow(props.item)" :class="[{'active': selectedContractId === props.item.id}]">
                 <td valign="middle"><img src="../../assets/fu.png" width="16" class="product-icon"/>{{ props.item.product }}</td>
                 <td class="text-xs-right">{{ props.item.sellAmount > 0 ? props.item.sellAmount : '-' }}</td>
                 <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.sellingPrice }}</div></td>
@@ -61,13 +61,14 @@ export default {
     },
     selectRow(e) {
       this.$store.commit('contracts/selectContract', e.id);
-      this.$store.commit('others/selectOverview', e.overviewId);
+      this.$store.commit('overview/selectOverview', e.overviewId);
     }
   },
   computed: {
     ...mapState('contracts', {
       contracts: state => state.contracts,
       selectedContractsId: state => state.selectedContractsId,
+      selectedContractId: state => state.selectedContractId,
     }),
     ...mapState('tabs', {
       watchTabs: state => state.watchTabs,
@@ -112,6 +113,9 @@ export default {
       .content-body {
         height: calc(100% - 32px);
         overflow: auto;
+        .active {
+          background: #eee;
+        }
         .clickable-div {
           cursor: pointer;
           background: #e5e5e5;

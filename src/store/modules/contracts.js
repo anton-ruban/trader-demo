@@ -104,7 +104,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview2',
           description: 'XAU • CNH'
         },
         {
@@ -118,7 +118,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview3',
           description: 'XAG • USD'
         },
         {
@@ -132,7 +132,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview4',
           description: 'USD • CNH'
         },
         {
@@ -146,8 +146,8 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
-          description: 'TF9 • GBP'
+          overviewId: 'overview5',
+          description: 'GCJ9 • GBP'
         },
         {
           id: 'contract10',
@@ -160,8 +160,8 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
-          description: 'TF9 • GBP'
+          overviewId: 'overview6',
+          description: 'GCJ9 • GBP'
         },
         {
           id: 'contract11',
@@ -174,8 +174,8 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
-          description: 'TF9 • GBP'
+          overviewId: 'overview7',
+          description: 'GCJ9 • GBP'
         },
         {
           id: 'contract12',
@@ -188,7 +188,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview8',
           description: 'TF9 • GBP'
         },
         {
@@ -202,7 +202,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview9',
           description: 'TF9 • GBP'
         },
         {
@@ -216,7 +216,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview10',
           description: 'TF9 • GBP'
         },
         {
@@ -230,7 +230,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
-          overviewId: 'overview1',
+          overviewId: 'overview11',
           description: 'TF9 • GBP'
         },
       ]

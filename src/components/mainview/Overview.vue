@@ -46,7 +46,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('others', {
+    ...mapState('overview', {
       overviews: state => state.overviews,
       selectedOverviewId: state => state.selectedOverviewId
     }),

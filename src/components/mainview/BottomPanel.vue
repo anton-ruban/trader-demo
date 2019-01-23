@@ -70,7 +70,7 @@ export default {
     Tab,
   },
   computed: {
-    ...mapState('others', {
+    ...mapState('positions', {
       positions: state => state.positions,
     }),
     ...mapState('orders', {
