@@ -23,6 +23,11 @@ const state = {
         {name: '委托历史'}
       ]
     }
+  ],
+  selectedNewsTabIndex: 0,
+  newsTabs: [
+    {name: '新闻'},
+    {name: '市场分析'}
   ]
 }
 

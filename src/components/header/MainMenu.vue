@@ -2,15 +2,9 @@
   <div class="main-menu">
     <div>
       <nav>
-        <button class="menu-item is-active" type="button" title="交易">
-          交易
-        </button>
-        <button class="menu-item" type="button" title="新闻与研究">
-          新闻与研究
-        </button>
-        <button class="menu-item" type="button" title="账户">
-          账户
-        </button>
+        <router-link to="/main/trading">交易</router-link>
+        <router-link to="/main/news">新闻与研究</router-link>
+        <!-- <router-link to="/main/">账户</router-link> -->
       </nav>
     </div>
     <div class="search">
@@ -41,24 +35,25 @@ export default {
 nav {
   display: flex;
   flex: 1 0 auto;
-}
-.menu-item {
-  font-size: 14px;
-  text-transform: uppercase;
-  background: transparent;
-  line-height: 1em;
-  font-weight: bold;
-  text-align: center;
-  display: block;
-  color: #888;
-  width: 100%;
-  white-space: nowrap;
-  padding: 6.5px 8px;
-  &.is-active {
-    color: #111;
-  }
-  &:hover {
-    color: #111;
+
+  a {
+    font-size: 14px;
+    text-transform: uppercase;
+    background: transparent;
+    line-height: 1em;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    color: #888;
+    width: 100%;
+    white-space: nowrap;
+    padding: 6.5px 8px;
+    &:hover {
+      color: #111;
+    }
+    &.router-link-active {
+      color: #111;
+    }
   }
 }
 .search {

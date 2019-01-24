@@ -1,21 +1,20 @@
 <template>
   <div class="main-container">
     <Header />
-    <MainView />
+    <!-- <TradingView /> -->
+    <router-view></router-view>
     <Footer />
   </div>
 </template>
 
 <script>
 import Header from '../header/Header.vue';
-import MainView from '../mainview/MainView.vue';
 import Footer from '../footer/Footer.vue';
 
 export default {
-  name: 'TradingPage',
+  name: 'MainPage',
   components: {
     Header,
-    MainView,
     Footer,
   },
   computed: {

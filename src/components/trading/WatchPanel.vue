@@ -111,7 +111,7 @@ export default {
         }
       }
       .content-body {
-        height: calc(100% - 32px);
+        height: calc(100% - 40px);
         overflow: auto;
         .active {
           background: #eee;

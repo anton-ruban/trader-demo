@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     goTrading() {
-      this.$router.push({ path: 'trading' })
+      this.$router.push({ path: 'main/trading' })
     },
     selectSignUpTab (e) {
       this.$store.commit('auth/selectSignUpTab', e);

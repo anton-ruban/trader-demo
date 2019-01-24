@@ -16,7 +16,7 @@ import WatchPanel from './WatchPanel.vue';
 import WatchDetailPanel from './WatchDetailPanel.vue';
 
 export default {
-  name: 'MainView',
+  name: 'TradingView',
   components: {
     Multipane,
     MultipaneResizer,

@@ -113,7 +113,7 @@ const getters = {
 
 // actions
 const actions = {
-  selectWatch ({ state, commit }, watch) {
+  selectWatch ({ commit }, watch) {
     commit('selectWatch', watch);
 
     if ((!watch || !watch.children || watch.children.length === 0)) {

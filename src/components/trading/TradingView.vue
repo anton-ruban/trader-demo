@@ -17,7 +17,7 @@ import { Multipane, MultipaneResizer } from 'vue-multipane';
 import UpperWorkspace from './UpperWorkspace.vue';
 import BottomPanel from './BottomPanel.vue';
 export default {
-  name: 'MainView',
+  name: 'TradingView',
   components: {
     Multipane,
     MultipaneResizer,
