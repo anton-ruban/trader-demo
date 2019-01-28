@@ -56,6 +56,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  addOrder(state, newOrder) {
+    state.orders.data.push(newOrder);
+  },
 }
 
 export default {

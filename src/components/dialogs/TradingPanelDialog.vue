@@ -17,23 +17,23 @@
         <div class="summary-table">
           <div class="item">
             <div class="label">卖出价</div>
-            <div class="value">255.270</div>
+            <div class="value">{{selectedContract.sellingPrice}}</div>
           </div>
           <div class="item">
             <div class="label">买入价</div>
-            <div class="value">255.270</div>
+            <div class="value">{{selectedContract.buyingPrice}}</div>
           </div>
           <div class="item">
             <div class="label">最新价</div>
-            <div class="value">255.270</div>
+            <div class="value">{{overviews[selectedOverviewId].latestPrice.value}}</div>
           </div>
           <div class="item">
             <div class="label">净涨跌</div>
-            <div class="value">255.270</div>
+            <div class="value">{{selectedContract.fallAndRaise}}</div>
           </div>
           <div class="item">
             <div class="label">涨跌幅%</div>
-            <div class="value">255.270</div>
+            <div class="value">{{overviews[selectedOverviewId].percentChange.value}}</div>
           </div>
         </div>
         <v-divider></v-divider>
@@ -50,27 +50,27 @@
         <div class="edit-list">
           <div class="edit-row">
             <div class="label">类型</div>
-            <SelectByArrow :options="newTrading.type.options" :selectedIndex="newTrading.type.selectedIndex" @change="selectNewTradingOption('type', $event)"></SelectByArrow>
+            <SelectByArrow :options="tradeOptions.type.options" :selectedIndex="tradeOptions.type.selectedIndex" @change="selectNewTradingOption('type', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">买入/卖出</div>
-            <SelectByArrow :options="newTrading.buySell.options" :selectedIndex="newTrading.buySell.selectedIndex" @change="selectNewTradingOption('buySell', $event)"></SelectByArrow>
+            <SelectByArrow :options="tradeOptions.buySell.options" :selectedIndex="tradeOptions.buySell.selectedIndex" @change="selectNewTradingOption('buySell', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">数量</div>
-            <Counter :stepValue="newTrading.amount.stepValue" :count="newTrading.amount.count" @change="selectNewTradingCount('amount', $event)"></Counter>
+            <Counter :stepValue="tradeOptions.amount.stepValue" :count="tradeOptions.amount.count" @change="selectNewTradingCount('amount', $event)"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">价格</div>
-            <Counter :stepValue="newTrading.price.stepValue" :count="newTrading.price.count" @change="selectNewTradingCount('price', $event)"></Counter>
+            <Counter :stepValue="tradeOptions.price.stepValue" :count="tradeOptions.price.count" @change="selectNewTradingCount('price', $event)"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">止损限价价格</div>
-            <Counter :stepValue="newTrading.stopLimitPrice.stepValue" :count="newTrading.stopLimitPrice.count" @change="selectNewTradingCount('stopLimitPrice', $event)"></Counter>
+            <Counter :stepValue="tradeOptions.stopLimitPrice.stepValue" :count="tradeOptions.stopLimitPrice.count" @change="selectNewTradingCount('stopLimitPrice', $event)"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">有效期</div>
-            <SelectByArrow :options="newTrading.validPeriod.options" :selectedIndex="newTrading.validPeriod.selectedIndex" @change="selectNewTradingOption('validPeriod', $event)"></SelectByArrow>
+            <SelectByArrow :options="tradeOptions.validPeriod.options" :selectedIndex="tradeOptions.validPeriod.selectedIndex" @change="selectNewTradingOption('validPeriod', $event)"></SelectByArrow>
           </div>
         </div>
         <div class="section-divider">
@@ -81,11 +81,11 @@
         <div class="edit-list" v-if="isAddStopPanel">
           <div class="edit-row">
             <div class="label">止盈</div>
-            <Counter :stepValue="newTrading.takeProfit.stepValue" :count="newTrading.takeProfit.count" @change="selectNewTradingCount('takeProfit', $event)"></Counter>
+            <Counter :stepValue="tradeOptions.takeProfit.stepValue" :count="tradeOptions.takeProfit.count" @change="selectNewTradingCount('takeProfit', $event)"></Counter>
           </div>
           <div class="edit-row">
             <div class="label">止损</div>
-            <Counter :stepValue="newTrading.stopLoss.stepValue" :count="newTrading.stopLoss.count" @change="selectNewTradingCount('stopLoss', $event)"></Counter>
+            <Counter :stepValue="tradeOptions.stopLoss.stepValue" :count="tradeOptions.stopLoss.count" @change="selectNewTradingCount('stopLoss', $event)"></Counter>
           </div>
         </div>
         <v-btn class="order-button" small depressed color="#39d" @click="toggleConfirmOrderDialog(true)">建立订单</v-btn>
@@ -129,30 +129,47 @@ export default {
   },
   methods: {
     toggleConfirmOrderDialog (e) {
-      this.$store.commit('tradingPanel/toggleConfirmOrderDialog', e);
+      if (e) {
+        const newTrade = {
+          accountNumber: 'TRIAL_' + Date.now(),
+          type: this.tradeOptions.type.options[this.tradeOptions.type.selectedIndex],
+          buySell: this.tradeOptions.buySell.options[this.tradeOptions.buySell.selectedIndex],
+          amount: this.tradeOptions.amount.count,
+          price: this.tradeOptions.price.count,
+          validPeriod: this.tradeOptions.validPeriod.options[this.tradeOptions.validPeriod.selectedIndex],
+          takeProfit: this.tradeOptions.takeProfit.count,
+          stopLoss: this.tradeOptions.stopLoss.count,
+        }
+        this.$store.commit('trading/updateNewTrade', newTrade);
+      }
+      this.$store.commit('trading/toggleConfirmOrderDialog', e);
     },
     toggleAddStopPanel(e) {
-      this.$store.commit('tradingPanel/toggleAddStopPanel', e);
+      this.$store.commit('trading/toggleAddStopPanel', e);
     },
     toggleTradingPanelDialog (e) {
-      this.$store.commit('tradingPanel/toggleTradingPanelDialog', e);
+      this.$store.commit('trading/toggleTradingPanelDialog', e);
     },
     toggleShowDetails (e) {
-      this.$store.commit('tradingPanel/toggleShowDetails', e);
+      this.$store.commit('trading/toggleShowDetails', e);
     },
     selectNewTradingOption (newTradingKey, e) {
-      this.$store.commit('tradingPanel/selectNewTradingOption', {newTradingKey, selectedIndex: e});
+      this.$store.commit('trading/selectNewTradingOption', {newTradingKey, selectedIndex: e});
     },
     selectNewTradingCount (newTradingKey, e) {
-      this.$store.commit('tradingPanel/selectNewTradingCount', {newTradingKey, newCount: e});
+      this.$store.commit('trading/selectNewTradingCount', {newTradingKey, newCount: e});
     }
   },
   computed: {
-    ...mapState('tradingPanel', {
+    ...mapState('trading', {
       isOpenTradingPanelDialog: state => state.isOpenTradingPanelDialog,
       isAddStopPanel: state => state.isAddStopPanel,
       isShowDetails: state => state.isShowDetails,
-      newTrading: state => state.newTrading
+      tradeOptions: state => state.tradeOptions,
+    }),
+    ...mapState('overview', {
+      overviews: state => state.overviews,
+      selectedOverviewId: state => state.selectedOverviewId
     }),
     ...mapGetters('contracts', {
       selectedContract: 'selectedContract',

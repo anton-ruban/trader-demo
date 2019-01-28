@@ -52,7 +52,7 @@
             <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
             <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
             <td class="text-xs-right">{{ props.item.validPeriod }}</td>
-            <td class="text-xs-right">{{ props.item.orderDate }}</td>
+            <td class="text-xs-right">{{ props.item.orderDate | moment("DD-MMM-YYYY") }}</td>
           </template>
         </v-data-table>
       </div>
