@@ -5,11 +5,11 @@
     </div>
     <multipane class="workspace" layout="vertical">
       <div :style="{ width: '50%', maxWidth: '90%', minWidth: '300px', minHeight: '100%' }">
-        
+        <NewsCategory/>
       </div>
       <multipane-resizer></multipane-resizer>
       <div :style="{ flexGrow: 1, zIndex: 0, }">
-        
+        ddd
       </div>
     </multipane>
   </div>
@@ -19,6 +19,7 @@
 import { mapState } from 'vuex';
 import { Multipane, MultipaneResizer } from 'vue-multipane';
 import Tab from '../controls/Tab.vue';
+import NewsCategory from './NewsCategory.vue';
 
 export default {
   name: 'TradingView',
@@ -26,6 +27,7 @@ export default {
     Multipane,
     Tab,
     MultipaneResizer,
+    NewsCategory,
   },
   computed: {
     ...mapState('tabs', {
@@ -44,10 +46,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .main-view {
-  height: calc(100% - 49px - 24px - 42px);
-  padding-left: 8px;
-  padding-right: 8px;
-  width: 100%;
+  margin-left: 8px;
+  margin-right: 8px;
+  flex-grow: 1;
+  width: calc(100% - 16px);
+  display: flex;
+  flex-direction: column;
   .head {
     background: #ccc;
     padding: 0 8px;
@@ -55,17 +59,15 @@ export default {
 }
 .workspace {
   width: 100%;
-  height: calc(100% - 30px);
-}
-.panel-container {
-  display: flex;
-  width: 100%;
-  height: 0;
+  background: #ccc;
+  flex: 1;
+  padding: 0 8px 8px 8px;
 }
 .multipane-resizer {
   margin-left: 0 !important;
   width: 8px !important;
   left: 0 !important;
   background: #ccc;
+  height: auto;
 }
 </style>

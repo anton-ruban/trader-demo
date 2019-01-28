@@ -8,12 +8,12 @@ const state = {
       {
         id: 'watch3',
         title: '我的观察列表',
-        contractId: 'contracts1'
+        contractId: 'contracts3'
       },
       {
         id: 'watch4',
         title: 'Popular Products',
-        contractId: 'contracts2'
+        contractId: 'contracts3'
       }
     ],
     standardWatchlist: [

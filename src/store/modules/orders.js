@@ -18,30 +18,30 @@ const state = {
       { text: '下单日期', value: 'orderDate', align: 'right' }
     ],
     data: [
-      {
-        value: false,
-        product: '英国富时100指数, 三月 2019年',
-        type: '限价',
-        buySell: '买入',
-        quantity: 2,
-        price: 6885.50,
-        currentPrice: 6918.50,
-        validPeriod: '取消前有效(G.T.C.)',
-        orderDate: '21-Jan-2019',
-        isPending: true,
-      },
-      {
-        value: false,
-        product: 'EURO STOXX® 50 Index - Mar 2019',
-        type: '限价',
-        buySell: '买入',
-        quantity: 2,
-        price: 6885.50,
-        currentPrice: 6918.50,
-        validPeriod: '取消前有效(G.T.C.)',
-        orderDate: '21-Jan-2019',
-        isPending: false
-      },
+      // {
+      //   value: false,
+      //   product: '英国富时100指数, 三月 2019年',
+      //   type: '限价',
+      //   buySell: '买入',
+      //   quantity: 2,
+      //   price: 6885.50,
+      //   currentPrice: 6918.50,
+      //   validPeriod: '取消前有效(G.T.C.)',
+      //   orderDate: '21-Jan-2019',
+      //   isPending: true,
+      // },
+      // {
+      //   value: false,
+      //   product: 'EURO STOXX® 50 Index - Mar 2019',
+      //   type: '限价',
+      //   buySell: '买入',
+      //   quantity: 2,
+      //   price: 6885.50,
+      //   currentPrice: 6918.50,
+      //   validPeriod: '取消前有效(G.T.C.)',
+      //   orderDate: '21-Jan-2019',
+      //   isPending: false
+      // },
     ]
   },
 }

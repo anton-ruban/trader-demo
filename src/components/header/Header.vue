@@ -34,7 +34,6 @@ header {
   flex-direction: column;
   position: relative;
   display: flex;
-  flex: 1 0 auto;
   padding: 0;
   margin: 0;
   max-width: 100%;

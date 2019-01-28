@@ -7,20 +7,19 @@
         <!-- <router-link to="/main/">账户</router-link> -->
       </nav>
     </div>
-    <div class="search">
-      <input type="search" placeholder="搜索产品" value=""/>
-      <i class="fa fa-search"></i>
-      <div></div>
-      <button class="search-dropdown btn" type="button">
-        <i class="fa fa-angle-down"></i>
-      </button>
+    <div class="search-container">
+      <SearchDropDown placeholder="搜索产品"/>
     </div>
   </div>
 </template>
 
 <script>
+import SearchDropDown from '../controls/SearchDropDown.vue';
 export default {
-  name: 'MainMenu'
+  name: 'MainMenu',
+  components: {
+    SearchDropDown,
+  }
 }
 </script>
 
@@ -31,6 +30,9 @@ export default {
   flex: 1 0 auto;
   justify-content: center;
   align-items: center;
+  .search-container {
+    margin: 0 16px;
+  }
 }
 nav {
   display: flex;
@@ -53,57 +55,6 @@ nav {
     }
     &.router-link-active {
       color: #111;
-    }
-  }
-}
-.search {
-  margin: 0 16px;
-  position: relative;
-  input[type=search] {
-    width: 180px;
-    padding-left: 28px;
-    text-overflow: ellipsis;
-    background-color: #666;
-    color: #ddd;
-    outline: 0;
-    border: 1px solid #ddd;
-    border-radius: 0;
-    display: block;
-    height: 24px;
-    padding-right: 36px;
-    &::placeholder {
-      color: #aaa;
-      font-style: italic;
-    }
-    &:focus {
-      background: #888;
-      color: #fff;
-    }
-    &::-webkit-search-cancel-button {
-      -webkit-appearance: none;
-    }
-  }
-  i {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 8px;
-    font-size: 16px;
-    height: 20px;
-    color: #ddd;
-    line-height: 24px;
-    pointer-events: none;
-  }
-  .search-dropdown {
-    position: absolute;
-    right: 24px;
-    width: auto;
-    top: 0;
-    bottom: 0;
-    padding: 0;
-    cursor: pointer;
-    i {
-      color: #aaa;
     }
   }
 }

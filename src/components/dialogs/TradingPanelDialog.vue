@@ -6,8 +6,8 @@
         <div class="summary">
           <img src="../../assets/fu.png"/>
           <div class="text">
-            <span class="company-name">Canadian Pacific Railway Ltd</span>
-            <span class="desc">CP:xtse•CAD</span>
+            <span class="company-name">{{selectedContract.product}}</span>
+            <span class="desc">{{selectedContract.description}}</span>
           </div>
           <v-btn icon small><v-icon>info</v-icon></v-btn>
           <v-btn icon small><v-icon>money</v-icon></v-btn>
@@ -117,7 +117,7 @@ import TitleBar from '../controls/TitleBar.vue';
 import AvailableStatus from '../controls/AvailableStatus.vue';
 import SelectByArrow from '../controls/SelectByArrow.vue';
 import Counter from '../controls/Counter.vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'TradingPanelDialog',
@@ -153,6 +153,9 @@ export default {
       isAddStopPanel: state => state.isAddStopPanel,
       isShowDetails: state => state.isShowDetails,
       newTrading: state => state.newTrading
+    }),
+    ...mapGetters('contracts', {
+      selectedContract: 'selectedContract',
     })
   }
 }
