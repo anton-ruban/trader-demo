@@ -1,30 +1,15 @@
 <template>
   <div class="category-view">
     <div class="head">
-      <WatchlistPicker />
+      <NewsProviderPicker />
       <SearchInput placeholder="搜索"/>
     </div>
     <ul>
       <li>
-        <div class="category-item">
-          <span class="time">21:58</span>
-          <span class="title">Trump-backed spending deal to end US shutdown passes Senate</span>
-        </div>
-        <div class="category-item">
-          <span class="time">21:58</span>
-          <span class="title">Trump-backed spending deal to end US shutdown passes Senate</span>
-        </div>
-        <div class="category-item">
-          <span class="time">21:58</span>
-          <span class="title">Trump-backed spending deal to end US shutdown passes Senate</span>
-        </div>
-        <div class="category-item">
-          <span class="time">21:58</span>
-          <span class="title">Trump-backed spending deal to end US shutdown passes Senate</span>
-        </div>
-        <div class="category-item">
-          <span class="time">21:58</span>
-          <span class="title">Trump-backed spending deal to end US shutdown passes Senate</span>
+        <div :class="[{ 'active': newsItem.id === selectedNewsItemId }, 'category-item']" v-for="newsItem in selectedNews" :key="newsItem.id" @click="selectNewsItem(newsItem.id)">
+          <span class="time">{{new Date(newsItem.timestamp) | moment("hh:mm")}}</span>
+          <img :src='"../../assets/" + getProviderById(newsItem.providerId).type + ".png"'/>
+          <span class="news-title">{{newsItem.title}}</span>
         </div>
       </li>
     </ul>
@@ -32,14 +17,30 @@
 </template>
 
 <script>
-import WatchlistPicker from '../popovers/WatchlistPicker.vue';
+import { mapGetters, mapState } from 'vuex';
+import NewsProviderPicker from '../popovers/NewsProviderPicker.vue';
 import SearchInput from '../controls/SearchInput.vue';
+
 export default {
   name: 'NewsCategory',
   components: {
-    WatchlistPicker,
+    NewsProviderPicker,
     SearchInput
   },
+  methods: {
+    selectNewsItem(e) {
+      this.$store.commit('news/selectNewsItem', e);
+    },
+  },
+  computed: {
+    ...mapGetters('news', {
+      selectedNews: 'selectedNews',
+      getProviderById: 'getProviderById',
+    }),
+    ...mapState('news', {
+      selectedNewsItemId: state => state.selectedNewsItemId,
+    })
+  }
 }
 </script>
 
@@ -47,11 +48,38 @@ export default {
 <style lang="scss" scoped>
 .category-view {
   background: #fff;
+  height: 100%;
   .head {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ddd;
     padding-right: 8px;
+  }
+  ul {
+    padding: 0;
+    li {
+      list-style-type: none;
+      .category-item {
+        display: flex;
+        align-items: center;
+        padding: 4px 8px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+        &:hover, &.active {
+          background: #eee;
+        }
+        .time {
+          font-size: 11px;
+          margin-right: 4px;
+          color: #999;
+        }
+        .news-title {
+          color: #111;
+          margin-left: 4px;
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
 </style>

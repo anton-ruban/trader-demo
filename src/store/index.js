@@ -9,6 +9,7 @@ import auth from './modules/auth';
 import orders from './modules/orders';
 import contracts from './modules/contracts';
 import overview from './modules/overview';
+import news from './modules/news';
 
 Vue.use(Vuex);
 
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     auth,
     orders,
     contracts,
-    overview
+    overview,
+    news
   },
 });

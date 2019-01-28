@@ -4,10 +4,12 @@ import store from './store';
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import 'vuetify/dist/vuetify.min.css';
-import router from './router'
+import router from './router';
+import moment from 'vue-moment';
 
 Vue.use(VueRouter)
 Vue.use(Vuetify)
+Vue.use(moment)
 Vue.config.productionTip = false
 
 new Vue({

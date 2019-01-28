@@ -9,7 +9,7 @@
       </div>
       <multipane-resizer></multipane-resizer>
       <div :style="{ flexGrow: 1, zIndex: 0, }">
-        ddd
+        <NewsContent/>
       </div>
     </multipane>
   </div>
@@ -20,6 +20,7 @@ import { mapState } from 'vuex';
 import { Multipane, MultipaneResizer } from 'vue-multipane';
 import Tab from '../controls/Tab.vue';
 import NewsCategory from './NewsCategory.vue';
+import NewsContent from './NewsContent.vue';
 
 export default {
   name: 'TradingView',
@@ -28,6 +29,7 @@ export default {
     Tab,
     MultipaneResizer,
     NewsCategory,
+    NewsContent
   },
   computed: {
     ...mapState('tabs', {
