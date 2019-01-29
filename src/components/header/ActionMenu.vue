@@ -9,7 +9,7 @@
     <button class="btn" type="button">
       <i class="fa fa-envelope"></i>
     </button>
-    <button class="btn" type="button" title="Settings">
+    <button class="btn" type="button" title="Settings" @click="toggleSettingsDialog(true)">
       <i class="fa fa-cog"></i>
     </button>
     <button class="logout btn" type="button">登出</button>
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: 'ActionMenu'
+  name: 'ActionMenu',
+  methods: {
+    toggleSettingsDialog(e) {
+      this.$store.commit('settings/toggleSettingsDialog', e);
+    },
+  },
 }
 </script>
 

@@ -10,6 +10,7 @@ import orders from './modules/orders';
 import contracts from './modules/contracts';
 import overview from './modules/overview';
 import news from './modules/news';
+import settings from './modules/settings';
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     orders,
     contracts,
     overview,
-    news
+    news,
+    settings
   },
 });

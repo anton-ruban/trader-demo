@@ -4,6 +4,7 @@
       <router-view></router-view>
       <TradingPanelDialog/>
       <ConfirmOrderDialog/>
+      <SettingsDialog/>
     </div>
   </v-app>
 </template>
@@ -11,12 +12,14 @@
 <script>
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
+import SettingsDialog from './components/dialogs/SettingsDialog.vue';
 
 export default {
   name: 'app',
   components: {
     TradingPanelDialog,
-    ConfirmOrderDialog
+    ConfirmOrderDialog,
+    SettingsDialog
   }
 }
 </script>
@@ -116,6 +119,22 @@ button, input, optgroup, select, textarea {
     }
   }
 }
+.v-input,
+.v-label {
+  font-size: 14px !important;
+}
+.v-list__tile {
+  height: 24px !important;
+  font-size: 14px !important;
+}
+
+.v-overflow-btn .v-select__slot {
+  height: 24px !important;
+}
+.v-input__control {
+  min-height: 24px !important;
+}
+
 // Custom scrollbars
 
 ::-webkit-scrollbar {

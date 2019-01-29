@@ -67,7 +67,7 @@ import TitleBar from '../controls/TitleBar.vue';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
-  name: 'TradingPanelDialog',
+  name: 'ConfirmOrderDialog',
   components: {
     TitleBar,
   },
