@@ -12,7 +12,7 @@
           <WatchlistPicker />
           <!-- <v-btn depressed small color="#d5d5d5">编辑</v-btn> -->
         </div>
-        <div class="content-body">
+        <div class="content-body custom-table">
           <v-data-table
             :headers="contracts.headers"
             :items="contracts.data[selectedContractsId]"

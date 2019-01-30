@@ -31,7 +31,7 @@
 
 <script>
 
-import { mapGetters, mapState, mapActions } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import TitleBar from '../controls/TitleBar.vue';
 
 export default {

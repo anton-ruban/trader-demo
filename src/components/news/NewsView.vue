@@ -23,7 +23,7 @@ import NewsCategory from './NewsCategory.vue';
 import NewsContent from './NewsContent.vue';
 
 export default {
-  name: 'TradingView',
+  name: 'NewsView',
   components: {
     Multipane,
     Tab,

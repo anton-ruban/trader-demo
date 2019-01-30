@@ -58,6 +58,7 @@ export default {
   data() {
     return {
       grouping: ['单独显示', '分组显示'],
+      email: '',
     }
   },
 }

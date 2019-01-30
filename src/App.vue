@@ -5,6 +5,7 @@
       <TradingPanelDialog/>
       <ConfirmOrderDialog/>
       <SettingsDialog/>
+      <RechargeDialog/>
     </div>
   </v-app>
 </template>
@@ -13,13 +14,15 @@
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 import SettingsDialog from './components/dialogs/SettingsDialog.vue';
+import RechargeDialog from './components/dialogs/RechargeDialog.vue';
 
 export default {
   name: 'app',
   components: {
     TradingPanelDialog,
     ConfirmOrderDialog,
-    SettingsDialog
+    SettingsDialog,
+    RechargeDialog
   }
 }
 </script>
@@ -96,26 +99,28 @@ button, input, optgroup, select, textarea {
   text-transform: uppercase;
 }
 
-.v-table {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  thead {
-    tr {
-      height: 25px !important;
-      padding: 0 8px !important;
-      &.v-datatable__progress {
-        height: auto !important;
-      }
-      th {
+.custom-table {
+  .v-table {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    thead {
+      tr {
+        height: 25px !important;
         padding: 0 8px !important;
+        &.v-datatable__progress {
+          height: auto !important;
+        }
+        th {
+          padding: 0 8px !important;
+        }
       }
     }
-  }
-  tbody {
-    td {
-      height: 25px !important;
-      font-size: 12px !important;
-      padding: 0 8px !important;
+    tbody {
+      td {
+        height: 25px !important;
+        font-size: 12px !important;
+        padding: 0 8px !important;
+      }
     }
   }
 }

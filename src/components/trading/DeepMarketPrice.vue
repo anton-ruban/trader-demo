@@ -1,5 +1,5 @@
 <template>
-  <div class="market-price">
+  <div class="market-price custom-table">
     <v-data-table
       :headers="marketPrices.headers"
       :items="marketPrices.data"

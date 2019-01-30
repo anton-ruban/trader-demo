@@ -4,7 +4,7 @@
       <nav>
         <router-link to="/main/trading">交易</router-link>
         <router-link to="/main/news">新闻与研究</router-link>
-        <!-- <router-link to="/main/">账户</router-link> -->
+        <router-link to="/main/account">账户</router-link>
       </nav>
     </div>
     <div class="search-container">

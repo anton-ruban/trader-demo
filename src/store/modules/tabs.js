@@ -28,6 +28,19 @@ const state = {
   newsTabs: [
     {name: '新闻'},
     {name: '市场分析'}
+  ],
+  selectedAccountTabIndex: 0,
+  accountTabs: [
+    {name: '安全设置'},
+    {name: '个人中心'},
+    {name: '投资组合'},
+    {name: '历史报告'}
+  ],
+  selectedPersonCenterTabIndex: 0,
+  personCenterTabs: [
+    {id: 0, name: '总资产'},
+    {id: 1, name: 'Huobi'},
+    {id: 2, name: 'Fcoin'}
   ]
 }
 
@@ -44,6 +57,9 @@ const mutations = {
   selectWatchDetailTab(state, index) {
     state.selectedWatchDetailTabIndex = index;
   },
+  selectPersonCenterTab(state, index) {
+    state.selectedPersonCenterTabIndex = index;
+  },
   selectWatchTab(state, index) {
     state.selectedWatchTabIndex = index;
   },
@@ -58,6 +74,9 @@ const mutations = {
     if (state.bottomTabs[tabIndex].subItems) {
       state.bottomTabs[tabIndex].selectedSubItemIndex = subItemIndex;
     }
+  },
+  selectAccountTab(state, index) {
+    state.selectedAccountTabIndex = index;
   }
 }
 

@@ -7,6 +7,7 @@ import Warning from '../components/front/Warning';
 import SignUp from '../components/front/SignUp';
 import TradingView from '../components/trading/TradingView';
 import NewsView from '../components/news/NewsView';
+import AccountView from '../components/account/AccountView';
 
 Vue.use(Router)
 
@@ -42,6 +43,10 @@ export default new Router({
           path: 'news',
           component: NewsView,
         },
+        {
+          path: 'account',
+          component: AccountView,
+        }
       ]
     },
     // {

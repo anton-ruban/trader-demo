@@ -1,5 +1,5 @@
 <template>
-  <div class="main-view">
+  <div class="trading-view">
     <multipane class="workspace" layout="horizontal">
       <div :style="{ height: '50%', maxHeight: '90%', overflow: 'hidden', }">
         <UpperWorkspace />
@@ -29,7 +29,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.main-view {
+.trading-view {
   height: calc(100% - 49px - 24px - 42px);
   padding-left: 8px;
   padding-right: 8px;

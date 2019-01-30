@@ -11,6 +11,7 @@ import contracts from './modules/contracts';
 import overview from './modules/overview';
 import news from './modules/news';
 import settings from './modules/settings';
+import account from './modules/account';
 
 Vue.use(Vuex);
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     contracts,
     overview,
     news,
-    settings
+    settings,
+    account
   },
 });
