@@ -1,6 +1,7 @@
 // initial state
 const state = {
   isOpenRechargeDialog: false,
+  isOpenWithdrawDialog: false,
 }
 
 // getters
@@ -16,6 +17,9 @@ const mutations = {
   toggleRechargeDialog(state, isOpen) {
     state.isOpenRechargeDialog = isOpen;
   },
+  toggleWithdrawDialog(state, isOpen) {
+    state.isOpenWithdrawDialog = isOpen;
+  }
 }
 
 export default {

@@ -77,6 +77,10 @@ export default {
       align-items: flex-start;
       width: 280px;
       margin-top: 50px;
+      i {
+        font-size: 15px;
+        margin-right: 4px;
+      }
     }
     .field-label {
       margin-bottom: 5px;

@@ -29,7 +29,7 @@
               <td>{{ props.item.valuationCNY }}</td>
               <td>
                 <v-btn depressed small color="success" outline @click="toggleRechargeDialog(true)">充值</v-btn>
-                <v-btn depressed small color="success" outline>提现</v-btn>
+                <v-btn depressed small color="success" outline @click="toggleWithdrawDialog(true)">提现</v-btn>
               </td>
             </template>
           </v-data-table>
@@ -47,6 +47,9 @@ export default {
   methods: {
     toggleRechargeDialog(e) {
       this.$store.commit('account/toggleRechargeDialog', e);
+    },
+    toggleWithdrawDialog(e) {
+      this.$store.commit('account/toggleWithdrawDialog', e);
     },
   },
   data () {
