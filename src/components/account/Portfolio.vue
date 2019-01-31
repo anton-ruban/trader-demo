@@ -49,7 +49,7 @@
           </div>
           <v-divider></v-divider>
           <div class="chart">
-            aaa
+            <highcharts :options="chartOptions1" ref="highcharts"></highcharts>
           </div>
         </div>
         <div class="chart-box">
@@ -62,7 +62,7 @@
           </div>
           <v-divider></v-divider>
           <div class="chart">
-            aaa
+            <highcharts :options="chartOptions2" ref="highcharts"></highcharts>
           </div>
         </div>
       </div>
@@ -98,7 +98,113 @@ export default {
     ...mapState('account', {
       portfolioRecords: state => state.portfolioRecords,
     }),
-  }
+  },
+  data() {
+    return {
+      chartOptions1: {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: ['小型标准普尔500指数, 三月 2019年', '英国富时100指数, 三月 2019年'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+              text: null
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: '#FFFFFF',
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+          showInLegend: false,
+            data: [107, 31]
+        }]
+      },
+      chartOptions2: {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: ['小型标准普尔500指数, 三月 2019年', '英国富时100指数, 三月 2019年'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+              text: null
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: '#FFFFFF',
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+          showInLegend: false,
+          data: [107, 31]
+        }]
+      },
+    }
+  },
 }
 </script>
 
