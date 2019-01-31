@@ -123,9 +123,6 @@ export default {
                 overflow: 'justify'
             }
         },
-        tooltip: {
-            valueSuffix: ' millions'
-        },
         plotOptions: {
             bar: {
                 dataLabels: {
@@ -149,7 +146,19 @@ export default {
         },
         series: [{
           showInLegend: false,
-            data: [107, 31]
+          data: [107, 31],
+          color: {
+            linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+            },
+            stops: [
+                [0, 'rgba(26,177,26, 1'],
+                [1, 'rgba(200,200,200, 0.5']
+            ]
+          }
         }]
       },
       chartOptions2: {
@@ -174,9 +183,6 @@ export default {
                 overflow: 'justify'
             }
         },
-        tooltip: {
-            valueSuffix: ' millions'
-        },
         plotOptions: {
             bar: {
                 dataLabels: {
@@ -200,7 +206,19 @@ export default {
         },
         series: [{
           showInLegend: false,
-          data: [107, 31]
+          data: [107, 31],
+          color: {
+            linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+            },
+            stops: [
+                [0, 'rgba(73,164,255, 1'],
+                [1, 'rgba(200,200,200, 0.5']
+            ]
+          }
         }]
       },
     }
