@@ -3,10 +3,13 @@
     <div class="head">
       <Tab :tabs="accountTabs" :selectedTabIndex="selectedAccountTabIndex" @change="selectAccountTab($event)"/>
     </div>
-    <div class="content-body">
-      <SafeConfiguration v-if="selectedAccountTabIndex === 0"/>
-      <PersonCenter v-if="selectedAccountTabIndex === 1" />
+    <div class="content-body" v-if="selectedAccountTabIndex === 0">
+      <SafeConfiguration/>
     </div>
+    <div class="content-body" v-if="selectedAccountTabIndex === 1">
+      <PersonCenter />
+    </div>
+    <Portfolio v-if="selectedAccountTabIndex === 2" />
   </div>
 </template>
 
@@ -15,13 +18,15 @@ import { mapState } from 'vuex';
 import Tab from '../controls/Tab.vue';
 import SafeConfiguration from './SafeConfiguration';
 import PersonCenter from './PersonCenter';
+import Portfolio from './Portfolio';
 
 export default {
   name: 'AccountView',
   components: {
     Tab,
     SafeConfiguration,
-    PersonCenter
+    PersonCenter,
+    Portfolio
   },
   computed: {
     ...mapState('tabs', {
