@@ -17,7 +17,21 @@
         </div>
         <div class="actions">
           <v-btn color="primary" depressed>查看今天</v-btn>
-          <v-btn color="#e5e5e5" depressed>31-JAN-2019</v-btn>
+          <v-menu
+            ref="menu"
+            :close-on-content-click="false"
+            v-model="menu"
+            :nudge-right="40"
+            :return-value.sync="date"
+            lazy
+            transition="scale-transition"
+            offset-y
+            full-width
+            min-width="290px"
+          >
+            <v-btn color="#e5e5e5" slot="activator" depressed>{{date}}</v-btn>
+            <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
+          </v-menu>
         </div>
       </div>
       <div class="summary">
@@ -101,6 +115,8 @@ export default {
   },
   data() {
     return {
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
       chartOptions1: {
         chart: {
             type: 'bar'
@@ -277,6 +293,9 @@ export default {
             margin: 0;
             margin-left: 8px;
             height: 24px;
+          }
+          > .v-menu {
+            display: inline-block;
           }
         }
       }
