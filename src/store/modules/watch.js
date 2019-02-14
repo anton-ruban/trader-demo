@@ -20,71 +20,50 @@ const state = {
       {
         id: 'watch12',
         type: 'fu',
-        title: '期货',
-        children: [
-          {
-            id: 'watch13',
-            type: 'fu',
-            title: '商品期货',
-            contractId: 'contracts3'
-          },
-          {
-            id: 'watch14',
-            type: 'fu',
-            title: '货币期货',
-            contractId: 'contracts3'
-          },
-        ]
+        title: 'Precious Gold',
+        contractId: 'contracts3'
       },
       {
-        id: 'watch0',
-        type: 'fx',
-        title: 'Forex',
-        children: [
-          {
-            id: 'watch7',
-            type: 'fx',
-            title: 'FX Top 10',
-            contractId: 'contracts1'
-          },
-          {
-            id: 'watch11',
-            type: 'fx',
-            title: 'FX Top 20',
-            contractId: 'contracts2'
-          }
-        ]
+        id: 'watch13',
+        type: 'fu',
+        title: 'USDT',
+        contractId: 'contracts4'
       },
       {
-        id: 1,
-        type: 'cfd',
-        title: 'CFDs by region',
-        children: [
-          {
-            id: 'watch8',
-            type: 'cfd',
-            title: 'CFDs Asian',
-            contractId: 'contracts1'
-          },
-          {
-            id: 'watch9',
-            type: 'cfd',
-            title: 'CFDs Australia',
-            contractId: 'contracts2'
-          },
-          {
-            id: 'watch10',
-            type: 'cfd',
-            title: 'CFDs Austria',
-            contractId: 'contracts1'
-          }
-        ]
+        id: 'watch14',
+        type: 'fu',
+        title: 'BTC',
+        contractId: 'contracts5'
       },
       {
-        id: 'watch2',
-        type: 'bonds',
-        title: 'Bonds Online',
-        contractId: 'contracts1'
+        id: 'watch15',
+        type: 'fu',
+        title: 'ETH',
+        contractId: 'contracts6'
+      },
+      {
+        id: 'watch16',
+        type: 'fu',
+        title: 'BitMEX',
+        contractId: 'contracts7'
+      },
+      {
+        id: 'watch17',
+        type: 'fu',
+        title: 'FCoin',
+        contractId: 'contracts8'
+      },
+      {
+        id: 'watch18',
+        type: 'fu',
+        title: 'Digifinex',
+        contractId: 'contracts9'
+      },
+      {
+        id: 'watch19',
+        type: 'fu',
+        title: 'FX',
+        contractId: 'contracts10'
       },
     ],
     recent: [
