@@ -65,6 +65,12 @@ const state = {
         title: 'FX',
         contractId: 'contracts10'
       },
+      {
+        id: 'watch20',
+        type: 'fu',
+        title: 'CME-NYMEX',
+        contractId: 'contracts11'
+      }
     ],
     recent: [
       {
