@@ -70,6 +70,18 @@ const state = {
         type: 'fu',
         title: 'CME-NYMEX',
         contractId: 'contracts11'
+      },
+      {
+        id: 'watch21',
+        type: 'fu',
+        title: 'CME-COMEX',
+        contractId: 'contracts12'
+      },
+      {
+        id: 'watch22',
+        type: 'fu',
+        title: 'CME-NYBOT',
+        contractId: 'contracts13'
       }
     ],
     recent: [
