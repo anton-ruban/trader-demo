@@ -1,6 +1,6 @@
 // initial state
 const state = {
-  selectedOverviewId: 'overview1',
+  selectedOverviewId: 'overview14',
   overviews: {
     overview1: {
       latestPrice: {
