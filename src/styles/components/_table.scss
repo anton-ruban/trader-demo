@@ -1,0 +1,25 @@
+.ipe-table {
+  .v-table {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    thead {
+      tr {
+        height: 25px !important;
+        padding: 0 8px !important;
+        &.v-datatable__progress {
+          height: auto !important;
+        }
+        th {
+          padding: 0 8px !important;
+        }
+      }
+    }
+    tbody {
+      td {
+        height: 25px !important;
+        font-size: 12px !important;
+        padding: 0 8px !important;
+      }
+    }
+  }
+}

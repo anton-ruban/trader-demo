@@ -1,18 +1,18 @@
 <template>
   <div class="action-bar">
-    <button class="btn" type="button" title="2-click trading enabled">
+    <button class="ipe-btn" type="button" title="2-click trading enabled">
       <i class="fa fa-circle"></i>
     </button>
-    <button class="btn" type="button">
+    <button class="ipe-btn" type="button">
       <i class="fa fa-adjust"></i>
     </button>
-    <button class="btn" type="button">
+    <button class="ipe-btn" type="button">
       <i class="fa fa-envelope"></i>
     </button>
-    <button class="btn" type="button" title="Settings" @click="toggleSettingsDialog(true)">
+    <button class="ipe-btn" type="button" title="Settings" @click="toggleSettingsDialog(true)">
       <i class="fa fa-cog"></i>
     </button>
-    <button class="logout btn" type="button">登出</button>
+    <button class="logout ipe-btn" type="button">登出</button>
   </div>
 </template>
 

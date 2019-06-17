@@ -7,7 +7,7 @@
             <span class="trial-text">TRIAL_9118976</span>
             <span class="trial-text">USD</span>
           </div>
-          <button class="btn info-button-box" type="button">
+          <button class="ipe-btn info-button-box" type="button">
             <i class="fa fa-info"></i>
           </button>
         </div>
@@ -34,7 +34,7 @@
     </div>
     <div class="data-disclaimer-link">
       Market data provided by Saxo Bank • 
-      <button class="btn btn--inline btn--link" type="button">Data Disclaimer</button>
+      <button class="ipe-btn btn--inline btn--link" type="button">Data Disclaimer</button>
     </div>
   </footer>
 </template>

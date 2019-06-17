@@ -7,10 +7,6 @@ const state = {
     {name: '期权链'}
   ],
   selectedWatchTabIndex: 0,
-  watchTabs: [
-    {name: '观察列表'},
-    // {name: '提示'}
-  ],
   selectedBottomTabIndex: 0,
   bottomTabs: [
     {name: '仓位'},

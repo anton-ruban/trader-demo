@@ -4,99 +4,36 @@ const state = {
   isOpenWatchlistPicker: false,
   watchlist: {
     selectedWatch: null,
-    myWatchlists: [
-      {
-        id: 'watch3',
-        title: '我的观察列表',
-        contractId: 'contracts3'
-      },
-      {
-        id: 'watch4',
-        title: 'Popular Products',
-        contractId: 'contracts3'
-      }
-    ],
     standardWatchlist: [
       {
-        id: 'watch12',
+        id: 'watch0',
         type: 'fu',
-        title: 'Precious Gold',
+        title: '数字币期货',
+        contractId: 'contracts1'
+      }, {
+        id: 'watch1',
+        type: 'fx',
+        title: '数字币现货',
+        contractId: 'contracts2'
+      }, {
+        id: 'watch2',
+        type: 'fu',
+        title: '商品期货',
         contractId: 'contracts3'
       },
-      {
-        id: 'watch13',
-        type: 'fu',
-        title: 'USDT',
-        contractId: 'contracts4'
-      },
-      {
-        id: 'watch14',
-        type: 'fu',
-        title: 'BTC',
-        contractId: 'contracts5'
-      },
-      {
-        id: 'watch15',
-        type: 'fu',
-        title: 'ETH',
-        contractId: 'contracts6'
-      },
-      {
-        id: 'watch16',
-        type: 'fu',
-        title: 'BitMEX',
-        contractId: 'contracts7'
-      },
-      {
-        id: 'watch17',
-        type: 'fu',
-        title: 'FCoin',
-        contractId: 'contracts8'
-      },
-      {
-        id: 'watch18',
-        type: 'fu',
-        title: 'Digifinex',
-        contractId: 'contracts9'
-      },
-      {
-        id: 'watch19',
-        type: 'fu',
-        title: 'FX',
-        contractId: 'contracts10'
-      },
-      {
-        id: 'watch20',
-        type: 'fu',
-        title: 'CME-NYMEX',
-        contractId: 'contracts11'
-      },
-      {
-        id: 'watch21',
-        type: 'fu',
-        title: 'CME-COMEX',
-        contractId: 'contracts12'
-      },
-      {
-        id: 'watch22',
-        type: 'fu',
-        title: 'CME-NYBOT',
-        contractId: 'contracts13'
-      }
     ],
     recent: [
       {
-        id: 'watch7',
+        id: 'watch1',
         type: 'fx',
-        title: 'FX Top 10',
-        contractId: 'contracts1'
-      },
-      {
-        id: 'watch11',
-        type: 'fx',
-        title: 'FX Top 20',
+        title: '数字币现货',
         contractId: 'contracts2'
-      }
+      }, {
+        id: 'watch2',
+        type: 'fu',
+        title: '商品期货',
+        contractId: 'contracts3'
+      },
     ]
   }
 }

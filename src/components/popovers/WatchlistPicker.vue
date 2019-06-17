@@ -15,17 +15,6 @@
           <TitleBar title="Select Watchlist" @close="toggleWatchlistPicker(false)" hideBack />
           <v-divider></v-divider>
           <div class="content">
-            <div class="subheader">My Watchlists</div>
-            <ul class="list-body">
-              <li class="list-item" v-for="item in myWatchlists" :key="item.id" @click="selectWatch(item)">
-                <v-icon>star</v-icon>
-                <span>{{item.title}}</span>
-              </li>
-            </ul>
-            <div class="add-my-watchlists">
-              <div class="add-icon">+</div>
-              <span>New List</span>
-            </div>
             <div class="subheader">Standard Watchlists</div>
             <ul class="list-body">
               <li class="list-item" v-for="item in standardWatchlist" :key="item.id" @click="selectWatch(item)">
@@ -81,7 +70,6 @@ export default {
   },
   computed: {
     ...mapState('watch', {
-      myWatchlists: state => state.watchlist.myWatchlists,
       standardWatchlist: state => state.watchlist.standardWatchlist,
       recent: state => state.watchlist.recent,
       isOpenWatchlistPicker: state => state.isOpenWatchlistPicker
@@ -118,28 +106,6 @@ export default {
           font-size: 11px;
           color: #666;
           font-weight: bold;
-        }
-        .add-my-watchlists {
-          border-top: 1px solid #ddd;
-          padding: 4px 8px;
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          &:hover {
-            background: #eee;
-          }
-          span {
-            font-size: 12px;
-            flex: 1;
-          }
-          .add-icon {
-            font-size: 16px;
-            margin-right: 4px;
-            font-weight: bold;
-            width: 16px;
-            color: #888;
-            text-align: center;
-          }
         }
         .list-body {
           padding: 0;

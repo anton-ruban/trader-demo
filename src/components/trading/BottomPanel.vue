@@ -5,13 +5,13 @@
         <Tab :tabs="bottomTabs" :selectedTabIndex="selectedBottomTabIndex" @change="selectBottomTab($event)" @subChange="selectBottomTabSubItem($event)"/>
       </div>
       <div>
-        <button class="btn" type="button" title="Settings">
+        <button class="ipe-btn" type="button" title="Settings">
           <i class="fa fa-cog"></i>
         </button>
       </div>
     </div>
     <div class="content">
-      <div class="content-section custom-table" v-if="selectedBottomTabIndex === 0">
+      <div class="content-section ipe-table" v-if="selectedBottomTabIndex === 0">
         <v-data-table
           :headers="positions.headers"
           :items="positions.data"
@@ -36,7 +36,7 @@
           </template>
         </v-data-table>
       </div>
-      <div class="content-section custom-table" v-if="selectedBottomTabIndex === 1">
+      <div class="content-section ipe-table" v-if="selectedBottomTabIndex === 1">
         <v-data-table
           :headers="orders.headers"
           :items="filteredOrders"

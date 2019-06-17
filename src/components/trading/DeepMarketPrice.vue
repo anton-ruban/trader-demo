@@ -1,5 +1,5 @@
 <template>
-  <div class="market-price custom-table">
+  <div class="market-price ipe-table">
     <v-data-table
       :headers="marketPrices.headers"
       :items="marketPrices.data"

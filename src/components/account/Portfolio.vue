@@ -80,7 +80,7 @@
           </div>
         </div>
       </div>
-      <div class="info-table custom-table">
+      <div class="info-table ipe-table">
         <v-data-table
           :headers="portfolioRecords.headers"
           :items="portfolioRecords.data"

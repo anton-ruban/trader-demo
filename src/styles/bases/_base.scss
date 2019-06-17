@@ -1,0 +1,75 @@
+html, body, h1, h2, h3, h4, h5, h6, p, pre, dl, dd, ol, ul, menu, form, table, th, td, caption {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  cursor: default;
+  background: #eee;
+}
+
+html {
+  color: #111;
+  font-family: "HelveticaNeue","Helvetica Neue","sans-serif",Arial;
+  font-size: 8px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: default;
+  background: #eee;
+  font-size: 12px;
+  line-height: 20px;
+  color: #111;
+}
+
+a {
+  color: #39d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button, select {
+  text-transform: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  border: 0;
+}
+
+.v-input,
+.v-label {
+  font-size: 14px !important;
+}
+.v-list__tile {
+  height: 24px !important;
+  font-size: 14px !important;
+}
+
+.v-overflow-btn .v-select__slot {
+  height: 24px !important;
+}
+.v-input__control {
+  min-height: 24px !important;
+}
+
+// Custom scrollbars
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  background: rgba(120, 122, 147, 0.5); // 'slate gray' with opacity 0.5
+}

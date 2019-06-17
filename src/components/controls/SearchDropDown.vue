@@ -2,7 +2,7 @@
   <div class="search">
     <input type="search" :placeholder="placeholder" value=""/>
     <i class="fa fa-search"></i>
-    <button class="search-dropdown btn" type="button">
+    <button class="search-dropdown ipe-btn" type="button">
       <i class="fa fa-angle-down"></i>
     </button>
   </div>

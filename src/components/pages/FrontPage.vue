@@ -20,13 +20,9 @@
 </template>
 
 <script>
-import Home from '../front/Home';
 
 export default {
   name: 'FrontPage',
-  components: {
-    Home
-  },
   methods: {
     getStarted () {
       this.$router.push({ path: 'warning' })

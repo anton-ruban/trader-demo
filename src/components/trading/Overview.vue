@@ -9,10 +9,10 @@
         </div>
       </div>
       <div class="flex-container">
-        <button class="btn action-button"><i class="fa fa-info-circle"></i></button>
-        <button class="btn action-button"><i class="fa fa-star"></i></button>
-        <button class="btn action-button"><i class="fa fa-bell"></i></button>
-        <button class="btn action-button"><i class="fa fa-adjust"></i></button>
+        <button class="ipe-btn action-button"><i class="fa fa-info-circle"></i></button>
+        <button class="ipe-btn action-button"><i class="fa fa-star"></i></button>
+        <button class="ipe-btn action-button"><i class="fa fa-bell"></i></button>
+        <button class="ipe-btn action-button"><i class="fa fa-adjust"></i></button>
         <v-btn depressed small color="#39d" @click="toggleTradingPanelDialog(true)">交易</v-btn>
       </div>
     </div>
