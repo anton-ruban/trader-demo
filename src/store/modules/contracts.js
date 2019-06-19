@@ -1,41 +1,7 @@
 // initial state
 const state = {
-  selectedContractsId: 'contracts3',
-  selectedContractId: 'contract5',
-  alerts: {
-    headers: [
-      {
-        text: '金融工具',
-        align: 'left',
-        value: 'instrument'
-      },
-      { text: '类型', value: 'type', align: 'right'},
-      { text: '现价', value: 'current', align: 'right' },
-      { text: '价格', value: 'price', align: 'right' },
-      { text: '与现价差额', value: 'distance', align: 'right' },
-      { text: '', value: 'actions', align: 'right' },
-    ],
-    data: [
-      {
-        id: 'alert1',
-        instrument: 'Hydro One Ltd',
-        type: '% Change',
-        current: '-0.17%',
-        price: '-0.04%',
-        distance: 0.13,
-        icon: 'fu.png'
-      },
-      {
-        id: 'alert2',
-        instrument: 'Hydro One Ltd 2',
-        type: '% Change',
-        current: '-0.12%',
-        price: '-0.02%',
-        distance: 0.15,
-        icon: 'fu.png'
-      },
-    ]
-  },
+  selectedContractsId: 'contracts1',
+  selectedContractId: 'contract1',
   contracts: {
     headers: [
       {
@@ -180,12 +146,86 @@ const state = {
       ],
     }
   },
+  selectedAlertId: 'alert1',
+  alerts: {
+    headers: [
+      {
+        text: '金融工具',
+        align: 'left',
+        value: 'instrument'
+      },
+      { text: '类型', value: 'type', align: 'right'},
+      { text: '现价', value: 'current', align: 'right' },
+      { text: '价格', value: 'price', align: 'right' },
+      { text: '与现价差额', value: 'distance', align: 'right' },
+      { text: '', value: 'actions', align: 'right' },
+    ],
+    data: [
+      {
+        id: 'alert1',
+        instrument: 'Hydro One Ltd',
+        desc: 'A:xnys-usd',
+        type: '% Change',
+        bid: 71.890,
+        ask: 71.91,
+        net_change: 1.62,
+        percent_change: 2.3,
+        condition: '<=',
+        current: '-0.17%',
+        price: '-0.04%',
+        distance: 0.13,
+        icon: 'fu.png',
+      },
+      {
+        id: 'alert2',
+        instrument: 'Hydro One Ltd',
+        desc: 'A:xnys-usd',
+        type: '% Change',
+        bid: 71.890,
+        ask: 71.91,
+        net_change: 1.62,
+        percent_change: 2.3,
+        condition: '<=',
+        current: '-0.17%',
+        price: '-0.04%',
+        distance: 0.13,
+        icon: 'fu.png'
+      },
+    ]
+  },
+  alertOptions: {
+    alert_type: {
+      selectedIndex: 0,
+      options: ['% Change', 'Bid Price', 'Ask Price'],
+    },
+    condition: {
+      selectedIndex: 0,
+      options: ['<=', '>='],
+    },
+    price: {stepValue: 0.01, count: 0.15},
+    active: {
+      selectedIndex: 0,
+      options: ['On', 'Off'],
+    },
+    repeating: {
+      selectedIndex: 0,
+      options: ['On', 'Off'],
+    },
+    expiry_date: {
+      selectedIndex: 0,
+      options: ['1W', '2W', '3W'],
+    }
+  },
 }
 
 // getters
 const getters = {
   selectedContract: state => {
     const result = state.contracts.data[state.selectedContractsId].find(contract => contract.id === state.selectedContractId);
+    return result;
+  },
+  selectedAlert: state => {
+    const result = state.alerts.data.find(alert => alert.id === state.selectedAlertId);
     return result;
   }
 }
@@ -201,6 +241,15 @@ const mutations = {
   },
   selectContract(state, contractId) {
     state.selectedContractId = contractId;
+  },
+  selectAlert(state, alertId) {
+    state.selectedAlertId = alertId;
+  },
+  selectAlertOption(state, {optionKey, selectedIndex}) {
+    state.alertOptions[optionKey].selectedIndex = selectedIndex;
+  },
+  selectAlertCount(state, {optionKey, newCount}) {
+    state.alertOptions[optionKey].count = newCount;
   }
 }
 

@@ -1,6 +1,7 @@
 // initial state
 const state = {
   isOpenContractDialog: false,
+  isOpenEditPriceAlert: false,
   isOpenWatchlistPicker: false,
   watchlist: {
     selectedWatch: null,
@@ -71,6 +72,9 @@ const mutations = {
   },
   toggleOpenContractDialog(state, isOpen) {
     state.isOpenContractDialog = isOpen
+  },
+  toggleEditPriceAlert(state, isOpen) {
+    state.isOpenEditPriceAlert = isOpen
   }
 }
 

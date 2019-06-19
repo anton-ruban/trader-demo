@@ -7,6 +7,7 @@
       <SettingsDialog/>
       <RechargeDialog/>
       <WithdrawDialog/>
+      <EditPriceAlertDialog/>
     </div>
   </v-app>
 </template>
@@ -17,6 +18,7 @@ import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 import SettingsDialog from './components/dialogs/SettingsDialog.vue';
 import RechargeDialog from './components/dialogs/RechargeDialog.vue';
 import WithdrawDialog from './components/dialogs/WithdrawDialog.vue';
+import EditPriceAlertDialog from './components/dialogs/EditPriceAlertDialog.vue';
 
 export default {
   name: 'app',
@@ -25,7 +27,8 @@ export default {
     ConfirmOrderDialog,
     SettingsDialog,
     RechargeDialog,
-    WithdrawDialog
+    WithdrawDialog,
+    EditPriceAlertDialog
   }
 }
 </script>

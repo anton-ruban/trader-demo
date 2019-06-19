@@ -41,14 +41,14 @@
             hide-actions
           >
             <template slot="items" slot-scope="props">
-              <tr>
+              <tr @click="selectRow(props.item)" :class="[{'active': selectedAlertId === props.item.id}]">
                 <td valign="middle"><img :src="require(`@/assets/${props.item.icon}`)" width="16" class="product-icon"/>{{ props.item.instrument }}</td>
                 <td class="text-xs-right">{{ props.item.type }}</td>
                 <td class="text-xs-right">{{ props.item.current }}</td>
                 <td class="text-xs-right">{{ props.item.price }}<AvailableStatus /></td>
                 <td class="text-xs-right">{{ props.item.distance }}</td>
                 <td class="text-xs-right">
-                  <v-btn depressed small color="#e5e5e5">编辑</v-btn>
+                  <v-btn depressed small color="#e5e5e5" @click="toggleEditPriceAlert(true)">编辑</v-btn>
                   <v-btn depressed small color="#e5e5e5">删除</v-btn>
                 </td>
               </tr>
@@ -80,12 +80,19 @@ export default {
     toggleTradingPanelDialog (e) {
       this.$store.commit('trading/toggleTradingPanelDialog', e);
     },
+    toggleEditPriceAlert(e) {
+      this.$store.commit('watch/toggleEditPriceAlert', e);
+    },
     selectWatchTab(e) {
       this.$store.commit('tabs/selectWatchTab', e);
     },
     selectRow(e) {
-      this.$store.commit('contracts/selectContract', e.id);
-      this.$store.commit('overview/selectOverview', e.overviewId);
+      if (this.selectedWatchTabIndex === 0) {
+        this.$store.commit('contracts/selectContract', e.id);
+        this.$store.commit('overview/selectOverview', e.overviewId);
+      } else {
+        this.$store.commit('contracts/selectAlert', e.id);
+      }
     }
   },
   data() {
@@ -99,6 +106,7 @@ export default {
       contracts: state => state.contracts,
       selectedContractsId: state => state.selectedContractsId,
       selectedContractId: state => state.selectedContractId,
+      selectedAlertId: state => state.selectedAlertId,
     }),
     ...mapState('tabs', {
       selectedWatchTabIndex: state => state.selectedWatchTabIndex
