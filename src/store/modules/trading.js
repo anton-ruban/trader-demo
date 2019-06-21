@@ -6,16 +6,16 @@ const state = {
   isShowDetails: false,
   tradeOptions: {
     type: {
-      selectedIndex: 0,
-      options: ['限价', '止损', '市价'],
+      value: '限价',
+      options: ['限价', '市价'],
     },
     buySell: {
-      selectedIndex: 0,
+      value: '买入',
       options: ['买入', '卖出'],
     },
     validPeriod: {
-      selectedIndex: 0,
-      options: ['取消前有效(G.T.C.)', '当日有效订单', '一周', '一个月', '周末', '月末'],
+      value: '当日有效订单',
+      options: ['当日有效订单'],
     },
     amount: { stepValue: 1, count: 0},
     price: {stepValue: 0.01, count: 110.05},
@@ -54,8 +54,8 @@ const mutations = {
   toggleShowDetails(state, isOpen) {
     state.isShowDetails = isOpen;
   },
-  selectNewTradingOption(state, {newTradingKey, selectedIndex}) {
-    state.tradeOptions[newTradingKey].selectedIndex = selectedIndex;
+  selectNewTradingOption(state, {newTradingKey, value}) {
+    state.tradeOptions[newTradingKey].value = value;
   },
   selectNewTradingCount(state, {newTradingKey, newCount}) {
     state.tradeOptions[newTradingKey].count = newCount;

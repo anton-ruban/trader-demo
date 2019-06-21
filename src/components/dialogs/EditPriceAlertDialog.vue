@@ -43,11 +43,11 @@
         <div class="edit-list">
           <div class="edit-row">
             <div class="label">{{$t('general.alert_type')}}</div>
-            <SelectByArrow :options="alertOptions.alert_type.options" :selectedIndex="alertOptions.alert_type.selectedIndex" @change="selectAlertOption('alert_type', $event)"></SelectByArrow>
+            <SelectByArrow :options="alertOptions.alert_type.options" :value="alertOptions.alert_type.value" @change="selectAlertOption('alert_type', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">{{$t('general.condition')}}</div>
-            <SelectByArrow :options="alertOptions.condition.options" :selectedIndex="alertOptions.condition.selectedIndex" @change="selectAlertOption('condition', $event)"></SelectByArrow>
+            <SelectByArrow :options="alertOptions.condition.options" :value="alertOptions.condition.value" @change="selectAlertOption('condition', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">{{$t('general.price')}}</div>
@@ -55,15 +55,15 @@
           </div>
           <div class="edit-row">
             <div class="label">{{$t('general.active')}}</div>
-            <SelectByArrow :options="alertOptions.active.options" :selectedIndex="alertOptions.active.selectedIndex" @change="selectAlertOption('active', $event)"></SelectByArrow>
+            <SelectByArrow :options="alertOptions.active.options" :value="alertOptions.active.value" @change="selectAlertOption('active', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">{{$t('general.repeating')}}</div>
-            <SelectByArrow :options="alertOptions.repeating.options" :selectedIndex="alertOptions.repeating.selectedIndex" @change="selectAlertOption('repeating', $event)"></SelectByArrow>
+            <SelectByArrow :options="alertOptions.repeating.options" :value="alertOptions.repeating.value" @change="selectAlertOption('repeating', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">{{$t('general.expiry_date')}}</div>
-            <SelectByArrow :options="alertOptions.expiry_date.options" :selectedIndex="alertOptions.expiry_date.selectedIndex" @change="selectAlertOption('expiry_date', $event)"></SelectByArrow>
+            <SelectByArrow :options="alertOptions.expiry_date.options" :value="alertOptions.expiry_date.value" @change="selectAlertOption('expiry_date', $event)"></SelectByArrow>
           </div>
         </div>
         <v-btn class="apply-button" small depressed color="#39d" @click="toggleEditPriceAlert(false)">{{$t('general.apply')}}</v-btn>
@@ -91,8 +91,8 @@ export default {
     toggleEditPriceAlert (e) {
       this.$store.commit('watch/toggleEditPriceAlert', e);
     },
-    selectAlertOption(optionKey, e) {
-      this.$store.commit('contracts/selectAlertOption', {optionKey, selectedIndex: e});
+    selectAlertOption(optionKey, value) {
+      this.$store.commit('contracts/selectAlertOption', {optionKey, value});
     },
     selectAlertCount (optionKey, e) {
       this.$store.commit('contracts/selectAlertCount', {optionKey, newCount: e});

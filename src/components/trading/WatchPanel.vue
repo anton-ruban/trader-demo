@@ -19,11 +19,11 @@
             hide-actions
           >
             <template slot="items" slot-scope="props">
-              <tr @click="selectRow(props.item)" :class="[{'active': selectedContractId === props.item.id}]">
+              <tr @click.stop="selectRow(props.item)" @dblclick="handleRowSelect(props.item)" :class="[{'active': selectedContractId === props.item.id}]">
                 <td valign="middle"><img :src="require(`@/assets/${props.item.icon}`)" width="16" class="product-icon"/>{{ props.item.product }}</td>
                 <td class="text-xs-right">{{ props.item.sellAmount > 0 ? props.item.sellAmount : '-' }}</td>
-                <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.sellingPrice }}</div></td>
-                <td class="text-xs-right"><div class="clickable-div" @click="toggleTradingPanelDialog(true)">{{ props.item.buyingPrice }}</div></td>
+                <td class="text-xs-right"><div class="clickable-div" @click="handleRowSelect(props.item)" v-if="!props.item.closed">{{ props.item.sellingPrice }}</div></td>
+                <td class="text-xs-right"><div class="clickable-div" @click="handleRowSelect(props.item)" v-if="!props.item.closed">{{ props.item.buyingPrice }}</div></td>
                 <td class="text-xs-right">{{ props.item.buyAmount > 0 ? props.item.buyAmount : '-' }}</td>
                 <td class="text-xs-right">{{ props.item.marketPrice }}<AvailableStatus /></td>
                 <td class="text-xs-right">{{ props.item.percent }}</td>
@@ -41,7 +41,7 @@
             hide-actions
           >
             <template slot="items" slot-scope="props">
-              <tr @click="selectRow(props.item)" :class="[{'active': selectedAlertId === props.item.id}]">
+              <tr @click.stop="selectRow(props.item)" @dblclick="toggleEditPriceAlert(true)" :class="[{'active': selectedAlertId === props.item.id}]">
                 <td valign="middle"><img :src="require(`@/assets/${props.item.icon}`)" width="16" class="product-icon"/>{{ props.item.instrument }}</td>
                 <td class="text-xs-right">{{ props.item.type }}</td>
                 <td class="text-xs-right">{{ props.item.current }}</td>
@@ -77,8 +77,10 @@ export default {
     Tab
   },
   methods: {
-    toggleTradingPanelDialog (e) {
-      this.$store.commit('trading/toggleTradingPanelDialog', e);
+    handleRowSelect(item) {
+      if (!item.closed) {
+        this.$store.commit('trading/toggleTradingPanelDialog', true);
+      }
     },
     toggleEditPriceAlert(e) {
       this.$store.commit('watch/toggleEditPriceAlert', e);

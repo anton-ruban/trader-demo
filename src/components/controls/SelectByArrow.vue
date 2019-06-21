@@ -1,10 +1,10 @@
 <template>
   <div class="select-control">
-    <v-btn depressed small icon @click="$emit('change', selectedIndex - 1)" :disabled="selectedIndex === 0">
+    <v-btn depressed small icon @click="$emit('change', options[selectedIndex - 1])" :disabled="selectedIndex === 0">
       <v-icon>chevron_left</v-icon>
     </v-btn>
-    <span>{{options[selectedIndex]}}</span>
-    <v-btn depressed small icon @click="$emit('change', selectedIndex + 1)" :disabled="selectedIndex === options.length - 1">
+    <span>{{value}}</span>
+    <v-btn depressed small icon @click="$emit('change', options[selectedIndex + 1])" :disabled="selectedIndex === options.length - 1">
       <v-icon>chevron_right</v-icon>
     </v-btn>
   </div>
@@ -15,8 +15,13 @@
 export default {
   name: 'SelectByArrow',
   props: {
-    selectedIndex: Number,
+    value: String,
     options: Array,
+  },
+  computed: {
+    selectedIndex() {
+      return this.options.indexOf(this.value);
+    }
   }
 }
 </script>

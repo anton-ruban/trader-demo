@@ -50,17 +50,17 @@
         <div class="edit-list">
           <div class="edit-row">
             <div class="label">类型</div>
-            <SelectByArrow :options="tradeOptions.type.options" :selectedIndex="tradeOptions.type.selectedIndex" @change="selectNewTradingOption('type', $event)"></SelectByArrow>
+            <SelectByArrow :options="tradeOptions.type.options" :value="tradeOptions.type.value" @change="selectNewTradingOption('type', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">买入/卖出</div>
-            <SelectByArrow :options="tradeOptions.buySell.options" :selectedIndex="tradeOptions.buySell.selectedIndex" @change="selectNewTradingOption('buySell', $event)"></SelectByArrow>
+            <SelectByArrow :options="tradeOptions.buySell.options" :value="tradeOptions.buySell.value" @change="selectNewTradingOption('buySell', $event)"></SelectByArrow>
           </div>
           <div class="edit-row">
             <div class="label">数量</div>
             <Counter :stepValue="tradeOptions.amount.stepValue" :count="tradeOptions.amount.count" @change="selectNewTradingCount('amount', $event)"></Counter>
           </div>
-          <div class="edit-row">
+          <div class="edit-row" v-if="tradeOptions.type.value !== '市价'">
             <div class="label">价格</div>
             <Counter :stepValue="tradeOptions.price.stepValue" :count="tradeOptions.price.count" @change="selectNewTradingCount('price', $event)"></Counter>
           </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="edit-row">
             <div class="label">有效期</div>
-            <SelectByArrow :options="tradeOptions.validPeriod.options" :selectedIndex="tradeOptions.validPeriod.selectedIndex" @change="selectNewTradingOption('validPeriod', $event)"></SelectByArrow>
+            <SelectByArrow :options="tradeOptions.validPeriod.options" :value="tradeOptions.validPeriod.value" @change="selectNewTradingOption('validPeriod', $event)"></SelectByArrow>
           </div>
         </div>
         <div class="section-divider">
@@ -97,13 +97,23 @@
         <div class="details" v-if="isShowDetails">
           <v-divider></v-divider>
           <div class="item-row">
+            <span class="label">成本</span>
+            <span>10 CNY</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
             <span class="label">佣金</span>
-            <span>0 CAD</span>
+            <span>9 CNY</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">手续费</span>
+            <span>1 CNY</span>
           </div>
           <v-divider></v-divider>
           <div class="item-row">
             <span class="label">名义值</span>
-            <span>0 CAD</span>
+            <span>0 CNY</span>
           </div>
           <v-divider></v-divider>
         </div>
@@ -154,7 +164,7 @@ export default {
       this.$store.commit('trading/toggleShowDetails', e);
     },
     selectNewTradingOption (newTradingKey, e) {
-      this.$store.commit('trading/selectNewTradingOption', {newTradingKey, selectedIndex: e});
+      this.$store.commit('trading/selectNewTradingOption', {newTradingKey, value: e});
     },
     selectNewTradingCount (newTradingKey, e) {
       this.$store.commit('trading/selectNewTradingCount', {newTradingKey, newCount: e});

@@ -9,9 +9,9 @@
         </div>
       </div>
       <div class="flex-container">
-        <button class="ipe-btn action-button"><i class="fa fa-info-circle"></i></button>
+        <button class="ipe-btn action-button" @click="toggleTradingConditionsDialog(true)"><i class="fa fa-info-circle"></i></button>
         <button class="ipe-btn action-button"><i class="fa fa-star"></i></button>
-        <button class="ipe-btn action-button"><i class="fa fa-bell"></i></button>
+        <button class="ipe-btn action-button" @click="toggleEditPriceAlert(true)"><i class="fa fa-bell"></i></button>
         <button class="ipe-btn action-button"><i class="fa fa-adjust"></i></button>
         <v-btn depressed small color="#39d" @click="toggleTradingPanelDialog(true)">交易</v-btn>
       </div>
@@ -43,6 +43,12 @@ export default {
   methods: {
     toggleTradingPanelDialog (e) {
       this.$store.commit('trading/toggleTradingPanelDialog', e);
+    },
+    toggleEditPriceAlert(e) {
+      this.$store.commit('watch/toggleEditPriceAlert', e);
+    },
+    toggleTradingConditionsDialog(e) {
+      this.$store.commit('overview/toggleTradingConditionsDialog', e);
     }
   },
   computed: {

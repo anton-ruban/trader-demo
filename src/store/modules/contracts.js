@@ -31,6 +31,7 @@ const state = {
           marketPrice: 'TSE',
           percent: '0.00%',
           fallAndRaise: 0.00,
+          closed: true,
           overviewId: 'overview1',
           description: 'TF9 • GBP'
         },
@@ -195,24 +196,24 @@ const state = {
   },
   alertOptions: {
     alert_type: {
-      selectedIndex: 0,
+      value: '% Change',
       options: ['% Change', 'Bid Price', 'Ask Price'],
     },
     condition: {
-      selectedIndex: 0,
+      value: '<=',
       options: ['<=', '>='],
     },
     price: {stepValue: 0.01, count: 0.15},
     active: {
-      selectedIndex: 0,
+      value: 'On',
       options: ['On', 'Off'],
     },
     repeating: {
-      selectedIndex: 0,
+      value: 'On',
       options: ['On', 'Off'],
     },
     expiry_date: {
-      selectedIndex: 0,
+      value: '1W',
       options: ['1W', '2W', '3W'],
     }
   },
@@ -245,8 +246,8 @@ const mutations = {
   selectAlert(state, alertId) {
     state.selectedAlertId = alertId;
   },
-  selectAlertOption(state, {optionKey, selectedIndex}) {
-    state.alertOptions[optionKey].selectedIndex = selectedIndex;
+  selectAlertOption(state, {optionKey, value}) {
+    state.alertOptions[optionKey].value = value;
   },
   selectAlertCount(state, {optionKey, newCount}) {
     state.alertOptions[optionKey].count = newCount;

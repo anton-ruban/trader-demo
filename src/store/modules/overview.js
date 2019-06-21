@@ -1,6 +1,7 @@
 // initial state
 const state = {
   selectedOverviewId: 'overview14',
+  isOpenTradingConditionsDialog: false,
   overviews: {
     overview1: {
       latestPrice: {
@@ -4867,6 +4868,30 @@ const state = {
       }
     },
   },
+  transaction_costs: {
+    commission_min: '10.00 CNY',
+    commission: '6.00 CNY / Lot',
+    exchange_fee: '0.95 CNY / Lot',
+    currency_conversions: 'CNYUSD ±0%'
+  },
+  margin: {
+    initial: '561.00 CNY / Lot',
+    Maint: '510.00 EUR / Lot',
+  },
+  instrument: {
+    exchange: 'Euronext',
+    sector: 'Agriculture',
+    contract_size: 50,
+    tick_size: 0.25,
+    notice_date: '31-Jul-2019',
+    expiry_date: '31-Jul-2019',
+    order_types: 'Market, Limit, Stop, Trailing Stop, Stop Limit'
+  },
+  trading_times: {
+    pre: '10:30 - 10:45',
+    automated: '10:45 - 18:30',
+    closed: '18:30 - 10:30 (+3D)',
+  }
 }
 
 // getters
@@ -4881,6 +4906,9 @@ const actions = {
 const mutations = {
   selectOverview(state, overviewId) {
     state.selectedOverviewId = overviewId
+  },
+  toggleTradingConditionsDialog(state, isOpen) {
+    state.isOpenTradingConditionsDialog = isOpen
   }
 }
 
