@@ -79,7 +79,54 @@ export default {
         colorAxis: {
         },
         rangeSelector: {
+          buttonTheme: { // styles for the buttons
+            padding: 3,
+            width: 'auto',
+          },
+          buttons: [{
+              type: 'day',
+              count: 1,
+              text: `${this.$t('one_day')}`
+          }, {
+              type: 'week',
+              count: 1,
+              text: `${this.$t('one_week')}`
+          }, {
+              type: 'month',
+              count: 1,
+              text: `${this.$t('one_month')}`
+          }, {
+              type: 'month',
+              count: 3,
+              text: `${this.$t('three_month')}`
+          }, {
+              type: 'month',
+              count: 6,
+              text: `${this.$t('six_month')}`
+          }, {
+              type: 'year',
+              count: 1,
+              text: `${this.$t('one_year')}`
+          }, {
+              type: 'year',
+              count: 3,
+              text: `${this.$t('three_year')}`
+          }, {
+              type: 'year',
+              count: 5,
+              text: `${this.$t('five_year')}`
+          }, {
+              type: 'ytd',
+              text: `${this.$t('ytd')}`
+          }, {
+              type: 'all',
+              text: `${this.$t('all_time')}`
+          }],
+          inputEnabled: false,
           selected: 1,
+          buttonPosition: {
+            align: 'center',
+          },
         },
         tooltip: {
             backgroundColor: '#3399dd',

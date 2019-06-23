@@ -10,17 +10,56 @@ const state = {
         id: 'watch0',
         type: 'fu',
         title: '数字币期货',
-        contractId: 'contracts1'
+        children: [
+          {
+            id: 'watch13',
+            type: 'fu',
+            title: '商品期货',
+            contractId: 'contracts1'
+          },
+          {
+            id: 'watch14',
+            type: 'fu',
+            title: '货币期货',
+            contractId: 'contracts2'
+          },
+        ]
       }, {
         id: 'watch1',
         type: 'fx',
         title: '数字币现货',
-        contractId: 'contracts2'
+        children: [
+          {
+            id: 'watch7',
+            type: 'fx',
+            title: 'FX Top 10',
+            contractId: 'contracts3'
+          },
+          {
+            id: 'watch11',
+            type: 'fx',
+            title: 'FX Top 20',
+            contractId: 'contracts4'
+          }
+        ]
       }, {
         id: 'watch2',
         type: 'fu',
         title: '商品期货',
-        contractId: 'contracts3'
+        children: [
+          {
+            id: 'watch13',
+            type: 'fu',
+            title: '商品期货',
+            contractId: 'contracts5'
+          },
+          {
+            id: 'watch14',
+            type: 'fu',
+            title: '货币期货',
+            contractId: 'contracts6'
+          },
+        ]
       },
     ],
     recent: [
@@ -28,12 +67,12 @@ const state = {
         id: 'watch1',
         type: 'fx',
         title: '数字币现货',
-        contractId: 'contracts2'
+        contractId: 'contracts1'
       }, {
         id: 'watch2',
         type: 'fu',
         title: '商品期货',
-        contractId: 'contracts3'
+        contractId: 'contracts2'
       },
     ]
   }
