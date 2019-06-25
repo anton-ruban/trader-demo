@@ -1,12 +1,13 @@
+import Vue from 'vue';
 // initial state
 const state = {
   isOpenSettingsDialog: false,
+  isOpenPlatformTradingSetupDialog: false,
   selectedCategoryKey: 'platform',
   settings: {
     platform: {
       label: '平台',
-      options: {
-      }
+      tradingClickMode: "one_click",
     },
     region: {
       label: '区域',
@@ -35,6 +36,9 @@ const state = {
 
 // getters
 const getters = {
+  tradingClickMode: state => {
+    return state.settings.platform.tradingClickMode;
+  },
 }
 
 // actions
@@ -46,8 +50,14 @@ const mutations = {
   toggleSettingsDialog(state, isOpen) {
     state.isOpenSettingsDialog = isOpen;
   },
+  togglePlatformTradingSetupDialog(state, isOpen) {
+    state.isOpenPlatformTradingSetupDialog = isOpen;
+  },
   selectSettingsCategory(state, categoryKey) {
     state.selectedCategoryKey = categoryKey;
+  },
+  updateTradingClickMode(state, clickMode) {
+    Vue.set(state.settings.platform, 'tradingClickMode', clickMode);
   }
 }
 

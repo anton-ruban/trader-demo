@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="isOpenSettingsDialog" width="504" @input="toggleSettingsDialog($event)">
+  <v-dialog :value="isOpenSettingsDialog" width="580" @input="toggleSettingsDialog($event)">
     <v-layout class="dialog-layout" column>
       <TitleBar title="设置" hideBack @close="toggleSettingsDialog(false)" />
       <div class="dialog-body">
@@ -69,15 +69,15 @@ export default {
   display: flex;
   height: 500px;
   .settings-category {
-    width: 100px;
+    width: 148px;
     display: flex;
     flex-direction: column;
     ul {
       padding: 0;
       li {
         color: #666;
-        border-right: 1px solid #fff;
-        border-bottom: 1px solid #fff;
+        border-right: 1px solid rgba(0,0,0,.12);
+        border-bottom: 1px solid rgba(0,0,0,.12);
         padding: 8px 24px 8px 8px;
         cursor: pointer;
         &.active {
@@ -88,7 +88,7 @@ export default {
     }
     .spacer {
       flex: 1;
-      border-right: 1px solid #fff;
+      border-right: 1px solid rgba(0,0,0,.12);
       position: relative;
       a {
         position: absolute;

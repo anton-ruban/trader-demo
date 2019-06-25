@@ -3,6 +3,7 @@ import _ from 'lodash';
 // initial state
 const state = {
   isOpenCancelOrderDialog: false,
+  isOpenOrderDetailsDialog: false,
   selectedOrder: {},
   orders: {
     headers: [
@@ -45,6 +46,9 @@ const mutations = {
   },
   toggleCancelOrderDialog(state, isOpen) {
     state.isOpenCancelOrderDialog = isOpen;
+  },
+  toggleOrderDetailsDialog(state, isOpen) {
+    state.isOpenOrderDetailsDialog = isOpen;
   },
   addOrder(state, newOrder) {
     const idx = _.findIndex(state.orders.data, item => item.product === newOrder.parent);

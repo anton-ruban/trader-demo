@@ -1,7 +1,8 @@
 <template>
   <div class="action-bar">
-    <button class="ipe-btn" type="button" title="2-click trading enabled">
+    <button class="ipe-btn click-status" type="button" title="2-click trading enabled" @click="openPlatformTradingSetupDialog()">
       <i class="fa fa-circle"></i>
+      <span>{{tradingClickMode === 'one_click' ? 1 : 2}}</span>
     </button>
     <button class="ipe-btn" type="button">
       <i class="fa fa-adjust"></i>
@@ -17,11 +18,20 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   name: 'ActionMenu',
+  computed: {
+    ...mapState('settings', {
+      tradingClickMode: state => state.settings.platform.tradingClickMode,
+    })
+  },
   methods: {
     toggleSettingsDialog(e) {
       this.$store.commit('settings/toggleSettingsDialog', e);
+    },
+    openPlatformTradingSetupDialog() {
+      this.$store.commit('settings/togglePlatformTradingSetupDialog', true);
     },
   },
 }
@@ -42,6 +52,17 @@ export default {
     }
     &:hover {
       color: #111;
+    }
+  }
+  .click-status {
+    position: relative;
+    > span {
+      position: absolute;
+      left: 50%;
+      font-size: 9px;
+      color: white;
+      top: 48%;
+      transform: translate(-50%, -50%);
     }
   }
 }

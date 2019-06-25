@@ -12,6 +12,8 @@
       <AccountDetailsDialog/>
       <ClosePositionDialog/>
       <CancelOrderDialog/>
+      <PlatformTradingSetupDialog/>
+      <OrderDetailsDialog/>
     </div>
   </v-app>
 </template>
@@ -27,6 +29,8 @@ import AccountDetailsDialog from './components/dialogs/AccountDetailsDialog.vue'
 import TradingConditionsDialog from './components/dialogs/TradingConditionsDialog.vue';
 import ClosePositionDialog from './components/dialogs/ClosePositionDialog.vue';
 import CancelOrderDialog from './components/dialogs/CancelOrderDialog.vue';
+import OrderDetailsDialog from './components/dialogs/OrderDetailsDialog.vue';
+import PlatformTradingSetupDialog from './components/dialogs/PlatformTradingSetupDialog.vue';
 
 export default {
   name: 'app',
@@ -40,7 +44,9 @@ export default {
     TradingConditionsDialog,
     AccountDetailsDialog,
     ClosePositionDialog,
-    CancelOrderDialog
+    CancelOrderDialog,
+    OrderDetailsDialog,
+    PlatformTradingSetupDialog
   }
 }
 </script>

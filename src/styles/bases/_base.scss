@@ -23,7 +23,7 @@ body {
   overflow: hidden;
   cursor: default;
   background: #eee;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 20px;
   color: #111;
 }
@@ -55,12 +55,9 @@ button, input, optgroup, select, textarea {
   height: 24px !important;
   font-size: 14px !important;
 }
-
-.v-overflow-btn .v-select__slot {
-  height: 24px !important;
-}
-.v-input__control {
-  min-height: 24px !important;
+.v-input--selection-controls {
+  margin-top: 0;
+  padding-top: 0;
 }
 .ipe-hidden {
   display: none;

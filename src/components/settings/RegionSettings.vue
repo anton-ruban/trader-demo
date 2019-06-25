@@ -73,9 +73,6 @@ export default {
       width: 170px;
       text-align: right;
     }
-    .v-overflow-btn {
-      margin-top: 0;
-    }
   }
 }
 </style>

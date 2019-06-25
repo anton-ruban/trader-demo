@@ -20,9 +20,14 @@
       <div v-if="props.column.field === 'product'">
         <img src="../../../assets/fu.png" class="product-icon" width="16"/>{{ props.formattedRow[props.column.field] }}
       </div>
-      <v-btn depressed small color="#e5e5e5" v-else-if="props.column.field === 'action' && !props.row.canceld" @click="openCancelOrderDialog(props.row)">
-        CANCEL
-      </v-btn>
+      <div v-else-if="props.column.field === 'action'" class="flex-item">
+        <v-btn depressed small color="#e5e5e5" v-if="!props.row.canceld" @click="openCancelOrderDialog(props.row)">
+          CANCEL
+        </v-btn>
+        <button class="ipe-btn info-button-box" type="button" @click="openOrderDetailsDialog(props.row)">
+          <i class="fa fa-info"></i>
+        </button>
+      </div>
       <span :class="[{ positive: props.row.pl > 0 }, 'text-xs-right', 'colored-text']" v-else-if="props.column.field === 'pl'">
         {{props.formattedRow[props.column.field]}} USD
       </span>
@@ -65,6 +70,10 @@ export default {
     openCancelOrderDialog(row) {
       this.$store.commit('orders/selectOrder', row);
       this.$store.commit('orders/toggleCancelOrderDialog', true);
+    },
+    openOrderDetailsDialog(row) {
+      this.$store.commit('orders/selectOrder', row);
+      this.$store.commit('orders/toggleOrderDetailsDialog', true);
     },
     countProduct(rowObj) {
       return `${rowObj.product} (${rowObj.children.length})`;
@@ -179,6 +188,21 @@ export default {
   color: #e93e33;
   &.positive {
     color: #00a800;
+  }
+}
+.flex-item {
+  display: flex;
+  align-items: center;
+  .info-button-box {
+    width: 24px;
+    padding: 0;
+    height: 20px;
+    margin-left: 5px;
+
+    &:hover {
+      background: #d5d5d5;
+      color: #111;
+    }
   }
 }
 </style>
