@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
+import VueGoodTablePlugin from 'vue-good-table';
 import VueRouter from 'vue-router';
-import 'vuetify/dist/vuetify.min.css';
 import moment from 'vue-moment';
 import vuexI18n from 'vuex-i18n';
 import HighchartsVue from 'highcharts-vue';
 import Highcharts from 'highcharts'
 import exportingInit from 'highcharts/modules/exporting'
 import stockInit from 'highcharts/modules/stock'
+import 'vuetify/dist/vuetify.min.css';
+import 'vue-good-table/dist/vue-good-table.css'
 import router from './router';
 import App from './App.vue';
 import store from './store';
@@ -21,6 +23,7 @@ Vue.use(HighchartsVue)
 Vue.use(Vuetify)
 Vue.use(moment)
 Vue.use(vuexI18n.plugin, store);
+Vue.use(VueGoodTablePlugin);
 Vue.config.productionTip = false
 
 // add translations

@@ -142,11 +142,11 @@ export default {
       if (e) {
         const newTrade = {
           accountNumber: 'TRIAL_' + Date.now(),
-          type: this.tradeOptions.type.options[this.tradeOptions.type.selectedIndex],
-          buySell: this.tradeOptions.buySell.options[this.tradeOptions.buySell.selectedIndex],
+          type: this.tradeOptions.type.value,
+          buySell: this.tradeOptions.buySell.value,
           amount: this.tradeOptions.amount.count,
           price: this.tradeOptions.price.count,
-          validPeriod: this.tradeOptions.validPeriod.options[this.tradeOptions.validPeriod.selectedIndex],
+          validPeriod: this.tradeOptions.validPeriod.value,
           takeProfit: this.tradeOptions.takeProfit.count,
           stopLoss: this.tradeOptions.stopLoss.count,
         }

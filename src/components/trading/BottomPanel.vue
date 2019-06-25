@@ -11,50 +11,11 @@
       </div>
     </div>
     <div class="content">
-      <div class="content-section ipe-table" v-if="selectedBottomTabIndex === 0">
-        <v-data-table
-          :headers="positions.headers"
-          :items="positions.data"
-          hide-actions
-        >
-          <template slot="items" slot-scope="props">
-            <td><img src="../../assets/fu.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
-            <td class="text-xs-right">{{ props.item.status }}</td>
-            <td class="text-xs-right">{{ props.item.ls }}</td>
-            <td class="text-xs-right">{{ props.item.amount }}</td>
-            <td class="text-xs-right">{{ props.item.open }}</td>
-            <td class="text-xs-right">{{ props.item.close }} <img src="../../assets/real-time.png" class="realtime-icon"/></td>
-            <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
-            <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
-            <td v-bind:class="[{ positive: props.item.pl > 0 }, 'text-xs-right', 'colored-text']">{{ props.item.pl }} USD</td>
-            <td v-bind:class="[{ positive: props.item.plUSD > 0 }, 'text-xs-right', 'colored-text']">{{ props.item.plUSD }} USD</td>
-            <td v-bind:class="[{ positive: props.item.price > 0 }, 'text-xs-right', 'colored-text']">{{ props.item.price }} USD</td>
-            <td class="text-xs-right">{{ props.item.exposure }}</td>
-            <td>
-              <v-btn depressed small color="#e5e5e5">CLOSE</v-btn>
-            </td>
-          </template>
-        </v-data-table>
+      <div class="content-section" v-if="selectedBottomTabIndex === 0">
+        <PositionsTable/>
       </div>
       <div class="content-section ipe-table" v-if="selectedBottomTabIndex === 1">
-        <v-data-table
-          :headers="orders.headers"
-          :items="filteredOrders"
-          hide-actions
-        >
-          <template slot="items" slot-scope="props">
-            <td><img src="../../assets/fu.png" class="product-icon" width="16"/>{{ props.item.product }}</td>
-            <td>{{ props.item.type }}</td>
-            <td>{{ props.item.buySell }}</td>
-            <td class="text-xs-right">{{ props.item.quantity }}</td>
-            <td class="text-xs-right">{{ props.item.price }}</td>
-            <td class="text-xs-right">{{ props.item.currentPrice }}</td>
-            <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
-            <td class="text-xs-center"><v-btn depressed small color="#e5e5e5">ADD</v-btn></td>
-            <td class="text-xs-right">{{ props.item.validPeriod }}</td>
-            <td class="text-xs-right">{{ props.item.orderDate | moment("DD-MMM-YYYY") }}</td>
-          </template>
-        </v-data-table>
+        <OrdersTable/>
       </div>
     </div>
   </div>
@@ -64,31 +25,20 @@
 
 import { mapState } from 'vuex';
 import Tab from '../controls/Tab.vue';
+import PositionsTable from './tables/PositionsTable.vue';
+import OrdersTable from './tables/OrdersTable.vue';
 export default {
   name: 'BottomPanel',
   components: {
+    PositionsTable,
+    OrdersTable,
     Tab,
   },
   computed: {
-    ...mapState('positions', {
-      positions: state => state.positions,
-    }),
-    ...mapState('orders', {
-      orders: state => state.orders,
-    }),
     ...mapState('tabs', {
       bottomTabs: state => state.bottomTabs,
       selectedBottomTabIndex: state => state.selectedBottomTabIndex
     }),
-    filteredOrders: function () {
-      if (this.bottomTabs[1].selectedSubItemIndex === 0) {
-        return this.orders.data.filter(item => item.isPending);
-      } else if (this.bottomTabs[1].selectedSubItemIndex === 1) {
-        return this.orders.data.filter(item => !item.isPending);
-      } else {
-        return this.orders.data;
-      }
-    }
   },
   methods: {
     selectBottomTab(e) {
@@ -96,7 +46,7 @@ export default {
     },
     selectBottomTabSubItem(e) {
       this.$store.commit('tabs/selectBottomTabSubItem', e);
-    }
+    },
   },
 }
 </script>
@@ -134,25 +84,6 @@ export default {
       width: 100%;
       height: calc(100% - 8px);
       overflow: auto;
-      .product-icon {
-        vertical-align: -20%;
-        margin-right: 4px;
-      }
-      .realtime-icon {
-        vertical-align: -20%;
-      }
-      .v-btn {
-        margin: 2px 0;
-        height: 20px;
-        font-size: 11px;
-        font-weight: bold;
-      }
-      .colored-text {
-        color: #e93e33;
-        &.positive {
-          color: #00a800;
-        }
-      }
     }
   }
 }

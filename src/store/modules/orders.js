@@ -1,5 +1,9 @@
+import Vue from 'vue';
+import _ from 'lodash';
 // initial state
 const state = {
+  isOpenCancelOrderDialog: false,
+  selectedOrder: {},
   orders: {
     headers: [
       {
@@ -17,37 +21,16 @@ const state = {
       { text: '有效期', value: 'validPeriod', align: 'right' },
       { text: '下单日期', value: 'orderDate', align: 'right' }
     ],
-    data: [
-      // {
-      //   value: false,
-      //   product: '英国富时100指数, 三月 2019年',
-      //   type: '限价',
-      //   buySell: '买入',
-      //   quantity: 2,
-      //   price: 6885.50,
-      //   currentPrice: 6918.50,
-      //   validPeriod: '取消前有效(G.T.C.)',
-      //   orderDate: '21-Jan-2019',
-      //   isPending: true,
-      // },
-      // {
-      //   value: false,
-      //   product: 'EURO STOXX® 50 Index - Mar 2019',
-      //   type: '限价',
-      //   buySell: '买入',
-      //   quantity: 2,
-      //   price: 6885.50,
-      //   currentPrice: 6918.50,
-      //   validPeriod: '取消前有效(G.T.C.)',
-      //   orderDate: '21-Jan-2019',
-      //   isPending: false
-      // },
-    ]
+    data: []
   },
 }
 
 // getters
 const getters = {
+  isExpandedRow: state => row => {
+    const parentRow = state.orders.data.find(item => item.product === row.parent);
+    return parentRow.expanded;
+  },
 }
 
 // actions
@@ -56,9 +39,34 @@ const actions = {
 
 // mutations
 const mutations = {
-  addOrder(state, newOrder) {
-    state.orders.data.push(newOrder);
+  toggleOrderGroup(state, productName) {
+    const idx = _.findIndex(state.orders.data, item => item.product === productName);
+    Vue.set(state.orders.data[idx], 'expanded', !state.orders.data[idx].expanded);
   },
+  toggleCancelOrderDialog(state, isOpen) {
+    state.isOpenCancelOrderDialog = isOpen;
+  },
+  addOrder(state, newOrder) {
+    const idx = _.findIndex(state.orders.data, item => item.product === newOrder.parent);
+
+    if (idx > -1) {
+      state.orders.data[idx].children.push(newOrder);
+    } else {
+      state.orders.data.push({
+        product: newOrder.parent,
+        expanded: true,
+        children: [newOrder],
+      });
+    }
+  },
+  selectOrder(state, row) {
+    state.selectedOrder = row;
+  },
+  cancelOrder(state) {
+    const idx = _.findIndex(state.orders.data, item => item.product === state.selectedOrder.parent);
+    const orderIdx = _.findIndex(state.orders.data[idx].children, order => order.product === state.selectedOrder.product);
+    Vue.set(state.orders.data[idx].children[orderIdx], 'canceled', true);
+  }
 }
 
 export default {

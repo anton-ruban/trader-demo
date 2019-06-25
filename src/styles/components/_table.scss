@@ -23,3 +23,13 @@
     }
   }
 }
+.vgt-table.ipe-vgt-table {
+  font-size: 14px;
+  .ipe-column-td {
+    padding: 0 5px !important;
+  }
+  .ipe-column-th {
+    padding: 0 5px !important;
+    padding-right: 20px !important;
+  }
+}

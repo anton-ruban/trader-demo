@@ -74,14 +74,15 @@ export default {
   methods: {
     confirm() {
       this.$store.commit('orders/addOrder', {
+        parent: this.selectedContract.parent,
         product: this.selectedContract.product,
         type: this.newTrade.type,
         buySell: this.newTrade.buySell,
-        quantity: this.newTrade.amount,
+        amount: this.newTrade.amount,
         price: this.newTrade.price,
-        currentPrice: this.newTrade.price,
-        validPeriod: this.newTrade.validPeriod,
-        orderDate: new Date(),
+        current: this.newTrade.price,
+        duration: this.newTrade.validPeriod,
+        created: new Date().toISOString().substr(0, 10),
         isPending: true
       });
       this.toggleTradingPanelDialog(false);

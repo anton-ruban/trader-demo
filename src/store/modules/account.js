@@ -2,6 +2,7 @@
 const state = {
   isOpenRechargeDialog: false,
   isOpenWithdrawDialog: false,
+  isOpenAccountDetailsDialog: false,
   portfolioRecords: {
     headers: [
       {
@@ -65,6 +66,9 @@ const mutations = {
   },
   toggleWithdrawDialog(state, isOpen) {
     state.isOpenWithdrawDialog = isOpen;
+  },
+  toggleAccountDetailsDialog(state, isOpen) {
+    state.isOpenAccountDetailsDialog = isOpen;
   }
 }
 

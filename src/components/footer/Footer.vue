@@ -7,28 +7,32 @@
             <span class="trial-text">TRIAL_9118976</span>
             <span class="trial-text">USD</span>
           </div>
-          <button class="ipe-btn info-button-box" type="button">
+          <button class="ipe-btn info-button-box" type="button" @click="openAccountDetails()">
             <i class="fa fa-info"></i>
           </button>
         </div>
         <div class="flex-container">
-          <span class="info-label">Cash available</span>
+          <span class="info-label">{{$t('cash_available')}}</span>
           <span class="info-text">99,746.39</span>
         </div>
         <div class="flex-container">
-          <span class="info-label">Account value</span>
+          <span class="info-label">{{$t('account_value')}}</span>
           <span class="info-text">90,052.30</span>
         </div>
         <div class="flex-container">
-          <span class="info-label">Initial margin available</span>
+          <span class="info-label">{{$t('initial_margin_available')}}</span>
           <span class="info-text">68,119.74</span>
         </div>
         <div class="flex-container">
-          <span class="info-label">Margin utilisation</span>
+          <span class="info-label">{{$t('margin_utilisation')}}</span>
           <span class="info-progress-bg">
             <span class="progress-bar" style="width: 75.64%;"></span>
           </span>
           <span class="info-text">24.36%</span>
+        </div>
+        <div class="flex-container">
+          <span class="info-label">{{$t('account_value_shield')}}</span>
+          <a>Off</a>
         </div>
       </div>
     </div>
@@ -43,6 +47,11 @@
 
 export default {
   name: 'Footer',
+  methods: {
+    openAccountDetails() {
+      this.$store.commit('account/toggleAccountDetailsDialog', true);
+    },
+  }
 }
 </script>
 
