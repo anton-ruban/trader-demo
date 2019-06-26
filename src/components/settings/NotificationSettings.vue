@@ -20,15 +20,37 @@
       <div class="checkbox-item">
         <v-icon>check</v-icon>价格提醒
       </div>
-      <div class="checkbox-item">
-        <v-icon>check</v-icon>见解
-      </div>
+      <v-checkbox
+          v-model="insights"
+          color="#111"
+          class="checkbox-item"
+          :ripple="false"
+          hide-details>
+
+        <template v-slot:label>
+          <span class="item-label">{{$t('insights')}}</span>
+        </template>
+      </v-checkbox>
+      <v-checkbox
+          v-model="protectPosition"
+          color="#111"
+          class="checkbox-item"
+          :ripple="false"
+          hide-details>
+
+        <template v-slot:label>
+          <span class="item-label">{{$t('protect_position')}}</span>
+        </template>
+      </v-checkbox>
     </div>
     <div class="setting-item">
       <span class="label">分组</span>
       <div class="overflow-div">
         <v-overflow-btn
           :items="grouping"
+          value="单独显示"
+          class="ipe-overflow-button"
+          height="25"
           label="分组"
           hide-details
         ></v-overflow-btn>
@@ -40,8 +62,8 @@
       <div class="overflow-div">
         <v-text-field
           v-model="email"
-          label="E-mail"
-          solo
+          height="25"
+          class="ipe-text-field"
           hide-details
         ></v-text-field>
       </div>
@@ -59,6 +81,8 @@ export default {
     return {
       grouping: ['单独显示', '分组显示'],
       email: '',
+      insights: false,
+      protectPosition: false,
     }
   },
 }
@@ -84,9 +108,13 @@ export default {
       height: 20px;
       .v-icon {
         font-size: 15px;
-        margin-right: 4px;
+        margin-right: 10px;
+        margin-left: 4px;
         color: #111;
       }
+    }
+    .item-label {
+      color: #111;
     }
   }
   .setting-item {

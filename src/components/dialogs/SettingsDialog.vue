@@ -14,6 +14,7 @@
         <div class="settings-section">
           <PlatformSettings v-if="selectedCategoryKey === 'platform'"/>
           <RegionSettings v-if="selectedCategoryKey === 'region'"/>
+          <TradingProductsSettings v-if="selectedCategoryKey === 'trading_products'"/>
           <ChartSettings v-if="selectedCategoryKey === 'chart'"/>
           <NotificationSettings v-if="selectedCategoryKey === 'notification'"/>
           <ContactSettings v-if="selectedCategoryKey === 'contact'"/>
@@ -27,6 +28,7 @@
 import TitleBar from '../controls/TitleBar.vue';
 import PlatformSettings from '../settings/PlatformSettings.vue';
 import RegionSettings from '../settings/RegionSettings.vue';
+import TradingProductsSettings from '../settings/TradingProductsSettings.vue';
 import ChartSettings from '../settings/ChartSettings.vue';
 import NotificationSettings from '../settings/NotificationSettings.vue';
 import ContactSettings from '../settings/ContactSettings.vue';
@@ -38,22 +40,27 @@ export default {
     TitleBar,
     PlatformSettings,
     RegionSettings,
+    TradingProductsSettings,
     ChartSettings,
     NotificationSettings,
     ContactSettings
+  },
+  data() {
+    return {
+      selectedCategoryKey: 'platform',
+    }
   },
   methods: {
     toggleSettingsDialog (e) {
       this.$store.commit('settings/toggleSettingsDialog', e);
     },
     selectSettingsCategory(e) {
-      this.$store.commit('settings/selectSettingsCategory', e);
+      this.selectedCategoryKey = e;
     },
   },
   computed: {
     ...mapState('settings', {
       isOpenSettingsDialog: state => state.isOpenSettingsDialog,
-      selectedCategoryKey: state => state.selectedCategoryKey,
       settings: state => state.settings,
     }),
   }
@@ -63,11 +70,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .dialog-layout {
-  background: #eee;
+  background-image: linear-gradient(#fefefe,#fff,#fff,#fefefe);
 }
 .dialog-body {
   display: flex;
-  height: 500px;
+  height: 550px;
   .settings-category {
     width: 148px;
     display: flex;

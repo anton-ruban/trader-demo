@@ -30,16 +30,6 @@
           </div>
         </div>
         <v-divider></v-divider>
-        <div class="clock-info">
-          <div>
-            <img src="../../assets/real-time.png" class="realtime-icon"/>
-            {{$t('general.realtime_process')}}
-          </div>
-          <div>
-            {{$t('general.market_open')}}
-            <AvailableStatus />
-          </div>
-        </div>
         <div class="edit-list">
           <div class="edit-row">
             <div class="label">{{$t('general.alert_type')}}</div>
@@ -74,7 +64,6 @@
 
 <script>
 import TitleBar from '../controls/TitleBar.vue';
-import AvailableStatus from '../controls/AvailableStatus.vue';
 import SelectByArrow from '../controls/SelectByArrow.vue';
 import Counter from '../controls/Counter.vue';
 import { mapState, mapGetters } from 'vuex';
@@ -83,7 +72,6 @@ export default {
   name: 'EditPriceAlertDialog',
   components: {
     TitleBar,
-    AvailableStatus,
     SelectByArrow,
     Counter
   },
@@ -156,18 +144,6 @@ export default {
         color: #888;
         font-size: 11px;
       }
-    }
-  }
-  .clock-info {
-    display: flex;
-    align-items: center;
-    color: #888;
-    height: 20px;
-    font-size: 11px;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    .realtime-icon {
-      vertical-align: -20%;
     }
   }
   .edit-list {

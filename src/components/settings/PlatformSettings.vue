@@ -80,6 +80,7 @@
         <v-overflow-btn
           :items="autoLogout"
           label="自动登出"
+          value="30 分钟"
           class="ipe-overflow-button"
           height="25"
           single-line

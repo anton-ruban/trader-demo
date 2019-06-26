@@ -15,4 +15,15 @@
 }
 .ipe-overflow-button {
   margin-top: 0;
+  .v-input__slot {
+    background: #ebebeb !important;
+    box-shadow: none !important;
+    &:after,
+    &:before {
+      content: none !important;
+    }
+  }
+  .v-input__control::before {
+    content: none !important;
+  }
 }

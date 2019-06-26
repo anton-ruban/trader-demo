@@ -7,6 +7,9 @@
           :items="language"
           label="语言"
           hide-details
+          class="ipe-overflow-button"
+          height="25"
+          single-line
         ></v-overflow-btn>
       </div>
     </div>
@@ -18,6 +21,9 @@
           :items="timezone"
           label="时区"
           hide-details
+          class="ipe-overflow-button"
+          height="25"
+          single-line
         ></v-overflow-btn>
       </div>
     </div>
@@ -29,6 +35,9 @@
           :items="format"
           label="格式"
           hide-details
+          class="ipe-overflow-button"
+          height="25"
+          single-line
         ></v-overflow-btn>
       </div>
     </div>
@@ -61,7 +70,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0;
+    padding: 8px 0;
     .label {
       font-size: 14px;
     }

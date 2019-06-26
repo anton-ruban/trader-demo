@@ -6,7 +6,7 @@
         <li>
           <div class="flex-item">
             <span class="label">网址</span>
-            <a>http://help.testdemo.com/</a>
+            <a>{{hostname}}</a>
           </div>
         </li>
       </ul>
@@ -22,7 +22,7 @@
         </li>
         <li>
           <div class="flex-item">
-            <span>盛宝账号</span>
+            <span>IPE账号</span>
             <span>9203269</span>
           </div>
         </li>
@@ -101,6 +101,11 @@ export default {
   name: 'ChartSettings',
   components: {
   },
+  data() {
+    return {
+      hostname: `http://${window.location.hostname}`,
+    }
+  }
 }
 </script>
 
@@ -108,7 +113,6 @@ export default {
 <style lang="scss" scoped>
 .settings-panel {
   width: 100%;
-  height: 100%;
   padding-top: 8px;
   .sub-title {
     font-size: 14px;

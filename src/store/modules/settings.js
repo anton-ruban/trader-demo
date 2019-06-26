@@ -3,7 +3,6 @@ import Vue from 'vue';
 const state = {
   isOpenSettingsDialog: false,
   isOpenPlatformTradingSetupDialog: false,
-  selectedCategoryKey: 'platform',
   settings: {
     platform: {
       label: '平台',
@@ -12,6 +11,10 @@ const state = {
     region: {
       label: '区域',
       options: {}
+    },
+    trading_products: {
+      label: 'Trading Products',
+      options: {},
     },
     chart: {
       label: '图表',
@@ -52,9 +55,6 @@ const mutations = {
   },
   togglePlatformTradingSetupDialog(state, isOpen) {
     state.isOpenPlatformTradingSetupDialog = isOpen;
-  },
-  selectSettingsCategory(state, categoryKey) {
-    state.selectedCategoryKey = categoryKey;
   },
   updateTradingClickMode(state, clickMode) {
     Vue.set(state.settings.platform, 'tradingClickMode', clickMode);
