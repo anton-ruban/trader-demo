@@ -102,18 +102,38 @@
           </div>
           <v-divider></v-divider>
           <div class="item-row">
-            <span class="label">佣金</span>
+            <span class="label">名义值</span>
             <span>9 CNY</span>
           </div>
           <v-divider></v-divider>
           <div class="item-row">
-            <span class="label">手续费</span>
-            <span>1 CNY</span>
+            <span class="label">初始保证金可用</span>
+            <span>93,728.79 CNY</span>
           </div>
           <v-divider></v-divider>
           <div class="item-row">
-            <span class="label">名义值</span>
+            <span class="label">初始保证金占用</span>
             <span>0 CNY</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">维持保证金占用</span>
+            <span>0 CNY</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">到期日</span>
+            <span>12-Jul-2019</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">通知日期</span>
+            <span>28-Jul-2019</span>
+          </div>
+          <v-divider></v-divider>
+          <div class="item-row">
+            <span class="label">每首数量</span>
+            <span>5000 Bushels</span>
           </div>
           <v-divider></v-divider>
         </div>
