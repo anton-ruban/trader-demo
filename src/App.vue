@@ -14,6 +14,10 @@
       <CancelOrderDialog/>
       <PlatformTradingSetupDialog/>
       <OrderDetailsDialog/>
+      <AddCoinAddressDialog/>
+      <CoinAddressManageDialog/>
+      <KycIdentifyDialog/>
+      <ModifyPasswordDialog/>
     </div>
   </v-app>
 </template>
@@ -31,6 +35,10 @@ import ClosePositionDialog from './components/dialogs/ClosePositionDialog.vue';
 import CancelOrderDialog from './components/dialogs/CancelOrderDialog.vue';
 import OrderDetailsDialog from './components/dialogs/OrderDetailsDialog.vue';
 import PlatformTradingSetupDialog from './components/dialogs/PlatformTradingSetupDialog.vue';
+import AddCoinAddressDialog from './components/dialogs/AddCoinAddressDialog.vue';
+import CoinAddressManageDialog from './components/dialogs/CoinAddressManageDialog.vue';
+import KycIdentifyDialog from './components/dialogs/KycIdentifyDialog.vue';
+import ModifyPasswordDialog from './components/dialogs/ModifyPasswordDialog.vue';
 
 export default {
   name: 'app',
@@ -46,7 +54,11 @@ export default {
     ClosePositionDialog,
     CancelOrderDialog,
     OrderDetailsDialog,
-    PlatformTradingSetupDialog
+    PlatformTradingSetupDialog,
+    AddCoinAddressDialog,
+    CoinAddressManageDialog,
+    KycIdentifyDialog,
+    ModifyPasswordDialog
   }
 }
 </script>

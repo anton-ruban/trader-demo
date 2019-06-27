@@ -30,7 +30,8 @@ const state = {
     {name: '安全设置'},
     {name: '个人中心'},
     {name: '投资组合'},
-    {name: '历史报告'}
+    {name: '历史报告'},
+    {name: '其他'}
   ],
   selectedPersonCenterTabIndex: 0,
   personCenterTabs: [

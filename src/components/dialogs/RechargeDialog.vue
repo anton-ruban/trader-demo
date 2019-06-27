@@ -22,7 +22,7 @@
           <div class="field-label">BTC充值地址</div>
           <v-text-field
             value="17283092039d98fasdf02jfg02329f"
-            solo
+            class="ipe-text-field"
             disabled
           ></v-text-field>
           <img src="../../assets/verification.png"/>

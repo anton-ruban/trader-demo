@@ -34,14 +34,17 @@
           <div class="field-label">BTC提现</div>
           <v-overflow-btn
             :items="withdrawItems"
+            class="ipe-overflow-button"
+            height="25"
             label="Select..."
           ></v-overflow-btn>
           <v-text-field
             placeholder="数量"
+            class="ipe-text-field amount-input"
             label="数量"
           ></v-text-field>
           <div class="action-row">
-            <v-btn depressed color="success">添加提现地址</v-btn>
+            <v-btn depressed color="success" @click="openAddCoinAddressDialog()">添加提币地址</v-btn>
             <v-btn depressed outline>提现</v-btn>
           </div>
         </div>
@@ -68,6 +71,9 @@ export default {
     toggleWithdrawDialog (e) {
       this.$store.commit('account/toggleWithdrawDialog', e);
     },
+    openAddCoinAddressDialog() {
+      this.$store.commit('account/toggleAddCoinAddressDialog', true);
+    }
   },
   computed: {
     ...mapState('account', {
@@ -80,11 +86,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .dialog-layout {
-  background: #eee;
+  background: #fff;
 }
 .dialog-body {
   display: flex;
-  height: 290px;
+  height: 320px;
   .column-section {
     width: 50%;
     padding: 16px;
@@ -111,6 +117,9 @@ export default {
     .action-row {
       display: flex;
       justify-content: flex-end;
+    }
+    .amount-input {
+      margin-top: 10px;
     }
   }
 }

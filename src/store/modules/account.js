@@ -3,6 +3,10 @@ const state = {
   isOpenRechargeDialog: false,
   isOpenWithdrawDialog: false,
   isOpenAccountDetailsDialog: false,
+  isOpenAddCoinAddressDialog: false,
+  isOpenCoinAddressManageDialog: false,
+  isOpenKycIdentifyDialog: false,
+  isOpenModifyPasswordDialog: false,
   portfolioRecords: {
     headers: [
       {
@@ -67,8 +71,20 @@ const mutations = {
   toggleWithdrawDialog(state, isOpen) {
     state.isOpenWithdrawDialog = isOpen;
   },
+  toggleAddCoinAddressDialog(state, isOpen) {
+    state.isOpenAddCoinAddressDialog = isOpen;
+  },
   toggleAccountDetailsDialog(state, isOpen) {
     state.isOpenAccountDetailsDialog = isOpen;
+  },
+  toggleCoinAddressManageDialog(state, isOpen) {
+    state.isOpenCoinAddressManageDialog = isOpen;
+  },
+  toggleKycIdentifyDialog(state, isOpen) {
+    state.isOpenKycIdentifyDialog = isOpen;
+  },
+  toggleModifyPasswordDialog(state, isOpen) {
+    state.isOpenModifyPasswordDialog = isOpen;
   }
 }
 

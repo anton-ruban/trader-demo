@@ -1,7 +1,7 @@
 <template>
   <v-dialog :value="isOpenClosePositionDialog" width="380" @input="toggleClosePositionDialog($event)">
     <v-layout class="white" column>
-      <TitleBar title="交易面板" hideBack @close="toggleClosePositionDialog(false)"/>
+      <TitleBar :title="$t('close_position')" hideBack @close="toggleClosePositionDialog(false)"/>
       <div class="dialog-body">
         <div class="summary">
           <img src="../../assets/fu.png"/>

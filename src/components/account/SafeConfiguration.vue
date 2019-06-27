@@ -11,7 +11,7 @@
     <div class="setting-row">
       <div class="setting-label">登入密码</div>
       <div class="setting-value">*******</div>
-      <v-btn depressed color="primary">修改</v-btn>
+      <v-btn depressed color="primary" @click="openModifyPasswordDialog()">修改</v-btn>
     </div>
     <v-divider></v-divider>
     <div class="setting-row">
@@ -44,6 +44,11 @@
 
 export default {
   name: 'SafeConfiguration',
+  methods: {
+    openModifyPasswordDialog() {
+      this.$store.commit('account/toggleModifyPasswordDialog', true);
+    }
+  }
 }
 </script>
 

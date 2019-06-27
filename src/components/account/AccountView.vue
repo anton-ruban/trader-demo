@@ -10,6 +10,7 @@
       <PersonCenter />
     </div>
     <Portfolio v-if="selectedAccountTabIndex === 2" />
+    <Other v-if="selectedAccountTabIndex === 4" />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import Tab from '../controls/Tab.vue';
 import SafeConfiguration from './SafeConfiguration';
 import PersonCenter from './PersonCenter';
 import Portfolio from './Portfolio';
+import Other from './Other';
 
 export default {
   name: 'AccountView',
@@ -26,7 +28,8 @@ export default {
     Tab,
     SafeConfiguration,
     PersonCenter,
-    Portfolio
+    Portfolio,
+    Other,
   },
   computed: {
     ...mapState('tabs', {

@@ -15,3 +15,14 @@ export const TRADING_CONDITIONS_TABS = {
     text: 'Instrument',
   },
 }
+
+export const KYC_IDENTIFY_TABS = {
+  person_account: {
+    id: 'person_account',
+    text: '个人用户'
+  },
+  business_account: {
+    id: 'business_account',
+    text: '商业用户'
+  }
+}
