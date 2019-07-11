@@ -8,7 +8,7 @@
       </nav>
     </div>
     <div class="search-container">
-      <SearchDropDown placeholder="搜索产品"/>
+      <SearchDropDown placeholder="搜索产品" />
     </div>
   </div>
 </template>

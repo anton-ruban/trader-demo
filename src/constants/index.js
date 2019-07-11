@@ -16,6 +16,17 @@ export const TRADING_CONDITIONS_TABS = {
   },
 }
 
+export const CHART_CONFIGURATION_TABS = {
+  general: {
+    id: 'general',
+    text: 'General',
+  },
+  lines_and_colors: {
+    id: 'lines_and_colors',
+    text: 'Lines and Colors'
+  }
+}
+
 export const KYC_IDENTIFY_TABS = {
   person_account: {
     id: 'person_account',

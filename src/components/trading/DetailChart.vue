@@ -1,146 +1,31 @@
 <template>
-  <div class="trading-chart-panel">
-    <div class="head">
-      <Tab :tabs="watchDetailTabs" :selectedTabIndex="selectedWatchDetailTabIndex" @change="selectWatchDetailTab($event)"/>
+  <div class="detail-chart">
+    <div class="tool-box">
+      <SearchDropDown placeholder="搜索产品" class="tool-item"/>
+      <v-overflow-btn
+        :items="ranges"
+        value="5 Minutes : 12 Hours"
+        hide-details
+        class="ipe-overflow-button tool-item"
+        height="25"
+        single-line
+      ></v-overflow-btn>
+      <v-btn color="#e5e5e5" icon depressed small class="tool-item action-btn" @click="handleRefreshClick()">
+        <v-icon>refresh</v-icon>
+      </v-btn>
+      <v-btn color="#e5e5e5" icon depressed small class="tool-item action-btn" @click="toggleChartSettingsDialog(true)">
+        <v-icon>settings</v-icon>
+      </v-btn>
     </div>
-    <div class="content">
-      <template v-if="selectedWatchDetailTabIndex === 0">
-        <Overview />
-        <div class="divider"></div>
-        <div class="scroll-panel">
-          <DeepMarketPrice />
-          <div class="divider"></div>
-          <div class="chart-section">
-            <div class="chart-view">
-              <highcharts :constructor-type="'stockChart'" :options="chartOptions" ref="highcharts"></highcharts>
-            </div>
-          </div>
-        </div>
-      </template>
-      <template v-else-if="selectedWatchDetailTabIndex === 1">
-        <div class="chart-section">
-          <div class="chart-view">
-            <DetailChart/>
-          </div>
-        </div>
-      </template>
-    </div>
+    <highcharts :constructor-type="'stockChart'" :options="chartOptions" ref="highcharts"></highcharts>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import Overview from './Overview.vue';
-import DeepMarketPrice from './DeepMarketPrice.vue';
-import DetailChart from './DetailChart.vue';
-import Tab from '../controls/Tab.vue';
+import SearchDropDown from '@/components/controls/SearchDropDown';
 
-export default {
-  name: 'WatchDetailPanel',
-  components: {
-    Overview,
-    DeepMarketPrice,
-    DetailChart,
-    Tab
-  },
-  data() {
-    return {
-      chartOptions:{
-        chart: {
-          zoomType: 'x',
-          margin: [12, 0, 0, 0],
-        },
-        yAxis: {
-        },
-        plotOptions: {
-          area: {
-              fillColor: {
-                  linearGradient: {
-                      x1: 0,
-                      y1: 0,
-                      x2: 0,
-                      y2: 1
-                  },
-                  stops: [
-                      [0, 'rgba(51,153,222, 0.5'],
-                      [1, 'rgba(255,255,255, 0.5']
-                  ]
-              },
-              marker: {
-                  radius: 2
-              },
-              lineWidth: 2,
-              states: {
-                  hover: {
-                      lineWidth: 2
-                  }
-              },
-              threshold: null
-          }
-        },
-        colorAxis: {
-        },
-        rangeSelector: {
-          buttonTheme: { // styles for the buttons
-            padding: 3,
-            width: 'auto',
-          },
-          buttons: [{
-              type: 'day',
-              count: 1,
-              text: `${this.$t('one_day')}`
-          }, {
-              type: 'week',
-              count: 1,
-              text: `${this.$t('one_week')}`
-          }, {
-              type: 'month',
-              count: 1,
-              text: `${this.$t('one_month')}`
-          }, {
-              type: 'month',
-              count: 3,
-              text: `${this.$t('three_month')}`
-          }, {
-              type: 'month',
-              count: 6,
-              text: `${this.$t('six_month')}`
-          }, {
-              type: 'year',
-              count: 1,
-              text: `${this.$t('one_year')}`
-          }, {
-              type: 'year',
-              count: 3,
-              text: `${this.$t('three_year')}`
-          }, {
-              type: 'year',
-              count: 5,
-              text: `${this.$t('five_year')}`
-          }, {
-              type: 'ytd',
-              text: `${this.$t('ytd')}`
-          }, {
-              type: 'all',
-              text: `${this.$t('all_time')}`
-          }],
-          inputEnabled: false,
-          selected: 1,
-          buttonPosition: {
-            align: 'center',
-          },
-        },
-        tooltip: {
-            backgroundColor: '#3399dd',
-            style: {
-                color: '#eee'
-            },
-            valueDecimals: 2
-        },
-        series: [{
-            type: "area",
-            name: 'GLD/CNY',
-            data: [
+const TEMP_DATA = [
     [
         1515421800000,
         224.35
@@ -1197,18 +1082,90 @@ export default {
         1548426600000,
         250.00
     ]
-],
+];
+
+export default {
+  name: 'DetailChart',
+  components: {
+    SearchDropDown
+  },
+  data() {
+    return {
+      ranges: [
+        '5 Minutes : 12 Hours',
+        '30 Minutes : 5 Days',
+        '1 Hour : 10 Days',
+        '1 Day : 3 Months',
+      ],
+      chartOptions:{
+        chart: {
+          zoomType: 'x',
+          margin: [12, 0, 0, 0],
+        },
+        yAxis: {
+        },
+        plotOptions: {
+          area: {
+              fillColor: {
+                  linearGradient: {
+                      x1: 0,
+                      y1: 0,
+                      x2: 0,
+                      y2: 1
+                  },
+                  stops: [
+                      [0, 'rgba(51,153,222, 0.5'],
+                      [1, 'rgba(255,255,255, 0.5']
+                  ]
+              },
+              marker: {
+                  radius: 2
+              },
+              lineWidth: 2,
+              states: {
+                  hover: {
+                      lineWidth: 2
+                  }
+              },
+              threshold: null
+          }
+        },
+        colorAxis: {
+        },
+        rangeSelector: {
+          enabled : false
+        },
+        tooltip: {
+            backgroundColor: '#3399dd',
+            style: {
+                color: '#eee'
+            },
+            valueDecimals: 2
+        },
+        series: [{
+            type: "area",
+            name: 'GLD/CNY',
+            data: TEMP_DATA,
         }]
       }
     }
   },
   methods: {
+    toggleChartSettingsDialog(e) {
+      this.$store.commit('settings/toggleChartSettingsDialog', e);
+    },
     selectWatchDetailTab(e) {
       this.$store.commit('tabs/selectWatchDetailTab', e);
     },
     resizeChart(w) {
       let chart = this.$refs.highcharts.chart;
       chart.setSize(w, 'auto');
+    },
+    handleRefreshClick() {
+      let chart = this.$refs.highcharts.chart;
+      // chart.series[0].setData(TEMP_DATA, false);
+      // chart.redraw();
+      chart.zoom();
     }
   },
   computed: {
@@ -1222,37 +1179,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.trading-chart-panel {
-  width: 100%;
-  height: 100%;
-  background-color: #ccc;
-  display: flex;
-  flex-direction: column;
-  .head {
-    border: 0;
-    background-color: #ccc;
-    padding-left: 8px;
-    padding-right: 8px;
-    height: 32px;
-  }
-  .content {
-    margin: 8px;
-    margin-top: 0;
-    height: calc(100% - 40px);
+.detail-chart {
+  background: #fff;
+  .tool-box {
     display: flex;
-    flex-direction: column;
-    .divider {
-      margin-top: 8px;
-    }
-    .scroll-panel {
-      flex: 1 1 auto;
-      overflow: auto;
-    }
-    .chart-section {
-      position: relative;
-      .chart-view {
-        position: absolute;
-        width: 100%;
+    padding: 8px;
+    padding-bottom: 0;
+    .tool-item {
+      margin-right: 8px;
+      &.ipe-overflow-button {
+        max-width: 213px;
+      }
+      &.action-btn {
+        margin: 0 8px 0 0;
+        width: 25px;
+        height: 25px;
+        .v-icon {
+          font-size: 16px;
+        }
       }
     }
   }

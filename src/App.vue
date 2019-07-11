@@ -18,6 +18,7 @@
       <CoinAddressManageDialog/>
       <KycIdentifyDialog/>
       <ModifyPasswordDialog/>
+      <ChartSettingsDialog/>
     </div>
   </v-app>
 </template>
@@ -26,6 +27,7 @@
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 import SettingsDialog from './components/dialogs/SettingsDialog.vue';
+import ChartSettingsDialog from './components/dialogs/ChartSettingsDialog.vue';
 import RechargeDialog from './components/dialogs/RechargeDialog.vue';
 import WithdrawDialog from './components/dialogs/WithdrawDialog.vue';
 import EditPriceAlertDialog from './components/dialogs/EditPriceAlertDialog.vue';
@@ -51,6 +53,7 @@ export default {
     EditPriceAlertDialog,
     TradingConditionsDialog,
     AccountDetailsDialog,
+    ChartSettingsDialog,
     ClosePositionDialog,
     CancelOrderDialog,
     OrderDetailsDialog,

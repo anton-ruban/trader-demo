@@ -2,6 +2,7 @@ import Vue from 'vue';
 // initial state
 const state = {
   isOpenSettingsDialog: false,
+  isOpenChartSettingsDialog: false,
   isOpenPlatformTradingSetupDialog: false,
   settings: {
     platform: {
@@ -52,6 +53,9 @@ const actions = {
 const mutations = {
   toggleSettingsDialog(state, isOpen) {
     state.isOpenSettingsDialog = isOpen;
+  },
+  toggleChartSettingsDialog(state, isOpen) {
+    state.isOpenChartSettingsDialog = isOpen;
   },
   togglePlatformTradingSetupDialog(state, isOpen) {
     state.isOpenPlatformTradingSetupDialog = isOpen;

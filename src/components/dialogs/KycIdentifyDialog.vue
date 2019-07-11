@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import TitleBar from '../controls/TitleBar.vue';
 import {KYC_IDENTIFY_TABS} from '@/constants';
 import { mapState } from 'vuex';

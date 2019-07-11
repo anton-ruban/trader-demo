@@ -59,10 +59,9 @@ export default {
   input[type=search] {
     padding-left: 28px;
     text-overflow: ellipsis;
-    background-color: #666;
-    color: #ddd;
+    color: #666;
     outline: 0;
-    border: 1px solid #ddd;
+    border: 1px solid #dbdbdb;
     border-radius: 0;
     display: block;
     height: 24px;
@@ -70,10 +69,6 @@ export default {
     &::placeholder {
       color: #aaa;
       font-style: italic;
-    }
-    &:focus {
-      background: #888;
-      color: #fff;
     }
     &::-webkit-search-cancel-button {
       -webkit-appearance: none;
@@ -86,7 +81,7 @@ export default {
     left: 8px;
     font-size: 16px;
     height: 20px;
-    color: #ddd;
+    color: #888;
     line-height: 24px;
     pointer-events: none;
   }
@@ -99,7 +94,7 @@ export default {
     padding: 0;
     cursor: pointer;
     i {
-      color: #aaa;
+      color: #888;
     }
   }
 }
