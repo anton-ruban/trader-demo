@@ -47,12 +47,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .category-view {
-  background: #fff;
+  background: var(--bg-color-inner-panel);
   height: 100%;
   .head {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color-row);
     padding-right: 8px;
   }
   ul {
@@ -64,9 +64,9 @@ export default {
         align-items: center;
         padding: 4px 8px;
         cursor: pointer;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--border-color-row);
         &:hover, &.active {
-          background: #eee;
+          background: var(--bg-color-hover);
         }
         .time {
           font-size: 11px;
@@ -74,7 +74,7 @@ export default {
           color: #999;
         }
         .news-title {
-          color: #111;
+          color: var(--text-color-active);
           margin-left: 4px;
           font-size: 12px;
         }

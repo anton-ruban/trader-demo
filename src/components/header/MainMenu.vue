@@ -51,10 +51,10 @@ nav {
     white-space: nowrap;
     padding: 6.5px 8px;
     &:hover {
-      color: #111;
+      color: var(--text-color-active);
     }
     &.router-link-active {
-      color: #111;
+      color: var(--text-color-active);
     }
   }
 }

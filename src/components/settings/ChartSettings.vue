@@ -1,6 +1,7 @@
 <template>
   <div class="settings-panel">
     <h1>图表个性化设置</h1>
+    <v-divider/>
     <div class="setting-item">
       <span class="label">注释</span>
       <v-icon>chevron_right</v-icon>
@@ -49,7 +50,6 @@ export default {
     font-size: 14px;
     line-height: 37px;
     height: 37px;
-    border-bottom: 1px solid #fff;
   }
   .setting-item {
     display: flex;

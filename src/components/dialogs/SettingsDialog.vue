@@ -1,26 +1,28 @@
 <template>
   <v-dialog :value="isOpenSettingsDialog" width="580" @input="toggleSettingsDialog($event)">
-    <v-layout class="dialog-layout" column>
-      <TitleBar title="设置" hideBack @close="toggleSettingsDialog(false)" />
-      <div class="dialog-body">
-        <div class="settings-category">
-          <ul>
-            <li :class="[{'active': selectedCategoryKey === key}]" v-for="(value, key) in settings" :key="key" @click="selectSettingsCategory(key)">{{value.label}}</li>
-          </ul>
-          <div class="spacer">
-            <a>免责声明</a>
+    <v-card>
+      <v-layout column>
+        <TitleBar title="设置" hideBack @close="toggleSettingsDialog(false)" />
+        <div class="dialog-body">
+          <div class="settings-category">
+            <ul>
+              <li :class="[{'active': selectedCategoryKey === key}]" v-for="(value, key) in settings" :key="key" @click="selectSettingsCategory(key)">{{value.label}}</li>
+            </ul>
+            <div class="spacer">
+              <a>免责声明</a>
+            </div>
+          </div>
+          <div class="settings-section">
+            <PlatformSettings v-if="selectedCategoryKey === 'platform'"/>
+            <RegionSettings v-if="selectedCategoryKey === 'region'"/>
+            <TradingProductsSettings v-if="selectedCategoryKey === 'trading_products'"/>
+            <ChartSettings v-if="selectedCategoryKey === 'chart'"/>
+            <NotificationSettings v-if="selectedCategoryKey === 'notification'"/>
+            <ContactSettings v-if="selectedCategoryKey === 'contact'"/>
           </div>
         </div>
-        <div class="settings-section">
-          <PlatformSettings v-if="selectedCategoryKey === 'platform'"/>
-          <RegionSettings v-if="selectedCategoryKey === 'region'"/>
-          <TradingProductsSettings v-if="selectedCategoryKey === 'trading_products'"/>
-          <ChartSettings v-if="selectedCategoryKey === 'chart'"/>
-          <NotificationSettings v-if="selectedCategoryKey === 'notification'"/>
-          <ContactSettings v-if="selectedCategoryKey === 'contact'"/>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -69,9 +71,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.dialog-layout {
-  background-image: linear-gradient(#fefefe,#fff,#fff,#fefefe);
-}
 .dialog-body {
   display: flex;
   height: 550px;
@@ -82,14 +81,14 @@ export default {
     ul {
       padding: 0;
       li {
-        color: #666;
+        color: var(--text-color-active);
         border-right: 1px solid rgba(0,0,0,.12);
         border-bottom: 1px solid rgba(0,0,0,.12);
         padding: 8px 24px 8px 8px;
         cursor: pointer;
         &.active {
           border-right: transparent;
-          color: #111;
+          color: var(--text-color-active);
         }
       }
     }

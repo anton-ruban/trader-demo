@@ -5,7 +5,7 @@
     @input="toggleNewsProviderPicker($event)"
     offset-y
   >
-    <v-btn slot="activator" depressed small color="#bbb">
+    <v-btn slot="activator" depressed small>
       {{selectedProviderId ? getProviderById(selectedProviderId).name : '全部新闻提供商'}}
       <v-icon>{{isOpenNewsProviderPicker ? 'expand_less' : 'expand_more'}}</v-icon>
     </v-btn>
@@ -64,7 +64,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .picker {
-  background: #fff;
+  background: var(--bg-color-inner-panel);
   width: 320px;
   overflow: hidden;
   .pick-section {
@@ -73,7 +73,7 @@ export default {
       .list-body {
         padding: 0;
         .list-item {
-          border-top: 1px solid #ddd;
+          border-top: 1px solid var(--border-color-row);
           padding: 4px 8px;
           max-width: 100%;
           overflow: hidden;
@@ -83,7 +83,7 @@ export default {
           cursor: pointer;
           white-space: nowrap;
           &:hover {
-            background: #eee;
+            background: var(--bg-color-hover);
           }
           .v-icon {
             font-size: 16px;

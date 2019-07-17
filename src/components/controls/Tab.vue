@@ -57,27 +57,27 @@ export default {
     font-size: 14px;
     cursor: pointer;
     &:hover {
-      color: #111;
+      color: var(--text-color-active);
     }
     &.active {
-      color: #111;
+      color: var(--text-color-active);
     }
   }
   .item-list {
     list-style-type: none;
     padding: 0;
-    background: #fff;
+    background: var(--bg-color-panel);
     width: 150px;
     .list-item {
       padding: 2px 8px;
-      color: #111;
+      color: var(--text-color-active);
       height: 35px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--border-color-row);
       &:hover {
-        background: #eee;
+        background: var(--bg-color-hover);
       }
     }
   }

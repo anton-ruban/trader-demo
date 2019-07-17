@@ -8,11 +8,10 @@ html, body {
   height: 100%;
   overflow: hidden !important;
   cursor: default;
-  background: #eee;
 }
 
 html {
-  color: #111;
+  color: var(--text-color-active);
   font-family: "HelveticaNeue","Helvetica Neue","sans-serif",Arial;
   font-size: 8px;
 }
@@ -22,10 +21,9 @@ body {
   height: 100%;
   overflow: hidden;
   cursor: default;
-  background: #eee;
   font-size: 14px;
   line-height: 20px;
-  color: #111;
+  color: var(--text-color-active);
 }
 
 a {

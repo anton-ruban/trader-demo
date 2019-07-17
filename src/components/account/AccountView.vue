@@ -55,15 +55,15 @@ export default {
   display: flex;
   flex-direction: column;
   .head {
-    background: #ccc;
+    background: var(--bg-color-panel);
     padding: 0 8px;
   }
   .content-body {
     width: 800px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color-row);
     padding: 16px;
     margin: 50px auto;
-    background: #fff;
+    background: var(--bg-color-inner-panel);
   }
 }
 

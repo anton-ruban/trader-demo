@@ -59,7 +59,6 @@ export default {
   input[type=search] {
     padding-left: 28px;
     text-overflow: ellipsis;
-    color: #666;
     outline: 0;
     border: 1px solid #dbdbdb;
     border-radius: 0;
@@ -121,7 +120,7 @@ export default {
       }
     }
     &:hover {
-      background: #eee;
+      background: var(--bg-color-hover);
     }
   }
 }

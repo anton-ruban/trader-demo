@@ -22,9 +22,8 @@ export default {
   width: 100%;
   input[type=search] {
     padding-left: 28px;
-    color: #222;
     outline: 0;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color-row);
     border-radius: 0;
     width: 100%;
     display: block;
@@ -45,7 +44,6 @@ export default {
     left: 8px;
     font-size: 16px;
     height: 20px;
-    color: #222;
     line-height: 24px;
     pointer-events: none;
   }

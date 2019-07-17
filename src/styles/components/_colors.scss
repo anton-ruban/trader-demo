@@ -1,0 +1,25 @@
+:root {
+  --bg-color-page: #fff;
+  --text-color-active: #111;
+  --bg-color-hover: #eee;
+  --bg-color-panel: #ccc;
+  --bg-color-inner-panel: #fff;
+  --bg-color-row-button: #e5e5e5;
+  --bg-color-row-button-hover: #d5d5d5;
+  --border-color-row: #ddd;
+  --bg-color-subheader: #ddd;
+  --bg-color-dark: #ebebeb;
+}
+
+.theme--dark {
+  --bg-color-page: #333;
+  --text-color-active: #fff;
+  --bg-color-hover: #555;
+  --bg-color-panel: #444;
+  --bg-color-inner-panel: #333;
+  --bg-color-row-button: #666;
+  --bg-color-row-button-hover: #888;
+  --border-color-row: #222;
+  --bg-color-subheader: #666;
+  --bg-color-dark: #222;
+}

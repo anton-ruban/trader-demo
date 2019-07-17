@@ -48,6 +48,6 @@ export default {
   margin-top: 0 !important;
   height: 8px !important;
   top: 0 !important;
-  background: #eee;
+  background: var(--bg-color-page);
 }
 </style>

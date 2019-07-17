@@ -66,11 +66,11 @@ export default {
   .register-container {
     margin: 100px auto;
     width: 420px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color-row);
     .head {
       display: flex;
       padding: 10px 30px;
-      background: #ccc;
+      background: var(--bg-color-panel);
       align-items: center;
       img {
         margin-right: 20px;
@@ -91,8 +91,8 @@ export default {
           width: 70px;
         }
         input {
-          background: #fff;
-          border: 1px solid #ddd;
+          background: var(--bg-color-inner-panel);
+          border: 1px solid var(--border-color-row);
           flex: 1;
           padding: 0 5px;
         }

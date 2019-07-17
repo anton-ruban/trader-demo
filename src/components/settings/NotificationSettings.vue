@@ -22,7 +22,6 @@
       </div>
       <v-checkbox
           v-model="insights"
-          color="#111"
           class="checkbox-item"
           :ripple="false"
           hide-details>
@@ -33,7 +32,6 @@
       </v-checkbox>
       <v-checkbox
           v-model="protectPosition"
-          color="#111"
           class="checkbox-item"
           :ripple="false"
           hide-details>
@@ -94,14 +92,13 @@ export default {
   width: 100%;
   height: 100%;
   .label-block {
-    color: #111;
+    color: var(--text-color-active);
     font-size: 14px;
     line-height: 34px;
     height: 34px;
   }
   .checkbox-list {
     padding: 4px;
-    background: #ddd;
     .checkbox-item {
       width: 50%;
       display: inline-block;
@@ -110,11 +107,11 @@ export default {
         font-size: 15px;
         margin-right: 10px;
         margin-left: 4px;
-        color: #111;
+        color: var(--text-color-active);
       }
     }
     .item-label {
-      color: #111;
+      color: var(--text-color-active);
     }
   }
   .setting-item {

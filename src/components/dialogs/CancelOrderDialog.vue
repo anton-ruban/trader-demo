@@ -1,60 +1,62 @@
 <template>
   <v-dialog :value="isOpenCancelOrderDialog" width="380" @input="toggleCancelOrderDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar :title="$t('cancel_order')" hideBack @close="toggleCancelOrderDialog(false)"/>
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedOrder.product}}</span>
-            <span class="desc">APU9 AUD</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar :title="$t('cancel_order')" hideBack @close="toggleCancelOrderDialog(false)"/>
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedOrder.product}}</span>
+              <span class="desc">APU9 AUD</span>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="details">
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('limit')}}</span>
+              <span>Buy 200 @ 16.300</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('current_price')}}</span>
+              <span>16.590</span>
+            </div>
+            <v-divider></v-divider>
+          </div>
+          <v-btn class="order-button" small depressed color="primary" @click="cancelOrder()">{{$t('cancel_order')}}</v-btn>
+          <div class="section-divider">
+            <v-divider></v-divider>
+            <a @click="isShowDetails = !isShowDetails">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
+            <v-divider></v-divider>
+          </div>
+          <div class="details" v-if="isShowDetails">
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">成本</span>
+              <span>10 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">佣金</span>
+              <span>9 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">手续费</span>
+              <span>1 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">名义值</span>
+              <span>0 CNY</span>
+            </div>
+            <v-divider></v-divider>
           </div>
         </div>
-        <v-divider></v-divider>
-        <div class="details">
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('limit')}}</span>
-            <span>Buy 200 @ 16.300</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('current_price')}}</span>
-            <span>16.590</span>
-          </div>
-          <v-divider></v-divider>
-        </div>
-        <v-btn class="order-button" small depressed color="#39d" @click="cancelOrder()">{{$t('cancel_order')}}</v-btn>
-        <div class="section-divider">
-          <v-divider></v-divider>
-          <a @click="isShowDetails = !isShowDetails">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
-          <v-divider></v-divider>
-        </div>
-        <div class="details" v-if="isShowDetails">
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">成本</span>
-            <span>10 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">佣金</span>
-            <span>9 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">手续费</span>
-            <span>1 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">名义值</span>
-            <span>0 CNY</span>
-          </div>
-          <v-divider></v-divider>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -135,7 +137,7 @@ export default {
       margin-bottom: 8px;
       padding-left: 8px;
       color: #888;
-      background: #ebebeb;
+      background: var(--bg-color-dark);
     }
   }
   .section-divider {

@@ -21,7 +21,7 @@
         <img src="../../../assets/fu.png" class="product-icon" width="16"/>{{ props.formattedRow[props.column.field] }}
       </div>
       <div v-else-if="props.column.field === 'action'" class="flex-item">
-        <v-btn depressed small color="#e5e5e5" v-if="!props.row.canceld" @click="openCancelOrderDialog(props.row)">
+        <v-btn depressed small v-if="!props.row.canceld" @click="openCancelOrderDialog(props.row)">
           CANCEL
         </v-btn>
         <button class="ipe-btn info-button-box" type="button" @click="openOrderDetailsDialog(props.row)">
@@ -201,7 +201,7 @@ export default {
 
     &:hover {
       background: #d5d5d5;
-      color: #111;
+      color: var(--text-color-active);
     }
   }
 }

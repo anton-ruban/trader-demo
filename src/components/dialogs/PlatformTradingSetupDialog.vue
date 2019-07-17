@@ -1,34 +1,36 @@
 <template>
   <v-dialog :value="isOpenPlatformTradingSetupDialog" width="420" @input="togglePlatformTradingSetupDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar :title="$t('platform_trading_setup')" hideBack @close="togglePlatformTradingSetupDialog(false)"/>
-      <div class="dialog-body">
-        <v-radio-group v-model="tradeClickMode" hide-details color="red">
-          <v-radio color="#111" value="one_click" :ripple="false" :class="['ipe-radio', 'click-option', {'opacity-item': tradeClickMode !== 'one_click'}]">
-            <template v-slot:label>
-              <div class="option-label">
-                <div>1-click trading</div>
-                <p>Trades and orders are placed directly with a single click.</p>
-                <img src="../../assets/one_click.png"/>
-                <p>This mode bypasses the 2-click safety mechanism for speed of execution. You take full responsibility for unintended trades and orders.</p>
-              </div>
-            </template>
-          </v-radio>
+    <v-card>
+      <v-layout column>
+        <TitleBar :title="$t('platform_trading_setup')" hideBack @close="togglePlatformTradingSetupDialog(false)"/>
+        <div class="dialog-body">
+          <v-radio-group v-model="tradeClickMode" hide-details color="red">
+            <v-radio value="one_click" :ripple="false" :class="['ipe-radio', 'click-option', {'opacity-item': tradeClickMode !== 'one_click'}]">
+              <template v-slot:label>
+                <div class="option-label">
+                  <div>1-click trading</div>
+                  <p>Trades and orders are placed directly with a single click.</p>
+                  <img src="../../assets/one_click.png"/>
+                  <p>This mode bypasses the 2-click safety mechanism for speed of execution. You take full responsibility for unintended trades and orders.</p>
+                </div>
+              </template>
+            </v-radio>
+            <v-divider/>
+            <v-radio value="dbl_click" :ripple="false" :class="['ipe-radio', 'click-option', {'opacity-item': tradeClickMode !== 'dbl_click'}]">
+              <template v-slot:label>
+                <div class="option-label">
+                  <div>2-click trading</div>
+                  <p>Trades and orders require confirmation.</p>
+                  <img src="../../assets/two_click.png"/>
+                </div>
+              </template>
+            </v-radio>
+          </v-radio-group>
           <v-divider/>
-          <v-radio color="#111" value="dbl_click" :ripple="false" :class="['ipe-radio', 'click-option', {'opacity-item': tradeClickMode !== 'dbl_click'}]">
-            <template v-slot:label>
-              <div class="option-label">
-                <div>2-click trading</div>
-                <p>Trades and orders require confirmation.</p>
-                <img src="../../assets/two_click.png"/>
-              </div>
-            </template>
-          </v-radio>
-        </v-radio-group>
-        <v-divider/>
-        <v-btn class="accept-button" small depressed color="#39d" @click="handleAcceptClick()" :disabled="tradeClickMode === currentClickMode">{{$t('accept')}}</v-btn>
-      </div>
-    </v-layout>
+          <v-btn class="accept-button" small depressed color="primary" @click="handleAcceptClick()" :disabled="tradeClickMode === currentClickMode">{{$t('accept')}}</v-btn>
+        </div>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -87,7 +89,7 @@ export default {
       opacity: 0.7;
     }
     .option-label {
-      color: #111;
+      color: var(--text-color-active);
     }
     p {
       margin: 3px 0 8px;

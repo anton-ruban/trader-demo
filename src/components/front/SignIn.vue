@@ -72,7 +72,7 @@ export default {
   .signin-container {
     margin: 100px auto;
     width: 650px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color-row);
     .loading {
       position: absolute;
       margin-left: 25%;
@@ -98,8 +98,8 @@ export default {
       }
       input {
         line-height: 54px;
-        background: #fff;
-        border: 1px solid #ddd;
+        background: var(--bg-color-inner-panel);
+        border: 1px solid var(--border-color-row);
         flex: 1;
         padding: 0 10px;
       }

@@ -10,7 +10,6 @@
       <div class="content-section" v-if="selectedWatchTabIndex === 0">
         <div class="content-head">
           <WatchlistPicker />
-          <!-- <v-btn depressed small color="#d5d5d5">编辑</v-btn> -->
         </div>
         <div class="content-body ipe-table">
           <v-data-table
@@ -48,8 +47,8 @@
                 <td class="text-xs-right">{{ props.item.price }}<AvailableStatus /></td>
                 <td class="text-xs-right">{{ props.item.distance }}</td>
                 <td class="text-xs-right">
-                  <v-btn depressed small color="#e5e5e5" @click="toggleEditPriceAlert(true)">编辑</v-btn>
-                  <v-btn depressed small color="#e5e5e5">删除</v-btn>
+                  <v-btn depressed small @click="toggleEditPriceAlert(true)">编辑</v-btn>
+                  <v-btn depressed small>删除</v-btn>
                 </td>
               </tr>
             </template>
@@ -124,7 +123,7 @@ export default {
   height: 100%;
   .head {
     border: 0;
-    background-color: #ccc;
+    background-color: var(--bg-color-panel);
     padding-left: 8px;
     padding-right: 8px;
     height: 32px;
@@ -135,10 +134,10 @@ export default {
   .content {
     padding: 8px;
     padding-top: 0;
-    background-color: #ccc;
+    background-color: var(--bg-color-panel);
     height: calc(100% - 32px);
     .content-section {
-      background: #fff;
+      background: var(--bg-color-inner-panel);
       width: 100%;
       height: 100%;
       .content-head {
@@ -153,15 +152,15 @@ export default {
         height: calc(100% - 40px);
         overflow: auto;
         .active {
-          background: #eee;
+          background: var(--bg-color-hover);
         }
         .clickable-div {
           cursor: pointer;
-          background: #e5e5e5;
+          background: var(--bg-color-row-button);
           padding-right: 5px;
           border-radius: 2px;
           &:hover {
-            background: #d5d5d5;
+            background: var(--bg-color-row-button-hover);
           }
         }
         .product-icon {

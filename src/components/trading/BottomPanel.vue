@@ -57,7 +57,7 @@ export default {
   width: 100%;
   .head {
     border: 0;
-    background-color: #ccc;
+    background-color: var(--bg-color-panel);
     padding-left: 8px;
     padding-right: 8px;
     display: flex;
@@ -69,7 +69,7 @@ export default {
       font-size: 15px;
       text-transform: none;
       &:hover {
-        color: #111;
+        color: var(--text-color-active);
       }
     }
   }
@@ -77,10 +77,10 @@ export default {
     padding: 8px;
     padding-top: 0;
     padding-bottom: 0;
-    background-color: #ccc;
+    background-color: var(--bg-color-panel);
     height: calc(100% - 32px);
     .content-section {
-      background: #fff;
+      background: var(--bg-color-inner-panel);
       width: 100%;
       height: calc(100% - 8px);
       overflow: auto;

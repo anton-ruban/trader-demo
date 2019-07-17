@@ -1,56 +1,58 @@
 <template>
   <v-dialog :value="isOpenOrderDetailsDialog" width="380" @input="toggleOrderDetailsDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar :title="$t('order_details')" hideBack @close="toggleOrderDetailsDialog(false)"/>
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedOrder.product}}</span>
-            <span class="desc">APU9 AUD</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar :title="$t('order_details')" hideBack @close="toggleOrderDetailsDialog(false)"/>
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedOrder.product}}</span>
+              <span class="desc">APU9 AUD</span>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="details">
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('limit')}}</span>
+              <span>Buy 200 @ 16.300</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('current_price')}}</span>
+              <span>16.590</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('status')}}</span>
+              <span>Working</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('order_id')}}</span>
+              <span>77963581</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('duration')}}</span>
+              <span>{{selectedOrder.duration}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('filled_remaining')}}</span>
+              <span>0 (2)</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">{{$t('placed')}}</span>
+              <span>23-Jun-2019 19:38:05</span>
+            </div>
+            <v-divider></v-divider>
           </div>
         </div>
-        <v-divider></v-divider>
-        <div class="details">
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('limit')}}</span>
-            <span>Buy 200 @ 16.300</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('current_price')}}</span>
-            <span>16.590</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('status')}}</span>
-            <span>Working</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('order_id')}}</span>
-            <span>77963581</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('duration')}}</span>
-            <span>{{selectedOrder.duration}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('filled_remaining')}}</span>
-            <span>0 (2)</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">{{$t('placed')}}</span>
-            <span>23-Jun-2019 19:38:05</span>
-          </div>
-          <v-divider></v-divider>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -126,7 +128,7 @@ export default {
       margin-bottom: 8px;
       padding-left: 8px;
       color: #888;
-      background: #ebebeb;
+      background: var(--bg-color-dark);
     }
   }
   .details {

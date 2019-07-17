@@ -3,7 +3,7 @@
     <v-layout class="dialog-layout" column>
       <TitleBar title="KYC认证" hideBack @close="toggleKycIdentifyDialog(false)" />
       <div class="dialog-body">
-        <v-tabs fixed-tabs height="32" slider-color="#111" class="ipe-tab tab-body">
+        <v-tabs fixed-tabs height="32" class="ipe-tab tab-body">
           <v-tab
             v-for="item in KYC_IDENTIFY_TAB_ITEMS"
             :key="item.id"
@@ -95,7 +95,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .dialog-layout {
-  background: #fff;
+  background: var(--bg-color-inner-panel);
 }
 .dialog-body {
   display: flex;

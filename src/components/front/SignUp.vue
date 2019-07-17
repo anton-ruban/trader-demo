@@ -109,7 +109,7 @@ export default {
   .signup-container {
     margin: 100px auto;
     width: 650px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color-row);
     .tab-name {
       font-size: 20px;
     }
@@ -135,7 +135,7 @@ export default {
         .dial-code {
           width: 75px;
           text-align: center;
-          background: #fff;
+          background: var(--bg-color-inner-panel);
           line-height: 54px;
           border:1px solid #ddd;
         }
@@ -148,8 +148,8 @@ export default {
       }
       input {
         line-height: 54px;
-        background: #fff;
-        border: 1px solid #ddd;
+        background: var(--bg-color-inner-panel);
+        border: 1px solid var(--border-color-row);
         flex: 1;
         padding: 0 10px;
       }

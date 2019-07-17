@@ -41,7 +41,7 @@ export default {
     }
   }
   span {
-    color: #333;
+    color: var(--text-color-active);
     white-space: nowrap;
   }
 }

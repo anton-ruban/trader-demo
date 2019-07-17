@@ -1,74 +1,76 @@
 <template>
   <v-dialog :value="isOpenTradingConditionsDialog" width="380" @input="toggleTradingConditionsDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar :title="$t('general.trading_conditions')" hideBack @close="toggleTradingConditionsDialog(false)" />
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedAlert.instrument}}</span>
-            <span class="desc">{{selectedAlert.desc}}</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar :title="$t('general.trading_conditions')" hideBack @close="toggleTradingConditionsDialog(false)" />
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedAlert.instrument}}</span>
+              <span class="desc">{{selectedAlert.desc}}</span>
+            </div>
+            <v-btn icon small><v-icon>search</v-icon></v-btn>
           </div>
-          <v-btn icon small><v-icon>search</v-icon></v-btn>
+          <div>
+            <v-tabs fixed-tabs height="32" class="ipe-tab">
+              <v-tab
+                v-for="item in TRADING_CONDITIONS_TAB_ITEMS"
+                :key="item.id"
+              >
+                {{item.text}}
+              </v-tab>
+              <v-tab-item>
+                <v-divider></v-divider>
+                <div class="details">
+                  <label class="sub-head">{{$t('transaction_costs')}}</label>
+                  <v-divider></v-divider>
+                  <div v-for="(value, key) in transaction_costs" :key="key">
+                    <div class="item-row">
+                      <span class="label">{{$t(key)}}</span>
+                      <span>{{value}}</span>
+                    </div>
+                    <v-divider></v-divider>
+                  </div>
+                </div>
+              </v-tab-item>
+              <v-tab-item>
+                <v-divider></v-divider>
+                <div class="details">
+                  <div class="sub-head">{{$t('margin')}}</div>
+                  <v-divider></v-divider>
+                  <div v-for="(value, key) in margin" :key="key">
+                    <div class="item-row">
+                      <span class="label">{{$t(key)}}</span>
+                      <span>{{value}}</span>
+                    </div>
+                    <v-divider></v-divider>
+                  </div>
+                  <div class="sub-head">{{$t('instrument')}}</div>
+                  <v-divider></v-divider>
+                  <div v-for="(value, key) in instrument" :key="key">
+                    <div class="item-row">
+                      <span class="label">{{$t(key)}}</span>
+                      <span>{{value}}</span>
+                    </div>
+                    <v-divider></v-divider>
+                  </div>
+                  <div class="sub-head center-head">{{$t('trading_times_cest')}}</div>
+                  <div class="sub-head">21-Jun-2019</div>
+                  <div v-for="(value, key) in trading_times" :key="key">
+                    <div class="item-row">
+                      <span class="label">{{$t(key)}}</span>
+                      <span>{{value}}</span>
+                    </div>
+                    <v-divider></v-divider>
+                  </div>
+                </div>
+              </v-tab-item>
+            </v-tabs>
+          </div>
         </div>
-        <div>
-          <v-tabs fixed-tabs height="32" slider-color="#111" class="ipe-tab">
-            <v-tab
-              v-for="item in TRADING_CONDITIONS_TAB_ITEMS"
-              :key="item.id"
-            >
-              {{item.text}}
-            </v-tab>
-            <v-tab-item>
-              <v-divider></v-divider>
-              <div class="details">
-                <label class="sub-head">{{$t('transaction_costs')}}</label>
-                <v-divider></v-divider>
-                <div v-for="(value, key) in transaction_costs" :key="key">
-                  <div class="item-row">
-                    <span class="label">{{$t(key)}}</span>
-                    <span>{{value}}</span>
-                  </div>
-                  <v-divider></v-divider>
-                </div>
-              </div>
-            </v-tab-item>
-            <v-tab-item>
-              <v-divider></v-divider>
-              <div class="details">
-                <div class="sub-head">{{$t('margin')}}</div>
-                <v-divider></v-divider>
-                <div v-for="(value, key) in margin" :key="key">
-                  <div class="item-row">
-                    <span class="label">{{$t(key)}}</span>
-                    <span>{{value}}</span>
-                  </div>
-                  <v-divider></v-divider>
-                </div>
-                <div class="sub-head">{{$t('instrument')}}</div>
-                <v-divider></v-divider>
-                <div v-for="(value, key) in instrument" :key="key">
-                  <div class="item-row">
-                    <span class="label">{{$t(key)}}</span>
-                    <span>{{value}}</span>
-                  </div>
-                  <v-divider></v-divider>
-                </div>
-                <div class="sub-head center-head">{{$t('trading_times_cest')}}</div>
-                <div class="sub-head">21-Jun-2019</div>
-                <div v-for="(value, key) in trading_times" :key="key">
-                  <div class="item-row">
-                    <span class="label">{{$t(key)}}</span>
-                    <span>{{value}}</span>
-                  </div>
-                  <v-divider></v-divider>
-                </div>
-              </div>
-            </v-tab-item>
-          </v-tabs>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -153,7 +155,7 @@ export default {
     margin-top: 8px;
     .sub-head {
       margin-top: 8px;
-      color: #111;
+      color: var(--text-color-active);
       &.center-head {
         text-align: center;
       }

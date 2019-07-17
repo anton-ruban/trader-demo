@@ -1,9 +1,11 @@
 import Vue from 'vue';
+import {chartLightOptions, chartDarkOptions} from '@/utils';
 // initial state
 const state = {
   isOpenSettingsDialog: false,
   isOpenChartSettingsDialog: false,
   isOpenPlatformTradingSetupDialog: false,
+  isDark: false,
   settings: {
     platform: {
       label: '平台',
@@ -43,6 +45,10 @@ const getters = {
   tradingClickMode: state => {
     return state.settings.platform.tradingClickMode;
   },
+  chartOptions: state => {
+    const res = state.isDark ? chartDarkOptions() : chartLightOptions();
+    return res;
+  }
 }
 
 // actions
@@ -62,6 +68,9 @@ const mutations = {
   },
   updateTradingClickMode(state, clickMode) {
     Vue.set(state.settings.platform, 'tradingClickMode', clickMode);
+  },
+  toggleTheme(state) {
+    state.isDark = !state.isDark;
   }
 }
 

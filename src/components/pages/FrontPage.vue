@@ -58,7 +58,7 @@ export default {
         color: #888;
         list-style-type: none;
         &:hover {
-          color: #111;
+          color: var(--text-color-active);
         }
       }
     }

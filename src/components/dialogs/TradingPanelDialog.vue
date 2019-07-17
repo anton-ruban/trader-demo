@@ -1,144 +1,146 @@
 <template>
   <v-dialog :value="isOpenTradingPanelDialog" width="380" @input="toggleTradingPanelDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar title="交易面板" hideBack @close="toggleTradingPanelDialog(false)" />
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedContract.product}}</span>
-            <span class="desc">{{selectedContract.description}}</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar title="交易面板" hideBack @close="toggleTradingPanelDialog(false)" />
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedContract.product}}</span>
+              <span class="desc">{{selectedContract.description}}</span>
+            </div>
+            <v-btn icon small><v-icon>info</v-icon></v-btn>
+            <v-btn icon small><v-icon>money</v-icon></v-btn>
+            <v-btn icon small><v-icon>search</v-icon></v-btn>
           </div>
-          <v-btn icon small><v-icon>info</v-icon></v-btn>
-          <v-btn icon small><v-icon>money</v-icon></v-btn>
-          <v-btn icon small><v-icon>search</v-icon></v-btn>
+          <v-divider></v-divider>
+          <div class="summary-table">
+            <div class="item">
+              <div class="label">卖出价</div>
+              <div class="value">{{selectedContract.sellingPrice}}</div>
+            </div>
+            <div class="item">
+              <div class="label">买入价</div>
+              <div class="value">{{selectedContract.buyingPrice}}</div>
+            </div>
+            <div class="item">
+              <div class="label">最新价</div>
+              <div class="value">{{overviews[selectedOverviewId].latestPrice.value}}</div>
+            </div>
+            <div class="item">
+              <div class="label">净涨跌</div>
+              <div class="value">{{selectedContract.fallAndRaise}}</div>
+            </div>
+            <div class="item">
+              <div class="label">涨跌幅%</div>
+              <div class="value">{{overviews[selectedOverviewId].percentChange.value}}</div>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="clock-info">
+            <div>
+              <v-icon>query_builder</v-icon>
+              15 分钟延时 – 18:41:25
+            </div>
+            <div>
+              Toronto Stock Exchange
+              <AvailableStatus />
+            </div>
+          </div>
+          <div class="edit-list">
+            <div class="edit-row">
+              <div class="label">类型</div>
+              <SelectByArrow :options="tradeOptions.type.options" :value="tradeOptions.type.value" @change="selectNewTradingOption('type', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">买入/卖出</div>
+              <SelectByArrow :options="tradeOptions.buySell.options" :value="tradeOptions.buySell.value" @change="selectNewTradingOption('buySell', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">数量</div>
+              <Counter :stepValue="tradeOptions.amount.stepValue" :count="tradeOptions.amount.count" @change="selectNewTradingCount('amount', $event)"></Counter>
+            </div>
+            <div class="edit-row" v-if="tradeOptions.type.value !== '市价'">
+              <div class="label">价格</div>
+              <Counter :stepValue="tradeOptions.price.stepValue" :count="tradeOptions.price.count" @change="selectNewTradingCount('price', $event)"></Counter>
+            </div>
+            <div class="edit-row">
+              <div class="label">止损限价价格</div>
+              <Counter :stepValue="tradeOptions.stopLimitPrice.stepValue" :count="tradeOptions.stopLimitPrice.count" @change="selectNewTradingCount('stopLimitPrice', $event)"></Counter>
+            </div>
+            <div class="edit-row">
+              <div class="label">有效期</div>
+              <SelectByArrow :options="tradeOptions.validPeriod.options" :value="tradeOptions.validPeriod.value" @change="selectNewTradingOption('validPeriod', $event)"></SelectByArrow>
+            </div>
+          </div>
+          <div class="section-divider">
+            <v-divider></v-divider>
+            <a @click="toggleAddStopPanel(!isAddStopPanel)">{{isAddStopPanel ? '移除止盈/止损' : '添加止盈/止损'}}</a>
+            <v-divider></v-divider>
+          </div>
+          <div class="edit-list" v-if="isAddStopPanel">
+            <div class="edit-row">
+              <div class="label">止盈</div>
+              <Counter :stepValue="tradeOptions.takeProfit.stepValue" :count="tradeOptions.takeProfit.count" @change="selectNewTradingCount('takeProfit', $event)"></Counter>
+            </div>
+            <div class="edit-row">
+              <div class="label">止损</div>
+              <Counter :stepValue="tradeOptions.stopLoss.stepValue" :count="tradeOptions.stopLoss.count" @change="selectNewTradingCount('stopLoss', $event)"></Counter>
+            </div>
+          </div>
+          <v-btn class="order-button" small depressed color="primary" @click="toggleConfirmOrderDialog(true)">建立订单</v-btn>
+          <div class="section-divider">
+            <v-divider></v-divider>
+            <a @click="toggleShowDetails(!isShowDetails)">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
+            <v-divider></v-divider>
+          </div>
+          <div class="details" v-if="isShowDetails">
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">成本</span>
+              <span>10 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">名义值</span>
+              <span>9 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">初始保证金可用</span>
+              <span>93,728.79 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">初始保证金占用</span>
+              <span>0 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">维持保证金占用</span>
+              <span>0 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">到期日</span>
+              <span>12-Jul-2019</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">通知日期</span>
+              <span>28-Jul-2019</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">每首数量</span>
+              <span>5000 Bushels</span>
+            </div>
+            <v-divider></v-divider>
+          </div>
         </div>
-        <v-divider></v-divider>
-        <div class="summary-table">
-          <div class="item">
-            <div class="label">卖出价</div>
-            <div class="value">{{selectedContract.sellingPrice}}</div>
-          </div>
-          <div class="item">
-            <div class="label">买入价</div>
-            <div class="value">{{selectedContract.buyingPrice}}</div>
-          </div>
-          <div class="item">
-            <div class="label">最新价</div>
-            <div class="value">{{overviews[selectedOverviewId].latestPrice.value}}</div>
-          </div>
-          <div class="item">
-            <div class="label">净涨跌</div>
-            <div class="value">{{selectedContract.fallAndRaise}}</div>
-          </div>
-          <div class="item">
-            <div class="label">涨跌幅%</div>
-            <div class="value">{{overviews[selectedOverviewId].percentChange.value}}</div>
-          </div>
-        </div>
-        <v-divider></v-divider>
-        <div class="clock-info">
-          <div>
-            <v-icon>query_builder</v-icon>
-            15 分钟延时 – 18:41:25
-          </div>
-          <div>
-            Toronto Stock Exchange
-            <AvailableStatus />
-          </div>
-        </div>
-        <div class="edit-list">
-          <div class="edit-row">
-            <div class="label">类型</div>
-            <SelectByArrow :options="tradeOptions.type.options" :value="tradeOptions.type.value" @change="selectNewTradingOption('type', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">买入/卖出</div>
-            <SelectByArrow :options="tradeOptions.buySell.options" :value="tradeOptions.buySell.value" @change="selectNewTradingOption('buySell', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">数量</div>
-            <Counter :stepValue="tradeOptions.amount.stepValue" :count="tradeOptions.amount.count" @change="selectNewTradingCount('amount', $event)"></Counter>
-          </div>
-          <div class="edit-row" v-if="tradeOptions.type.value !== '市价'">
-            <div class="label">价格</div>
-            <Counter :stepValue="tradeOptions.price.stepValue" :count="tradeOptions.price.count" @change="selectNewTradingCount('price', $event)"></Counter>
-          </div>
-          <div class="edit-row">
-            <div class="label">止损限价价格</div>
-            <Counter :stepValue="tradeOptions.stopLimitPrice.stepValue" :count="tradeOptions.stopLimitPrice.count" @change="selectNewTradingCount('stopLimitPrice', $event)"></Counter>
-          </div>
-          <div class="edit-row">
-            <div class="label">有效期</div>
-            <SelectByArrow :options="tradeOptions.validPeriod.options" :value="tradeOptions.validPeriod.value" @change="selectNewTradingOption('validPeriod', $event)"></SelectByArrow>
-          </div>
-        </div>
-        <div class="section-divider">
-          <v-divider></v-divider>
-          <a @click="toggleAddStopPanel(!isAddStopPanel)">{{isAddStopPanel ? '移除止盈/止损' : '添加止盈/止损'}}</a>
-          <v-divider></v-divider>
-        </div>
-        <div class="edit-list" v-if="isAddStopPanel">
-          <div class="edit-row">
-            <div class="label">止盈</div>
-            <Counter :stepValue="tradeOptions.takeProfit.stepValue" :count="tradeOptions.takeProfit.count" @change="selectNewTradingCount('takeProfit', $event)"></Counter>
-          </div>
-          <div class="edit-row">
-            <div class="label">止损</div>
-            <Counter :stepValue="tradeOptions.stopLoss.stepValue" :count="tradeOptions.stopLoss.count" @change="selectNewTradingCount('stopLoss', $event)"></Counter>
-          </div>
-        </div>
-        <v-btn class="order-button" small depressed color="#39d" @click="toggleConfirmOrderDialog(true)">建立订单</v-btn>
-        <div class="section-divider">
-          <v-divider></v-divider>
-          <a @click="toggleShowDetails(!isShowDetails)">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
-          <v-divider></v-divider>
-        </div>
-        <div class="details" v-if="isShowDetails">
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">成本</span>
-            <span>10 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">名义值</span>
-            <span>9 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">初始保证金可用</span>
-            <span>93,728.79 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">初始保证金占用</span>
-            <span>0 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">维持保证金占用</span>
-            <span>0 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">到期日</span>
-            <span>12-Jul-2019</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">通知日期</span>
-            <span>28-Jul-2019</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">每首数量</span>
-            <span>5000 Bushels</span>
-          </div>
-          <v-divider></v-divider>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -275,7 +277,7 @@ export default {
       margin-bottom: 8px;
       padding-left: 8px;
       color: #888;
-      background: #ebebeb;
+      background: var(--bg-color-dark);
     }
   }
   .section-divider {

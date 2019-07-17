@@ -62,7 +62,7 @@ footer {
   min-height: 42px;
   margin-left: 8px;
   margin-right: 8px;
-  background-color: #ccc;
+  background-color: var(--bg-color-panel);
   flex: 0 0 auto;
   padding: 0;
   .footer-body {
@@ -74,8 +74,6 @@ footer {
     text-align: start;
     .acctsummary {
       padding: 8px 8px;
-      border-right: 1px solid #b7b7b7;
-      border-left: 1px solid #b7b7b7;
       overflow: hidden;
       padding-bottom: 16.5px;
       align-items: center;
@@ -93,7 +91,7 @@ footer {
         .trial {
           width: 170px;
           line-height: 20px;
-          outline: 1px solid #e5e5e5;
+          outline: 1px solid var(--border-color-row);
           outline-offset: -1px;
           display: flex;
           padding: 0 8px;
@@ -106,7 +104,7 @@ footer {
           height: 24px;
           &:hover {
             background: #d5d5d5;
-            color: #111;
+            color: var(--text-color-active);
           }
         }
         .info-label {
@@ -122,7 +120,7 @@ footer {
           position: relative;
           .progress-bar {
             position: absolute;
-            background: #ddd;
+            background: var(--border-color-row);
             width: 75.67%;
             right: 0;
             height: 0.67rem;
@@ -134,9 +132,8 @@ footer {
   .data-disclaimer-link {
     color: #999;
     text-transform: uppercase;
-    background-color: #eee;
+    background-color: var(--bg-color-page);
     width: 100%;
-    border-top: 1px solid #b7b7b7;
     position: absolute;
     z-index: 1;
     bottom: 0;

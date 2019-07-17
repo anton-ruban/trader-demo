@@ -1,64 +1,66 @@
 <template>
   <v-dialog :value="isOpenEditPriceAlert" width="380" @input="toggleEditPriceAlert($event)">
-    <v-layout class="white" column>
-      <TitleBar :title="$t('general.edit_price_alert')" hideBack @close="toggleEditPriceAlert(false)" />
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedAlert.instrument}}</span>
-            <span class="desc">{{selectedAlert.desc}}</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar :title="$t('general.edit_price_alert')" hideBack @close="toggleEditPriceAlert(false)" />
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedAlert.instrument}}</span>
+              <span class="desc">{{selectedAlert.desc}}</span>
+            </div>
           </div>
+          <v-divider></v-divider>
+          <div class="summary-table">
+            <div class="item">
+              <div class="label">{{$t('general.bid')}}</div>
+              <div class="value">{{selectedAlert.bid}}</div>
+            </div>
+            <div class="item">
+              <div class="label">{{$t('general.ask')}}</div>
+              <div class="value">{{selectedAlert.ask}}</div>
+            </div>
+            <div class="item">
+              <div class="label">{{$t('general.net_change')}}</div>
+              <div class="value">{{selectedAlert.net_change}}</div>
+            </div>
+            <div class="item">
+              <div class="label">{{$t('general.percent_change')}}</div>
+              <div class="value">{{selectedAlert.percent_change}}</div>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="edit-list">
+            <div class="edit-row">
+              <div class="label">{{$t('general.alert_type')}}</div>
+              <SelectByArrow :options="alertOptions.alert_type.options" :value="alertOptions.alert_type.value" @change="selectAlertOption('alert_type', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('general.condition')}}</div>
+              <SelectByArrow :options="alertOptions.condition.options" :value="alertOptions.condition.value" @change="selectAlertOption('condition', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('general.price')}}</div>
+              <Counter :stepValue="alertOptions.price.stepValue" :count="alertOptions.price.count" @change="selectAlertCount('price', $event)"></Counter>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('general.active')}}</div>
+              <SelectByArrow :options="alertOptions.active.options" :value="alertOptions.active.value" @change="selectAlertOption('active', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('general.repeating')}}</div>
+              <SelectByArrow :options="alertOptions.repeating.options" :value="alertOptions.repeating.value" @change="selectAlertOption('repeating', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('general.expiry_date')}}</div>
+              <SelectByArrow :options="alertOptions.expiry_date.options" :value="alertOptions.expiry_date.value" @change="selectAlertOption('expiry_date', $event)"></SelectByArrow>
+            </div>
+          </div>
+          <v-btn class="apply-button" small depressed color="primary" @click="toggleEditPriceAlert(false)">{{$t('general.apply')}}</v-btn>
         </div>
-        <v-divider></v-divider>
-        <div class="summary-table">
-          <div class="item">
-            <div class="label">{{$t('general.bid')}}</div>
-            <div class="value">{{selectedAlert.bid}}</div>
-          </div>
-          <div class="item">
-            <div class="label">{{$t('general.ask')}}</div>
-            <div class="value">{{selectedAlert.ask}}</div>
-          </div>
-          <div class="item">
-            <div class="label">{{$t('general.net_change')}}</div>
-            <div class="value">{{selectedAlert.net_change}}</div>
-          </div>
-          <div class="item">
-            <div class="label">{{$t('general.percent_change')}}</div>
-            <div class="value">{{selectedAlert.percent_change}}</div>
-          </div>
-        </div>
-        <v-divider></v-divider>
-        <div class="edit-list">
-          <div class="edit-row">
-            <div class="label">{{$t('general.alert_type')}}</div>
-            <SelectByArrow :options="alertOptions.alert_type.options" :value="alertOptions.alert_type.value" @change="selectAlertOption('alert_type', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('general.condition')}}</div>
-            <SelectByArrow :options="alertOptions.condition.options" :value="alertOptions.condition.value" @change="selectAlertOption('condition', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('general.price')}}</div>
-            <Counter :stepValue="alertOptions.price.stepValue" :count="alertOptions.price.count" @change="selectAlertCount('price', $event)"></Counter>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('general.active')}}</div>
-            <SelectByArrow :options="alertOptions.active.options" :value="alertOptions.active.value" @change="selectAlertOption('active', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('general.repeating')}}</div>
-            <SelectByArrow :options="alertOptions.repeating.options" :value="alertOptions.repeating.value" @change="selectAlertOption('repeating', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('general.expiry_date')}}</div>
-            <SelectByArrow :options="alertOptions.expiry_date.options" :value="alertOptions.expiry_date.value" @change="selectAlertOption('expiry_date', $event)"></SelectByArrow>
-          </div>
-        </div>
-        <v-btn class="apply-button" small depressed color="#39d" @click="toggleEditPriceAlert(false)">{{$t('general.apply')}}</v-btn>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -155,7 +157,7 @@ export default {
       margin-bottom: 8px;
       padding-left: 8px;
       color: #888;
-      background: #ebebeb;
+      background: var(--bg-color-dark);
     }
   }
   .apply-button {

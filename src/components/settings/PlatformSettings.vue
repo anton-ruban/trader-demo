@@ -6,8 +6,8 @@
       <span class="label">交易</span>
       <div>
         <v-radio-group v-model="tradeClickMode" row hide-details color="red">
-          <v-radio color="#111" label="单击" value="单击" :ripple="false" class="ipe-radio"></v-radio>
-          <v-radio color="#111" label="双击" value="双击" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="单击" value="单击" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="双击" value="双击" :ripple="false" class="ipe-radio"></v-radio>
         </v-radio-group>
       </div>
     </div>
@@ -16,8 +16,8 @@
       <span class="label">交易按钮颜色</span>
       <div>
         <v-radio-group v-model="transactionButtonColor" row hide-details>
-          <v-radio color="#111" label="默认" value="默认" :ripple="false" class="ipe-radio"></v-radio>
-          <v-radio color="#111" label="替代" value="替代" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="默认" value="默认" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="替代" value="替代" :ripple="false" class="ipe-radio"></v-radio>
         </v-radio-group>
       </div>
     </div>
@@ -27,14 +27,12 @@
       <v-checkbox
           v-model="showOrdersRelatedToPositions"
           :label="$t('show_orders_related_to_positions')"
-          color="#111"
           :ripple="false"
           hide-details>
       </v-checkbox>
       <v-checkbox
           v-model="showOrdersRelatedToEntryOrder"
           :label="$t('show_orders_related_to_entry')"
-          color="#111"
           :ripple="false"
           hide-details>
       </v-checkbox>
@@ -44,8 +42,8 @@
       <span class="label">显示交易信号</span>
       <div>
         <v-radio-group v-model="displayTradeSignal" row hide-details>
-          <v-radio color="#111" label="开" value="开" :ripple="false" class="ipe-radio"></v-radio>
-          <v-radio color="#111" label="关" value="关" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="开" value="开" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="关" value="关" :ripple="false" class="ipe-radio"></v-radio>
         </v-radio-group>
       </div>
     </div>
@@ -56,8 +54,8 @@
       <span class="label">主题</span>
       <div>
         <v-radio-group v-model="theme" row hide-details>
-          <v-radio color="#111" label="白" value="白" :ripple="false" class="ipe-radio"></v-radio>
-          <v-radio color="#111" label="黑" value="黑" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="白" value="白" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="黑" value="黑" :ripple="false" class="ipe-radio"></v-radio>
         </v-radio-group>
       </div>
     </div>
@@ -66,8 +64,8 @@
       <span class="label">即时净额结算</span>
       <div>
         <v-radio-group v-model="instantOnlinePaymentMode" row hide-details>
-          <v-radio color="#111" label="开" value="开" :ripple="false" class="ipe-radio"></v-radio>
-          <v-radio color="#111" label="关" value="关" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="开" value="开" :ripple="false" class="ipe-radio"></v-radio>
+          <v-radio label="关" value="关" :ripple="false" class="ipe-radio"></v-radio>
         </v-radio-group>
       </div>
     </div>

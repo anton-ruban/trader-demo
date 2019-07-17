@@ -4,7 +4,7 @@
       <i class="fa fa-circle"></i>
       <span>{{tradingClickMode === 'one_click' ? 1 : 2}}</span>
     </v-btn>
-    <v-btn class="action-btn" slot="activator" icon depressed small>
+    <v-btn class="action-btn" slot="activator" icon depressed small @click="toggleTheme()">
       <i class="fa fa-adjust"></i>
     </v-btn>
     <v-menu
@@ -25,29 +25,31 @@
           </template>
         </v-badge>
       </v-btn>
-      <div class="notification-popover">
-        <div class="flex-start">
-          <div class="left-time">10:39</div>
-          <div>
-            <p>Fu Shou Yuan International Group Ltd</p>
-            <p>Bid Prices is 6.7200</p>
-            <span class="notification-time">26-Jun-2019 17:39:04 GMT</span>
+      <v-card>
+        <div class="notification-popover">
+          <div class="flex-start">
+            <div class="left-time">10:39</div>
+            <div>
+              <p>Fu Shou Yuan International Group Ltd</p>
+              <p>Bid Prices is 6.7200</p>
+              <span class="notification-time">26-Jun-2019 17:39:04 GMT</span>
+            </div>
+          </div>
+          <v-divider/>
+          <div class="flex-start">
+            <div class="left-time">10:39</div>
+            <div>
+              <p>Fu Shou Yuan International Group Ltd</p>
+              <p>Bid Prices is 6.7200</p>
+              <span class="notification-time">26-Jun-2019 17:39:04 GMT</span>
+            </div>
+          </div>
+          <v-divider/>
+          <div class="popover-bottom">
+            <v-btn small depressed class="ok-btn" block color="primary" @click="toggleNotificationPopover(false)">{{$t('ok')}}</v-btn>
           </div>
         </div>
-        <v-divider/>
-        <div class="flex-start">
-          <div class="left-time">10:39</div>
-          <div>
-            <p>Fu Shou Yuan International Group Ltd</p>
-            <p>Bid Prices is 6.7200</p>
-            <span class="notification-time">26-Jun-2019 17:39:04 GMT</span>
-          </div>
-        </div>
-        <v-divider/>
-        <div class="popover-bottom">
-          <v-btn small depressed class="ok-btn" block color="#39d" @click="toggleNotificationPopover(false)">{{$t('ok')}}</v-btn>
-        </div>
-      </div>
+      </v-card>
     </v-menu>
     <v-btn class="action-btn" slot="activator" icon depressed small @click="toggleSettingsDialog(true)">
       <i class="fa fa-cog"></i>
@@ -80,6 +82,9 @@ export default {
     openPlatformTradingSetupDialog() {
       this.$store.commit('settings/togglePlatformTradingSetupDialog', true);
     },
+    toggleTheme() {
+      this.$store.commit('settings/toggleTheme');
+    }
   },
 }
 </script>
@@ -103,7 +108,7 @@ export default {
       font-size: 15px;
       text-transform: none;
     &:hover {
-      color: #111;
+      color: var(--text-color-active);
     }
   }
   .click-status {
@@ -121,7 +126,7 @@ export default {
 .notification-popover {
   width: 300px;
   height: 100%;
-  background: white;
+  // background: white;
   .flex-start {
     padding: 8px;
     display: flex;
@@ -130,7 +135,7 @@ export default {
       margin-right: 8px;
     }
     .notification-time {
-      color: #666;
+      color: var(--text-color-active);
       font-size: 12px;
     }
   }

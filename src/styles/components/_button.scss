@@ -6,8 +6,8 @@
   display: block;
   width: 100%;
   padding: 6.5px 8px;
-  background: #e5e5e5;
-  color: #111;
+  background: var(--bg-color-row-button);
+  color: var(--text-color-active);
   border-radius: 2px;
   font-weight: bold;
   text-align: center;
@@ -16,7 +16,6 @@
 .ipe-overflow-button {
   margin-top: 0;
   .v-input__slot {
-    background: #ebebeb !important;
     box-shadow: none !important;
     &:after,
     &:before {

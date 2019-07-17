@@ -5,7 +5,7 @@
     @input="toggleWatchlistPicker($event)"
     offset-y
   >
-    <v-btn slot="activator" depressed small color="#bbb">
+    <v-btn slot="activator" depressed small>
       我的观察列表
       <v-icon>{{isOpenWatchlistPicker ? 'expand_less' : 'expand_more'}}</v-icon>
     </v-btn>
@@ -84,7 +84,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .picker {
-  background: #fff;
+  background: var(--bg-color-inner-panel);
   width: 320px;
   overflow: hidden;
   .picker-container {
@@ -100,17 +100,17 @@ export default {
       .content {
         .subheader {
           padding: 0 8px;
-          background-image: linear-gradient(to right,#ddd 0%,#eee 100%);
+          background: var(--bg-color-subheader);
           height: 18px;
           line-height: 18px;
           font-size: 11px;
-          color: #666;
+          color: var(--text-color-active);
           font-weight: bold;
         }
         .list-body {
           padding: 0;
           .list-item {
-            border-top: 1px solid #ddd;
+            border-top: 1px solid var(--border-color-row);
             padding: 4px 8px;
             max-width: 100%;
             overflow: hidden;
@@ -120,7 +120,7 @@ export default {
             cursor: pointer;
             white-space: nowrap;
             &:hover {
-              background: #eee;
+              background: var(--bg-color-hover);
             }
             .v-icon {
               font-size: 16px;

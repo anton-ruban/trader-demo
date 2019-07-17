@@ -3,7 +3,6 @@
     <div class="head"> {{$t('select_trading_products')}} </div>
     <v-checkbox
             v-model="future"
-            color="#111"
             :ripple="false"
             hide-details>
       <template v-slot:label>
@@ -14,7 +13,6 @@
     <v-divider></v-divider>
     <v-checkbox
           v-model="spot"
-          color="#111"
           :ripple="false"
           hide-details>
         <template v-slot:label>
@@ -25,7 +23,6 @@
     <v-divider></v-divider>
     <v-checkbox
           v-model="commodity"
-          color="#111"
           :ripple="false"
           hide-details>
       <template v-slot:label>
@@ -63,7 +60,7 @@ export default {
   height: 100%;
   font-size: 14px;
   .item-label {
-    color: #111;
+    color: var(--text-color-active);
   }
   .item-icon {
     width: 16px;

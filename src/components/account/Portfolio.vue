@@ -7,8 +7,8 @@
             <span class="trial-text">TRIAL_9118976</span>
             <span class="trial-currency">USD</span>
           </div>
-          <v-btn color="#e5e5e5" depressed icon>
-            <v-icon color="#444">info</v-icon>
+          <v-btn depressed icon>
+            <v-icon>info</v-icon>
           </v-btn>
           <div class="flex-container account-info">
             <v-icon>account_circle</v-icon>
@@ -29,7 +29,7 @@
             full-width
             min-width="290px"
           >
-            <v-btn color="#e5e5e5" slot="activator" depressed>{{date}}</v-btn>
+            <v-btn slot="activator" depressed>{{date}}</v-btn>
             <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
           </v-menu>
         </div>
@@ -246,19 +246,19 @@ export default {
 <style lang="scss" scoped>
 .portfolio-view {
     flex: 1;
-    background: #ccc;
+    background: var(--bg-color-panel);
     padding: 8px;
     display: flex;
     padding-top: 0;
     .portfolio-body {
       width: 100%;
-      background: #fff;
+      background: var(--bg-color-inner-panel);
       .head {
         display: flex;
         padding: 4px;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid #ddd;
+        border: 1px solid var(--border-color-row);
         .flex-container {
           display: flex;
           align-items: center;
@@ -269,7 +269,7 @@ export default {
             }
           }
           .trial {
-            border: 1px solid #e5e5e5;
+            border: 1px solid var(--border-color-row);
             padding: 0 8px;
             margin-right: 8px;
             .trial-text {
@@ -277,7 +277,7 @@ export default {
               margin-right: 8px;
             }
             .trial-currency {
-              color: #111;
+              color: var(--text-color-active);
               font-weight: 700;
             }
           }

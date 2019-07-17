@@ -13,7 +13,7 @@
         <button class="ipe-btn action-button"><i class="fa fa-star"></i></button>
         <button class="ipe-btn action-button" @click="toggleEditPriceAlert(true)"><i class="fa fa-bell"></i></button>
         <button class="ipe-btn action-button"><i class="fa fa-adjust"></i></button>
-        <v-btn depressed small color="#39d" @click="toggleTradingPanelDialog(true)">交易</v-btn>
+        <v-btn depressed small color="primary" @click="toggleTradingPanelDialog(true)">交易</v-btn>
       </div>
     </div>
     <div class="overview-body">
@@ -66,7 +66,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   .content-head {
-    background: #fff;
+    background: var(--bg-color-inner-panel);
     .overview-head {
       padding: 4px;
       display: flex;
@@ -80,7 +80,7 @@ export default {
         }
         .instr-name {
           font-size: 12px;
-          color: #111;
+          color: var(--text-color-active);
           line-height: 12px;
         }
         .instr-desc {
@@ -95,7 +95,7 @@ export default {
           color: #888;
           font-size: 12px;
           &:hover {
-            color: #111;
+            color: var(--text-color-active);
           }
         }
         .v-btn {
@@ -112,8 +112,8 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
+      border-top: 1px solid var(--border-color-row);
+      border-bottom: 1px solid var(--border-color-row);
       .item {
         text-align: center;
         padding: 4px 8px;

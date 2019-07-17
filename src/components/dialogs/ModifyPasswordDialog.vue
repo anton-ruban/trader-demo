@@ -63,7 +63,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .dialog-layout {
-  background: #fff;
+  background: var(--bg-color-inner-panel);
 }
 .dialog-body {
   padding: 16px;

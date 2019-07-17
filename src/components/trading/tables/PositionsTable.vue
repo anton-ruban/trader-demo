@@ -23,13 +23,13 @@
       <div v-else-if="props.column.field === 'close'">
         {{ props.formattedRow[props.column.field] }} <img src="../../../assets/real-time.png" class="realtime-icon"/>
       </div>
-      <v-btn depressed small color="#e5e5e5" v-else-if="props.column.field === 'stop' && !props.row.closed">
+      <v-btn depressed small v-else-if="props.column.field === 'stop' && !props.row.closed">
         ADD
       </v-btn>
-      <v-btn depressed small color="#e5e5e5" v-else-if="props.column.field === 'limit' && !props.row.closed">
+      <v-btn depressed small v-else-if="props.column.field === 'limit' && !props.row.closed">
         ADD
       </v-btn>
-      <v-btn depressed small color="#e5e5e5" v-else-if="props.column.field === 'action' && !props.row.closed" @click="openClosePositionDialog(props.row)">
+      <v-btn depressed small v-else-if="props.column.field === 'action' && !props.row.closed" @click="openClosePositionDialog(props.row)">
         CLOSE
       </v-btn>
       <span :class="[{ positive: props.row.pl > 0 }, 'text-xs-right', 'colored-text']" v-else-if="props.column.field === 'pl'">

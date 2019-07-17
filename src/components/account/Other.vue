@@ -39,13 +39,13 @@ export default {
 <style lang="scss" scoped>
 .other-view {
     flex: 1;
-    background: #ccc;
+    background: var(--bg-color-panel);
     padding: 8px;
     display: flex;
     padding-top: 0;
     .other-body {
       width: 100%;
-      background: #fff;
+      background: var(--bg-color-inner-panel);
       .info-list {
         display: flex;
         flex-wrap: wrap;
@@ -54,7 +54,7 @@ export default {
           margin: 8px;
           padding: 8px 8px 0;
           min-width: 300px;
-          border: 1px solid #ccc;
+          border: 1px solid var(--border-color-row);
           h5 {
             margin-bottom: 10px;
           }

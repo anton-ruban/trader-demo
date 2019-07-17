@@ -1,66 +1,68 @@
 <template>
   <v-dialog :value="isOpenClosePositionDialog" width="380" @input="toggleClosePositionDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar :title="$t('close_position')" hideBack @close="toggleClosePositionDialog(false)"/>
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedPosition.product}}</span>
-            <span class="desc">APU9 AUD</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar :title="$t('close_position')" hideBack @close="toggleClosePositionDialog(false)"/>
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedPosition.product}}</span>
+              <span class="desc">APU9 AUD</span>
+            </div>
+            <v-btn icon small><v-icon>info</v-icon></v-btn>
           </div>
-          <v-btn icon small><v-icon>info</v-icon></v-btn>
+          <v-divider></v-divider>
+          <div class="edit-list">
+            <div class="edit-row">
+              <div class="label">类型</div>
+              <SelectByArrow :options="positionOptions.type.options" :value="positionOptions.type.value" @change="selectNewPositionOption('type', $event)"></SelectByArrow>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('lots')}}</div>
+              <Counter :stepValue="positionOptions.lots.stepValue" :count="positionOptions.lots.count" @change="selectNewPositionCount('lots', $event)"></Counter>
+            </div>
+            <div class="edit-row" v-if="positionOptions.type.value !== '市价'">
+              <div class="label">{{$t('price')}}</div>
+              <Counter :stepValue="positionOptions.price.stepValue" :count="positionOptions.price.count" @change="selectNewPositionCount('price', $event)"></Counter>
+            </div>
+            <div class="edit-row">
+              <div class="label">{{$t('duration')}}</div>
+              <SelectByArrow :options="positionOptions.duration.options" :value="positionOptions.duration.value" @change="selectNewPositionOption('duration', $event)"></SelectByArrow>
+            </div>
+          </div>
+          <v-btn class="order-button" small depressed color="primary" @click="closePosition()">{{$t('close_position')}}</v-btn>
+          <div class="section-divider">
+            <v-divider></v-divider>
+            <a @click="isShowDetails = !isShowDetails">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
+            <v-divider></v-divider>
+          </div>
+          <div class="details" v-if="isShowDetails">
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">成本</span>
+              <span>10 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">佣金</span>
+              <span>9 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">手续费</span>
+              <span>1 CNY</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">名义值</span>
+              <span>0 CNY</span>
+            </div>
+            <v-divider></v-divider>
+          </div>
         </div>
-        <v-divider></v-divider>
-        <div class="edit-list">
-          <div class="edit-row">
-            <div class="label">类型</div>
-            <SelectByArrow :options="positionOptions.type.options" :value="positionOptions.type.value" @change="selectNewPositionOption('type', $event)"></SelectByArrow>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('lots')}}</div>
-            <Counter :stepValue="positionOptions.lots.stepValue" :count="positionOptions.lots.count" @change="selectNewPositionCount('lots', $event)"></Counter>
-          </div>
-          <div class="edit-row" v-if="positionOptions.type.value !== '市价'">
-            <div class="label">{{$t('price')}}</div>
-            <Counter :stepValue="positionOptions.price.stepValue" :count="positionOptions.price.count" @change="selectNewPositionCount('price', $event)"></Counter>
-          </div>
-          <div class="edit-row">
-            <div class="label">{{$t('duration')}}</div>
-            <SelectByArrow :options="positionOptions.duration.options" :value="positionOptions.duration.value" @change="selectNewPositionOption('duration', $event)"></SelectByArrow>
-          </div>
-        </div>
-        <v-btn class="order-button" small depressed color="#39d" @click="closePosition()">{{$t('close_position')}}</v-btn>
-        <div class="section-divider">
-          <v-divider></v-divider>
-          <a @click="isShowDetails = !isShowDetails">{{isShowDetails ? '隐藏详细信息' : '显示详细信息'}}</a>
-          <v-divider></v-divider>
-        </div>
-        <div class="details" v-if="isShowDetails">
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">成本</span>
-            <span>10 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">佣金</span>
-            <span>9 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">手续费</span>
-            <span>1 CNY</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">名义值</span>
-            <span>0 CNY</span>
-          </div>
-          <v-divider></v-divider>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -148,7 +150,7 @@ export default {
       margin-bottom: 8px;
       padding-left: 8px;
       color: #888;
-      background: #ebebeb;
+      background: var(--bg-color-dark);
     }
   }
   .section-divider {

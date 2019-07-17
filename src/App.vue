@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :dark="isDark">
     <div id="app">
       <router-view></router-view>
       <TradingPanelDialog/>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 import TradingPanelDialog from './components/dialogs/TradingPanelDialog.vue';
 import ConfirmOrderDialog from './components/dialogs/ConfirmOrderDialog.vue';
 import SettingsDialog from './components/dialogs/SettingsDialog.vue';
@@ -62,7 +63,12 @@ export default {
     CoinAddressManageDialog,
     KycIdentifyDialog,
     ModifyPasswordDialog
-  }
+  },
+  computed: {
+    ...mapState('settings', {
+      isDark: state => state.isDark
+    }),
+  },
 }
 </script>
 
@@ -73,7 +79,6 @@ export default {
   height: 100%;
   min-width: 1024px;
   min-height: 300px;
-  background-color: #f5f9fe;
   overflow: auto;
 }
 

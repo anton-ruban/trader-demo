@@ -117,15 +117,13 @@ export default {
   .sub-title {
     font-size: 14px;
     height: 20px;
-    color: #111;
+    color: var(--text-color-active);
     margin-bottom: 5px;
     font-weight: bold;
   }
   .setting-item {
-    background: #fff;
-    border-top: 1px solid #ddd;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    background: var(--bg-color-inner-panel);
+    border-top: 1px solid var(--border-color-row);
     margin-bottom: 16px;
     ul {
       padding: 0;
@@ -135,7 +133,7 @@ export default {
           padding: 4px 8px;
           display: flex;
           justify-content: space-between;
-          border-bottom: 1px solid #ddd;
+          border-bottom: 1px solid var(--border-color-row);
         }
       }
     }

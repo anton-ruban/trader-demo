@@ -68,7 +68,7 @@ export default {
       }
     }
     .setting-label {
-      color: #111;
+      color: var(--text-color-active);
       font-weight: 500;
     }
     .setting-value {

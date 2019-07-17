@@ -55,13 +55,13 @@ export default {
   display: flex;
   flex-direction: column;
   .head {
-    background: #ccc;
+    background: var(--bg-color-panel);
     padding: 0 8px;
   }
 }
 .workspace {
   width: 100%;
-  background: #ccc;
+  background: var(--bg-color-panel);
   flex: 1;
   padding: 0 8px 8px 8px;
 }
@@ -69,7 +69,7 @@ export default {
   margin-left: 0 !important;
   width: 8px !important;
   left: 0 !important;
-  background: #ccc;
+  background: var(--bg-color-panel);
   height: auto;
 }
 </style>

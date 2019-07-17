@@ -42,6 +42,6 @@ export default {
   margin-left: 0 !important;
   width: 8px !important;
   left: 0 !important;
-  background: #eee;
+  background: var(--bg-color-page);
 }
 </style>

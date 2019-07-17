@@ -33,7 +33,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .content-view {
-  background: #fff;
+  background: var(--bg-color-inner-panel);
   height: 100%;
   position: relative;
   .abs-view {
@@ -49,7 +49,7 @@ export default {
       }
       .provider-name {
         margin-left: 4px;
-        color: #111;
+        color: var(--text-color-active);
       }
     }
     .content-body {

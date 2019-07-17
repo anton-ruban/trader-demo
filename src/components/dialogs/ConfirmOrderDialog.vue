@@ -1,64 +1,66 @@
 <template>
   <v-dialog :value="isOpenConfirmOrderDialog" width="380" @input="toggleConfirmOrderDialog($event)">
-    <v-layout class="white" column>
-      <TitleBar title="确认订单" hideBack hideClose/>
-      <div class="dialog-body">
-        <div class="summary">
-          <img src="../../assets/fu.png"/>
-          <div class="text">
-            <span class="company-name">{{selectedContract.product}}</span>
-            <span class="desc">{{selectedContract.description}}</span>
+    <v-card>
+      <v-layout column>
+        <TitleBar title="确认订单" hideBack hideClose/>
+        <div class="dialog-body">
+          <div class="summary">
+            <img src="../../assets/fu.png"/>
+            <div class="text">
+              <span class="company-name">{{selectedContract.product}}</span>
+              <span class="desc">{{selectedContract.description}}</span>
+            </div>
+          </div>
+          <v-divider></v-divider>
+          <div class="details">
+            <div class="item-row">
+              <span class="label">账号</span>
+              <span>{{newTrade.accountNumber}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">买入/卖出</span>
+              <span>{{newTrade.buySell}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">手</span>
+              <span>{{newTrade.amount}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">订单类型</span>
+              <span>{{newTrade.type}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">价格</span>
+              <span>{{newTrade.price}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">有效期</span>
+              <span>{{newTrade.validPeriod}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">止盈</span>
+              <span>{{newTrade.takeProfit}}</span>
+            </div>
+            <v-divider></v-divider>
+            <div class="item-row">
+              <span class="label">止损</span>
+              <span>{{newTrade.stopLoss}}</span>
+            </div>
+            <v-divider></v-divider>
+          </div>
+          <div class="action-bar">
+            <v-btn small depressed @click="toggleConfirmOrderDialog(false)">取消</v-btn>
+            <v-btn small depressed color="primary" class="ok-button" @click="confirm()">确认</v-btn>
           </div>
         </div>
-        <v-divider></v-divider>
-        <div class="details">
-          <div class="item-row">
-            <span class="label">账号</span>
-            <span>{{newTrade.accountNumber}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">买入/卖出</span>
-            <span>{{newTrade.buySell}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">手</span>
-            <span>{{newTrade.amount}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">订单类型</span>
-            <span>{{newTrade.type}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">价格</span>
-            <span>{{newTrade.price}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">有效期</span>
-            <span>{{newTrade.validPeriod}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">止盈</span>
-            <span>{{newTrade.takeProfit}}</span>
-          </div>
-          <v-divider></v-divider>
-          <div class="item-row">
-            <span class="label">止损</span>
-            <span>{{newTrade.stopLoss}}</span>
-          </div>
-          <v-divider></v-divider>
-        </div>
-        <div class="action-bar">
-          <v-btn small depressed color="#ebebeb" @click="toggleConfirmOrderDialog(false)">取消</v-btn>
-          <v-btn small depressed color="#39d" class="ok-button" @click="confirm()">确认</v-btn>
-        </div>
-      </div>
-    </v-layout>
+      </v-layout>
+    </v-card>
   </v-dialog>
 </template>
 
