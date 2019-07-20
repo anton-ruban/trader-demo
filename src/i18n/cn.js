@@ -14,4 +14,18 @@ export default {
   five_year: '5Y',
   ytd: 'YTD',
   all_time: 'All TIme',
+  email: '邮箱',
+  password: '密码',
+  email_register: '邮箱登录',
+  phone_register: '手机登录',
+  forgot_password: '忘记密码',
+  register: '注册账户',
+  login: '登录',
+  phone_number: '手机号',
+  email_verification: '邮箱验证码',
+  phone_verification: '手机验证码',
+  submit: '提交',
+  cancel: '取消',
+  continue: '下一步',
+  two_factor_verification: '两步验证码'
 };

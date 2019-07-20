@@ -1,58 +1,107 @@
 <template>
-  <div class="signin-container">   
-    <div class="tab-container">
-      <div class="item-row">
-        <span>邮箱:</span>
-        <input v-model="username" placeholder="请输入邮箱号码" :disabled="isLoading"/>
-      </div>
-      <div class="item-row">
-        <span>登入密码:</span>
-        <input v-model="password" type="password" placeholder="请输入登入密码，密码长度8-20位" :disabled="isLoading"/>
-      </div>
-      <div class="item-checkbox">
-        <v-checkbox
-          label="身份认证"
-          v-model="isProved"
-        ></v-checkbox>
-        <v-checkbox
-          label="同意我们的隐私条款"
-          v-model="isAgreed">
-
-          <template v-slot:label>
-            <a href="/#/warning">同意我们的隐私条款</a>
-          </template>
-        </v-checkbox>
-      </div>
-      <v-btn color="primary" depressed large class="signin-btn" @click="signIn()" :disabled="username.length === 0 || password.length === 0 || isLoading">进入</v-btn>
-    </div>
+  <div class="signin-container">
+    <v-tabs
+      v-model="activeTab"
+      fixed-tabs
+    >
+      <v-tab
+        v-for="item in tabs"
+        :key="item.id"
+        ripple
+      >
+        {{ item.text }}
+      </v-tab>
+      <v-tab-item key="email_register"
+      >
+        <v-card flat class="pb-2">
+          <v-card-text>
+            <v-form
+              ref="form"
+              v-model="valid"
+              lazy-validation
+            >
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                :label="$t('email')"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="password"
+                type="password"
+                :label="$t('password')"
+                required
+              ></v-text-field>
+              <div class="text-sm-right mb-2">
+                <a>{{$t('forgot_password')}}</a>
+              </div>
+              <v-btn color="primary" block depressed @click="signIn()" :disabled="!valid">{{$t('login')}}</v-btn>
+              <div class="text-sm-center mt-2">
+                <a href="/#/signup">{{$t('register')}}</a>
+              </div>
+            </v-form>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item key="phone_register">
+        <v-card flat class="pb-2">
+          <v-card-text>
+            <VuePhoneNumberInput v-model="phone" />
+            <v-text-field
+              v-model="password"
+              type="password"
+              :label="$t('password')"
+              required
+              class="mt-2"
+            ></v-text-field>
+              <div class="text-sm-right mb-2">
+                <a>{{$t('forgot_password')}}</a>
+              </div>
+            <v-btn color="primary" block depressed @click="signIn()" :disabled="!valid">{{$t('login')}}</v-btn>
+            <div class="text-sm-center mt-2">
+              <a href="/#/signup">{{$t('register')}}</a>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import VuePhoneNumberInput from 'vue-phone-number-input';
+import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 export default {
   name: 'SignIn',
+  components: {
+    VuePhoneNumberInput
+  },
   data: function () {
     return {
-      username: '',
+      email: '',
+      valid: false,
+      phoneMask: 'phone',
       password: '',
-      isProved: false,
-      isAgreed: false,
+      phone: '',
+      activeTab: 0,
+      tabs: [{
+        id: 'email_register',
+        text: this.$t('email_register')
+      }, {
+        id: 'phone_register',
+        text: this.$t('phone_register'),
+      }],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
+      ]
     }
   },
   methods: {
     ...mapMutations('error', ['updateSnackBar']),
-    async signIn() {
-      this.$store.commit('auth/loading', true);
-      try {
-        await this.$store.dispatch('auth/signIn', {username: this.username, password: this.password});
-        this.$router.push({ path: 'main/trading' });
-      } catch (e) {
-        this.updateSnackBar({
-          message: e,
-          color: 'error'
-        });
-      }
+    signIn() {
+      this.$router.push({ path: this.activeTab === 0 ? 'email-verification' : 'phone-verification' });
     },
     selectSignUpTab (e) {
       this.$store.commit('auth/selectSignUpTab', e);
@@ -61,7 +110,6 @@ export default {
   computed: {
     ...mapState('auth', {
       signUpTabs: state => state.signUpTabs,
-      isLoading: state => state.isLoading,
     })
   },
 }
@@ -71,46 +119,8 @@ export default {
 <style lang="scss" scoped>
   .signin-container {
     margin: 100px auto;
-    width: 650px;
+    overflow: hidden;
+    width: 400px;
     border: 1px solid var(--border-color-row);
-    .loading {
-      position: absolute;
-      margin-left: 25%;
-      margin-top: 10%;
-    }
-    .tab-name {
-      font-size: 20px;
-    }
-    .tab-container {
-      padding: 60px 40px 55px;
-    }
-    .item-row {
-      display: flex;
-      align-items: center;
-      font-size: 20px;
-      margin-bottom: 24px;
-      height: 54px;
-      span {
-        width: 120px;
-        text-align: right;
-        font-weight: 500;
-        margin-right: 40px;
-      }
-      input {
-        line-height: 54px;
-        background: var(--bg-color-inner-panel);
-        border: 1px solid var(--border-color-row);
-        flex: 1;
-        padding: 0 10px;
-      }
-    }
-    .item-checkbox {
-      margin-left: 160px;
-    }
-    .signin-btn {
-      margin-left: 160px;
-      width: calc(100% - 160px);
-    }
-    
   }
 </style>

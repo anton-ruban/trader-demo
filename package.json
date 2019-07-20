@@ -14,6 +14,7 @@
     "vue-good-table": "2.16.5",
     "vue-moment": "^4.0.0",
     "vue-multipane": "^0.9.5",
+    "vue-phone-number-input": "^0.2.0",
     "vue-router": "^3.0.6",
     "vue-swatches": "^1.0.3",
     "vue-trading-view": "^1.0.1",

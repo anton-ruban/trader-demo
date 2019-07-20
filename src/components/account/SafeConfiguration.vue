@@ -17,7 +17,7 @@
     <div class="setting-row">
       <div class="setting-label">手机号</div>
       <div class="setting-value">用于登录，提现，安全设置时使用，激活后不可修改</div>
-      <v-btn depressed color="primary">绑定</v-btn>
+      <v-btn depressed color="primary" @click="openBindingDialog()">绑定</v-btn>
     </div>
     <v-divider></v-divider>
     <div class="setting-row">
@@ -27,15 +27,15 @@
     </div>
     <v-divider></v-divider>
     <div class="setting-row">
-      <div class="setting-label">OTP<v-icon>info</v-icon></div>
+      <div class="setting-label">两步验证码<v-icon>info</v-icon></div>
       <div class="setting-value">用于提现，修改密码和安全设计验证</div>
-      <v-btn depressed color="primary">换绑</v-btn>
+      <v-btn depressed color="primary" @click="openGetVerificationCodeDialog()">绑定</v-btn>
     </div>
     <v-divider></v-divider>
     <div class="setting-row">
       <div class="setting-label">资金密码</div>
       <div class="setting-value">用于提现时使用</div>
-      <v-btn depressed color="primary">设置</v-btn>
+      <v-btn depressed color="primary" @click="openFundPasswordDialog()">设置</v-btn>
     </div>
   </div>
 </template>
@@ -47,6 +47,15 @@ export default {
   methods: {
     openModifyPasswordDialog() {
       this.$store.commit('account/toggleModifyPasswordDialog', true);
+    },
+    openBindingDialog() {
+      this.$store.commit('account/toggleBindingDialog', true);
+    },
+    openGetVerificationCodeDialog() {
+      this.$store.commit('account/toggleGetVerificationCodeDialog', true);
+    },
+    openFundPasswordDialog() {
+      this.$store.commit('account/toggleFundPasswordDialog', true);
     }
   }
 }
@@ -70,6 +79,7 @@ export default {
     .setting-label {
       color: var(--text-color-active);
       font-weight: 500;
+      width: 100px;
     }
     .setting-value {
       color: #888;

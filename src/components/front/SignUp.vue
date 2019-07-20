@@ -44,7 +44,7 @@
         <span>邀请码:</span>
         <input type="text" placeholder="非必填项"/>
       </div>
-      <v-btn color="primary" large depressed class="signup-btn ipe-btn" @click="goTrading()">注册</v-btn>
+      <v-btn color="primary" large depressed class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
     </div>
     <div class="tab-container" v-if="signUpTabs.selectedTabId === 'tab-1'">
       <div class="item-row">
@@ -70,7 +70,7 @@
         <span>邀请码:</span>
         <input type="text" placeholder="非必填项"/>
       </div>
-      <v-btn color="primary" depressed large class="signup-btn ipe-btn" @click="goTrading()">注册</v-btn>
+      <v-btn color="primary" depressed large class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
     </div>
   </div>
 </template>
@@ -87,8 +87,8 @@ export default {
     }
   },
   methods: {
-    goTrading() {
-      this.$router.push({ path: 'main/trading' })
+    signUp() {
+      this.$router.push({ path: 'signIn' })
     },
     selectSignUpTab (e) {
       this.$store.commit('auth/selectSignUpTab', e);

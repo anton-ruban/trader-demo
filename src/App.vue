@@ -19,6 +19,10 @@
       <KycIdentifyDialog/>
       <ModifyPasswordDialog/>
       <ChartSettingsDialog/>
+      <TwoFactorVerificationDialog/>
+      <BindingDialog/>
+      <FundPasswordDialog/>
+      <GetVerificationCodeDialog/>
     </div>
   </v-app>
 </template>
@@ -41,7 +45,11 @@ import PlatformTradingSetupDialog from './components/dialogs/PlatformTradingSetu
 import AddCoinAddressDialog from './components/dialogs/AddCoinAddressDialog.vue';
 import CoinAddressManageDialog from './components/dialogs/CoinAddressManageDialog.vue';
 import KycIdentifyDialog from './components/dialogs/KycIdentifyDialog.vue';
+import TwoFactorVerificationDialog from './components/dialogs/TwoFactorVerificationDialog.vue';
 import ModifyPasswordDialog from './components/dialogs/ModifyPasswordDialog.vue';
+import BindingDialog from './components/dialogs/BindingDialog.vue';
+import GetVerificationCodeDialog from './components/dialogs/GetVerificationCodeDialog.vue';
+import FundPasswordDialog from './components/dialogs/FundPasswordDialog.vue';
 
 export default {
   name: 'app',
@@ -62,7 +70,11 @@ export default {
     AddCoinAddressDialog,
     CoinAddressManageDialog,
     KycIdentifyDialog,
-    ModifyPasswordDialog
+    TwoFactorVerificationDialog,
+    BindingDialog,
+    ModifyPasswordDialog,
+    FundPasswordDialog,
+    GetVerificationCodeDialog,
   },
   computed: {
     ...mapState('settings', {

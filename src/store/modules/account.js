@@ -7,6 +7,10 @@ const state = {
   isOpenCoinAddressManageDialog: false,
   isOpenKycIdentifyDialog: false,
   isOpenModifyPasswordDialog: false,
+  isOpenBindingDialog: false,
+  isOpenGetVerificationCodeDialog: false,
+  isOpenTwoFactorVerificationDialog: false,
+  isOpenFundPasswordDialog: false,
   portfolioRecords: {
     headers: [
       {
@@ -85,6 +89,18 @@ const mutations = {
   },
   toggleModifyPasswordDialog(state, isOpen) {
     state.isOpenModifyPasswordDialog = isOpen;
+  },
+  toggleBindingDialog(state, isOpen) {
+    state.isOpenBindingDialog = isOpen;
+  },
+  toggleGetVerificationCodeDialog(state, isOpen) {
+    state.isOpenGetVerificationCodeDialog = isOpen;
+  },
+  toggleTwoFactorVerificationDialog(state, isOpen) {
+    state.isOpenTwoFactorVerificationDialog = isOpen;
+  },
+  toggleFundPasswordDialog(state, isOpen) {
+    state.isOpenFundPasswordDialog = isOpen;
   }
 }
 

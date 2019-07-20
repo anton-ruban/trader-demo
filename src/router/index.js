@@ -10,6 +10,9 @@ import TradingView from '../components/trading/TradingView';
 import NewsView from '../components/news/NewsView';
 import AccountView from '../components/account/AccountView';
 import Register from '../components/front/Register';
+import EmailVerification from '../components/front/EmailVerification';
+import PhoneVerification from '../components/front/PhoneVerification';
+import TwoFactorVerification from '../components/front/TwoFactorVerification';
 
 Vue.use(Router)
 
@@ -38,6 +41,18 @@ export default new Router({
         {
           path: 'register',
           component: Register
+        },
+        {
+          path: 'email-verification',
+          component: EmailVerification
+        },
+        {
+          path: 'phone-verification',
+          component: PhoneVerification
+        },
+        {
+          path: 'two-factor-verification',
+          component: TwoFactorVerification
         }
       ]
     },

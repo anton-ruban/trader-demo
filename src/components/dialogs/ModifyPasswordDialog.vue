@@ -5,25 +5,28 @@
       <div class="dialog-body">
         <v-text-field
           v-model="oldPassword"
+          type="password"
           label="原密码"
         ></v-text-field>
         <v-text-field
           v-model="newPassword"
+          type="password"
           label="新密码"
         ></v-text-field>
         <v-text-field
           v-model="confirmPassword"
+          type="password"
           label="确认新密码"
         ></v-text-field>
-        <v-text-field
+        <!-- <v-text-field
           v-model="secretOrder"
           label="动态密令"
         ></v-text-field>
         <v-checkbox
           label="身份认证"
           v-model="isProved"
-        ></v-checkbox>
-        <v-btn depressed block color="success" small @click="toggleModifyPasswordDialog(false)">取消</v-btn>
+        ></v-checkbox> -->
+        <v-btn depressed block color="primary" @click="toggleModifyPasswordDialog(false)">{{$t('submit')}}</v-btn>
       </div>
     </v-layout>
   </v-dialog>
@@ -40,8 +43,6 @@ export default {
       oldPassword: '',
       newPassword: '',
       confirmPassword: '',
-      secretOrder: '',
-      isProved: false,
     }
   },
   components: {
