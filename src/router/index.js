@@ -16,7 +16,7 @@ import TwoFactorVerification from '../components/front/TwoFactorVerification';
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   routes: [
     {
       path: '/',
@@ -63,14 +63,23 @@ export default new Router({
         {
           path: 'trading',
           component: TradingView,
+          meta: { 
+            requiresAuth: true
+          }
         },
         {
           path: 'news',
           component: NewsView,
+          meta: { 
+            requiresAuth: true
+          }
         },
         {
           path: 'account',
           component: AccountView,
+          meta: { 
+            requiresAuth: true
+          }
         }
       ]
     },
@@ -81,3 +90,20 @@ export default new Router({
     // }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+      if (localStorage.getItem('authInfo') == null) {
+          next({
+              path: '/signin',
+              params: { nextUrl: to.fullPath }
+          })
+      } else {
+          next()
+      }
+  } else {
+      next() 
+  }
+})
+
+export default router;

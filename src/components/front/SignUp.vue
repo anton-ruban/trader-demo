@@ -3,7 +3,7 @@
     <v-tabs
       slot="extension"
       :value="signUpTabs.selectedTabId"
-      @input="selectSignUpTab($event)"
+      @change="selectSignUpTab($event)"
       fixed-tabs
       color="transparent"
     >
@@ -29,7 +29,7 @@
         <span>手机验证码:</span>
         <div class="flex-container">
           <input type="text" placeholder="请输入手机验证码"/>
-          <v-btn color="primary" depressed>获取验证码</v-btn>
+          <v-btn color="primary" disabled depressed>获取验证码</v-btn>
         </div>
       </div>
       <div class="item-row">
@@ -44,33 +44,36 @@
         <span>邀请码:</span>
         <input type="text" placeholder="非必填项"/>
       </div>
-      <v-btn color="primary" large depressed class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
+      <v-btn color="primary" disabled large depressed class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
     </div>
     <div class="tab-container" v-if="signUpTabs.selectedTabId === 'tab-1'">
       <div class="item-row">
         <span>邮箱:</span>
-        <input type="password" placeholder="请输入邮箱号码"/>
+        <input type="email" v-model="email" placeholder="请输入邮箱号码"/>
       </div>
       <div class="item-row">
         <span>邮箱验证码:</span>
         <div class="flex-container">
-          <input type="text" placeholder="请输入邮箱验证码"/>
-          <v-btn color="primary" depressed>获取验证码</v-btn>
+          <input type="text" v-model="emailVerificationCode" placeholder="请输入邮箱验证码"/>
+          <v-btn color="primary" :disabled="!email" depressed @click="handleSendVerificationCodeToEmail()">获取验证码</v-btn>
         </div>
       </div>
       <div class="item-row">
         <span>登入密码:</span>
-        <input type="password" placeholder="请输入登入密码，密码长度8-20位"/>
+        <input type="password" v-model="password" placeholder="请输入登入密码，密码长度8-20位"/>
       </div>
-      <div class="item-row">
-        <span>重复密码:</span>
-        <input type="password" placeholder="请重复密码"/>
+      <div class="mb-4">
+        <div class="item-row mb-0">
+          <span>重复密码:</span>
+          <input type="password" v-model="confirmPassword" placeholder="请重复密码"/>
+        </div>
+        <p class="error-text mt-1" v-if="confirmPassword.length > 0 && confirmPassword !== password">Not match with password</p>
       </div>
       <div class="item-row">
         <span>邀请码:</span>
         <input type="text" placeholder="非必填项"/>
       </div>
-      <v-btn color="primary" depressed large class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
+      <v-btn color="primary" :disabled="!isValidForRegister" depressed large class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
     </div>
   </div>
 </template>
@@ -82,16 +85,37 @@ export default {
   name: 'SignUp',
   data () {
     return {
-      model: 'tab-2',
-      text: 'Lorem '
+      email: '',
+      password: '',
+      confirmPassword: '',
+      emailVerificationCode: '',
     }
   },
   methods: {
-    signUp() {
-      this.$router.push({ path: 'signIn' })
+    async signUp() {
+      try {
+        await this.$store.dispatch('auth/register', {
+          type: 1,
+          phone: "",
+          email: this.email,
+          pwd: this.password,
+          code: this.emailVerificationCode
+        });
+        this.$router.push({ path: 'signIn' })
+      } catch(e) {
+        this.$toast.error(e);
+      }
     },
     selectSignUpTab (e) {
       this.$store.commit('auth/selectSignUpTab', e);
+    },
+    async handleSendVerificationCodeToEmail() {
+      try {
+        await this.$store.dispatch('auth/sendVerificationCodeToEmail', this.email);
+        this.$toast.success(`Sent verification code to ${this.email}`);
+      } catch(e) {
+        this.$toast.error(`Failed to send verification code`);
+      }
     }
   },
   components: {
@@ -99,7 +123,10 @@ export default {
   computed: {
     ...mapState('auth', {
       signUpTabs: state => state.signUpTabs,
-    })
+    }),
+    isValidForRegister() {
+      return this.confirmPassword.length > 0 && this.confirmPassword === this.password && this.email.length > 0 && this.emailVerificationCode.length > 0;
+    }
   },
 }
 </script>
@@ -115,6 +142,10 @@ export default {
     }
     .tab-container {
       padding: 60px 40px 55px;
+    }
+    .error-text {
+      color: red;
+      margin-left: 160px;
     }
     .item-row {
       display: flex;

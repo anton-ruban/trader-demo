@@ -57,7 +57,7 @@
               <div class="text-sm-right mb-2">
                 <a>{{$t('forgot_password')}}</a>
               </div>
-            <v-btn color="primary" block depressed @click="signIn()" :disabled="!valid">{{$t('login')}}</v-btn>
+            <v-btn color="primary" block depressed :disabled="!valid">{{$t('login')}}</v-btn>
             <div class="text-sm-center mt-2">
               <a href="/#/signup">{{$t('register')}}</a>
             </div>
@@ -100,8 +100,17 @@ export default {
   },
   methods: {
     ...mapMutations('error', ['updateSnackBar']),
-    signIn() {
-      this.$router.push({ path: this.activeTab === 0 ? 'email-verification' : 'phone-verification' });
+    async signIn() {
+      try {
+        await this.$store.dispatch('auth/login', {
+          type: "1",
+          email: this.email,
+          pwd: this.password,
+        });
+        this.$router.push({ path: 'email-verification' });
+      } catch(e) {
+        this.$toast.error(e);
+      }
     },
     selectSignUpTab (e) {
       this.$store.commit('auth/selectSignUpTab', e);

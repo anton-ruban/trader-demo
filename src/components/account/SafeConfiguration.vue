@@ -22,7 +22,7 @@
     <v-divider></v-divider>
     <div class="setting-row">
       <div class="setting-label">邮箱</div>
-      <div class="setting-value">776***@***qa.com<br/>用于登录，提现，安全设置时使用，激活后不可修改</div>
+      <div class="setting-value">{{hiddenEmail}}<br/>用于登录，提现，安全设置时使用，激活后不可修改</div>
       <v-btn depressed color="primary" disabled>已绑定</v-btn>
     </div>
     <v-divider></v-divider>
@@ -56,6 +56,15 @@ export default {
     },
     openFundPasswordDialog() {
       this.$store.commit('account/toggleFundPasswordDialog', true);
+    }
+  },
+  data() {
+    const authInfo = JSON.parse(localStorage.getItem('authInfo'));
+    const names = authInfo.username.split('@');
+    const firstPrefix = names[0].length > 3 ? names[0].substr(0, 3) : names[0].substr(0, 1);
+    const lastPrefix = names[1].substr(-5);
+    return {
+      hiddenEmail: `${firstPrefix}***@***${lastPrefix}`,
     }
   }
 }
