@@ -24,5 +24,26 @@ export default {
       url: `${BASE_API_URL}/api/alterPWD`,
       data: payload
     });
+  },
+  getGAuthQrCode(payload) {
+    return axios({
+      method: 'post',
+      url: `${BASE_API_URL}/api/gAuth_QrCode`,
+      data: payload
+    });
+  },
+  gAuthFirstBind(payload) {
+    return axios({
+      method: 'post',
+      url: `${BASE_API_URL}/api/gAuth_FirstBind`,
+      data: payload
+    });
+  },
+  gAuthVerify(payload) {
+    return axios({
+      method: 'post',
+      url: `${BASE_API_URL}/api/gAuth_Verify`,
+      data: payload
+    });
   }
 }

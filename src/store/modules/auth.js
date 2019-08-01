@@ -112,6 +112,54 @@ const actions = {
         reject(e);
       }
     })
+  },
+  // eslint-disable-next-line no-empty-pattern
+  gAuthFirstBind: ({}, payload) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await authApi.gAuthFirstBind(payload);
+
+        if (res.data.result !== 'false') {
+          resolve();
+        } else {
+          reject(res.data.msg);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    })
+  },
+  // eslint-disable-next-line no-empty-pattern
+  gAuthVerify: ({}, payload) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await authApi.gAuthVerify(payload);
+
+        if (res.data.result !== 'false') {
+          resolve();
+        } else {
+          reject(res.data.msg);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    })
+  },
+  // eslint-disable-next-line no-empty-pattern
+  getGAuthQrCode:({}, payload) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await authApi.getGAuthQrCode(payload);
+
+        if (res.data.result !== 'false') {
+          resolve();
+        } else {
+          reject(res.data.msg);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    })
   }
 }
 

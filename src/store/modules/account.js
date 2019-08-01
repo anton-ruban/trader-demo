@@ -11,6 +11,7 @@ const state = {
   isOpenGetVerificationCodeDialog: false,
   isOpenTwoFactorVerificationDialog: false,
   isOpenFundPasswordDialog: false,
+  isOpenGoogleVerificationDialog: false,
   portfolioRecords: {
     headers: [
       {
@@ -101,6 +102,9 @@ const mutations = {
   },
   toggleFundPasswordDialog(state, isOpen) {
     state.isOpenFundPasswordDialog = isOpen;
+  },
+  toggleGoogleVerificationDialog(state, isOpen) {
+    state.isOpenGoogleVerificationDialog = isOpen;
   }
 }
 

@@ -54,7 +54,7 @@
     <v-btn class="action-btn" slot="activator" icon depressed small @click="toggleSettingsDialog(true)">
       <i class="fa fa-cog"></i>
     </v-btn>
-    <button class="logout ipe-btn" type="button">登出</button>
+    <button class="logout ipe-btn" type="button" @click="logout()">登出</button>
   </div>
 </template>
 
@@ -84,6 +84,10 @@ export default {
     },
     toggleTheme() {
       this.$store.commit('settings/toggleTheme');
+    },
+    logout() {
+      localStorage.clear();
+      this.$router.push({ path: '/signin' });
     }
   },
 }

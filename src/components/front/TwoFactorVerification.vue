@@ -28,8 +28,17 @@ export default {
     cancel() {
       window.history.back();
     },
-    goTrading() {
-      this.$router.push({ path: 'main/trading' });
+    async goTrading() {
+      try {
+        const authInfo = JSON.parse(localStorage.getItem('authInfo'));
+        await this.$store.dispatch('auth/gAuthVerify', {
+          code: this.verificationCode,
+          userId: authInfo.id,
+        });
+        this.$router.push({ path: 'main/trading' });
+      } catch(e) {
+        this.$toast.error(e);
+      }
     },
   },
 }

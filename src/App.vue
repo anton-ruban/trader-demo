@@ -22,6 +22,7 @@
       <TwoFactorVerificationDialog/>
       <BindingDialog/>
       <FundPasswordDialog/>
+      <GoogleVerificationDialog/>
       <GetVerificationCodeDialog/>
     </div>
   </v-app>
@@ -50,6 +51,7 @@ import ModifyPasswordDialog from './components/dialogs/ModifyPasswordDialog.vue'
 import BindingDialog from './components/dialogs/BindingDialog.vue';
 import GetVerificationCodeDialog from './components/dialogs/GetVerificationCodeDialog.vue';
 import FundPasswordDialog from './components/dialogs/FundPasswordDialog.vue';
+import GoogleVerificationDialog from './components/dialogs/GoogleVerificationDialog.vue';
 
 export default {
   name: 'app',
@@ -75,6 +77,7 @@ export default {
     ModifyPasswordDialog,
     FundPasswordDialog,
     GetVerificationCodeDialog,
+    GoogleVerificationDialog,
   },
   computed: {
     ...mapState('settings', {

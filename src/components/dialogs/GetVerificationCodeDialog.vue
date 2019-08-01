@@ -31,7 +31,8 @@ export default {
     },
     handleSubmit() {
       this.toggleGetVerificationCodeDialog(false);
-      this.$store.commit('account/toggleTwoFactorVerificationDialog', true);
+      // this.$store.commit('account/toggleTwoFactorVerificationDialog', true);
+      this.$store.commit('account/toggleGoogleVerificationDialog', true);
     }
   },
   computed: {
