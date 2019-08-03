@@ -64,10 +64,9 @@ export default {
       this.$store.commit('account/toggleModifyPasswordDialog', e);
     },
     async submit() {
-      const authInfo = JSON.parse(localStorage.getItem('authInfo'));
       try {
         await this.$store.dispatch('auth/changePassword', {
-          id: authInfo.id,
+          id: this.authInfo.id,
           oldPWD: this.oldPassword,
           newPWD: this.newPassword,
         });
@@ -81,6 +80,9 @@ export default {
   computed: {
     ...mapState('account', {
       isOpenModifyPasswordDialog: state => state.isOpenModifyPasswordDialog,
+    }),
+    ...mapState('auth', {
+      authInfo: state => state.authInfo
     }),
   }
 }

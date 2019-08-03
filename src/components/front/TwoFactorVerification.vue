@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   name: 'EmailVerification',
   data: function () {
@@ -24,16 +25,20 @@ export default {
       verificationCode: '',
     }
   },
+  computed: {
+    ...mapState('auth', {
+      authInfo: state => state.authInfo
+    }),
+  },
   methods: {
     cancel() {
       window.history.back();
     },
     async goTrading() {
       try {
-        const authInfo = JSON.parse(localStorage.getItem('authInfo'));
         await this.$store.dispatch('auth/gAuthVerify', {
           code: this.verificationCode,
-          userId: authInfo.id,
+          userId: this.authInfo.id,
         });
         this.$router.push({ path: 'main/trading' });
       } catch(e) {

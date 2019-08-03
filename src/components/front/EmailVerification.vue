@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   name: 'EmailVerification',
   data: function () {
@@ -24,19 +25,23 @@ export default {
       verificationCode: '',
     }
   },
+  computed: {
+    ...mapState('auth', {
+      authInfo: state => state.authInfo
+    }),
+  },
   methods: {
     cancel() {
       this.$router.push({ path: 'signin'})
     },
     async verify() {
       try {
-        const authInfo = JSON.parse(localStorage.getItem('authInfo'));
         await this.$store.dispatch('auth/emailVerify', {
-          key: authInfo.username,
+          key: this.authInfo.username,
           code: this.verificationCode,
         });
 
-        if (authInfo.isGoogle) {
+        if (this.authInfo.isGoogle && this.authInfo.isGoogle === 'y') {
           this.$router.push({ path: 'two-factor-verification' });
         } else {
           this.$router.push({ path: 'main/trading' });

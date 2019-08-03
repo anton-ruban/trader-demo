@@ -45,5 +45,12 @@ export default {
       url: `${BASE_API_URL}/api/gAuth_Verify`,
       data: payload
     });
+  },
+  closeGoogle(payload) {
+    return axios({
+      method: 'post',
+      url: `${BASE_API_URL}/api/closeGoogle`,
+      data: payload
+    });
   }
 }

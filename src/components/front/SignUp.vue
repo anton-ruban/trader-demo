@@ -40,10 +40,6 @@
         <span>重复密码:</span>
         <input type="password" placeholder="请重复密码"/>
       </div>
-      <div class="item-row">
-        <span>邀请码:</span>
-        <input type="text" placeholder="非必填项"/>
-      </div>
       <v-btn color="primary" disabled large depressed class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
     </div>
     <div class="tab-container" v-if="signUpTabs.selectedTabId === 'tab-1'">
@@ -68,10 +64,6 @@
           <input type="password" v-model="confirmPassword" placeholder="请重复密码"/>
         </div>
         <p class="error-text mt-1" v-if="confirmPassword.length > 0 && confirmPassword !== password">Not match with password</p>
-      </div>
-      <div class="item-row">
-        <span>邀请码:</span>
-        <input type="text" placeholder="非必填项"/>
       </div>
       <v-btn color="primary" :disabled="!isValidForRegister" depressed large class="signup-btn ipe-btn" @click="signUp()">注册</v-btn>
     </div>

@@ -1,7 +1,6 @@
 import authApi from '@/api/authApi';
 // initial state
 const state = {
-  isLoggedIn: false,
   signUpTabs: {
     selectedTabId: 'tab-0',
     tabs: [
@@ -22,7 +21,8 @@ const state = {
     password: '',
     confirmPassword: '',
     inviteCode: ''
-  }
+  },
+  authInfo: JSON.parse(localStorage.getItem('authInfo')) || {}
 }
 
 // getters
@@ -59,7 +59,7 @@ const actions = {
     })
   },
   // eslint-disable-next-line no-empty-pattern
-  login: ({}, payload) => {
+  login: ({commit}, payload) => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await authApi.login(payload);
@@ -72,6 +72,7 @@ const actions = {
             isGoogle: res.data.isGoogle
           }
           localStorage.setItem('authInfo', JSON.stringify(authInfo));
+          commit('updateAuthInfo', authInfo);
           resolve();
         } else {
           reject(res.data.msg);
@@ -98,12 +99,20 @@ const actions = {
     })
   },
   // eslint-disable-next-line no-empty-pattern
-  emailVerify: ({}, payload) => {
+  emailVerify: ({commit, state}, payload) => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await authApi.verifyCode(payload);
 
         if (res.data.result !== 'false') {
+          if (!state.authInfo.isGoogle || state.authInfo.isGoogle === 'n') {
+            const newAuthInfo = {
+              ...state.authInfo,
+              isLoggedIn: true,
+            };
+            localStorage.setItem('authInfo', JSON.stringify(newAuthInfo));
+            commit('updateAuthInfo', newAuthInfo)
+          }
           resolve();
         } else {
           reject(res.data.msg);
@@ -113,13 +122,18 @@ const actions = {
       }
     })
   },
-  // eslint-disable-next-line no-empty-pattern
-  gAuthFirstBind: ({}, payload) => {
+  gAuthFirstBind: ({commit, state}, payload) => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await authApi.gAuthFirstBind(payload);
 
         if (res.data.result !== 'false') {
+          const newAuthInfo = {
+            ...state.authInfo,
+            isGoogle: "y"
+          };
+          localStorage.setItem('authInfo', JSON.stringify(newAuthInfo));
+          commit('updateAuthInfo', newAuthInfo)
           resolve();
         } else {
           reject(res.data.msg);
@@ -130,12 +144,18 @@ const actions = {
     })
   },
   // eslint-disable-next-line no-empty-pattern
-  gAuthVerify: ({}, payload) => {
+  gAuthVerify: ({commit, state}, payload) => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await authApi.gAuthVerify(payload);
 
         if (res.data.result !== 'false') {
+          const newAuthInfo = {
+            ...state.authInfo,
+            isLoggedIn: true,
+          };
+          localStorage.setItem('authInfo', JSON.stringify(newAuthInfo));
+          commit('updateAuthInfo', newAuthInfo)
           resolve();
         } else {
           reject(res.data.msg);
@@ -152,7 +172,28 @@ const actions = {
         const res = await authApi.getGAuthQrCode(payload);
 
         if (res.data.result !== 'false') {
-          resolve();
+          resolve(res.data);
+        } else {
+          reject(res.data.msg);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    })
+  },
+  closeGoogle: ({commit, state}, payload) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await authApi.closeGoogle(payload);
+
+        if (res.data.result !== 'false') {
+          const newAuthInfo = {
+            ...state.authInfo,
+            isGoogle: "n"
+          };
+          localStorage.setItem('authInfo', JSON.stringify(newAuthInfo));
+          commit('updateAuthInfo', newAuthInfo)
+          resolve(res.data);
         } else {
           reject(res.data.msg);
         }
@@ -168,6 +209,9 @@ const mutations = {
   selectSignUpTab(state, tabId) {
     state.signUpTabs.selectedTabId = tabId;
   },
+  updateAuthInfo(state, value) {
+    state.authInfo = value;
+  }
 }
 
 export default {

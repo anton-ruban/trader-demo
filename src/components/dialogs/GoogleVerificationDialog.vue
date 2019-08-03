@@ -18,25 +18,25 @@
         <div class="row-section">
           <div class="section-div">
             <h5 class="mb-2">二维码</h5>
-            <img src="../../assets/ios.png" class="mb-3"/>
+            <img :src="qrCode" class="mb-3"/>
             <h5 class="mb-2">密钥</h5>
-            <h4>ZNWRAIELFEIWODVE049DEW3EWE44f</h4>
+            <h4>{{secretKey}}</h4>
           </div>
         </div>
         <h1>3. 请将获得的两步验证码填入下方输入框（需要在验证码时效内），并完成验证</h1>
         <div class="row-section">
           <div class="section-div">
             <v-text-field
-              v-model="emailVerificationCode"
-              label="邮箱验证码"
+              v-model="firstVerificationCode"
+              label="两步验证码 1"
               required
             ></v-text-field>
             <v-text-field
-              v-model="twoFactorVerificationCode"
-              label="两步验证码"
+              v-model="secondVerificationCode"
+              label="两步验证码 2"
               required
             ></v-text-field>
-            <v-btn depressed block color="primary" :disabled="!emailVerificationCode || !twoFactorVerificationCode" @click="handleSubmit()">{{$t('submit')}}</v-btn>
+            <v-btn depressed block color="primary" :disabled="!firstVerificationCode || !secondVerificationCode" @click="handleSubmit()">{{$t('submit')}}</v-btn>
           </div>
         </div>
       </div>
@@ -52,8 +52,10 @@ export default {
   name: 'GoogleVerificationDialog',
   data() {
     return {
-      emailVerificationCode: '',
-      twoFactorVerificationCode: '',
+      firstVerificationCode: '',
+      secretKey: '',
+      secondVerificationCode: '',
+      qrCode: ''
     }
   },
   components: {
@@ -66,10 +68,9 @@ export default {
     async handleSubmit() {
       this.toggleGoogleVerificationDialog(false);
       try {
-        const authInfo = JSON.parse(localStorage.getItem('authInfo'));
         await this.$store.dispatch('auth/gAuthFirstBind', {
-          verificationCodes: `${this.emailVerificationCode}###${this.twoFactorVerificationCode}`,
-          userId: authInfo.id,
+          verificationCodes: `${this.firstVerificationCode}###${this.secondVerificationCode}`,
+          userId: this.authInfo.id,
         });
         this.$toast.success('成功');
       } catch(e) {
@@ -78,15 +79,23 @@ export default {
     }
   },
   async mounted() {
-    // try {
-    //   await this.$store.dispatch('auth/getGAuthQrCode', {});
-    // } catch(e) {
-    //   this.$toast.error(e);
-    // }
+    try {
+      const res = await this.$store.dispatch('auth/getGAuthQrCode', {
+        userId: this.authInfo.id,
+        userAccount: this.authInfo.username
+      });
+      this.secretKey = res.secretKey;
+      this.qrCode = res.qrcode;
+    } catch(e) {
+      this.$toast.error(e);
+    }
   },
   computed: {
     ...mapState('account', {
       isOpenGoogleVerificationDialog: state => state.isOpenGoogleVerificationDialog,
+    }),
+    ...mapState('auth', {
+      authInfo: state => state.authInfo
     }),
   }
 }

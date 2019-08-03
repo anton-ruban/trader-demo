@@ -83,26 +83,22 @@ let router = new Router({
         }
       ]
     },
-    // {
-    //   path: '/coins/:id',
-    //   name: 'Coins',
-    //   component: Coins
-    // }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresAuth)) {
-      if (localStorage.getItem('authInfo') == null) {
-          next({
-              path: '/signin',
-              params: { nextUrl: to.fullPath }
-          })
-      } else {
-          next()
-      }
+    const authInfo = JSON.parse(localStorage.getItem('authInfo'));
+    if (!authInfo || !authInfo.isLoggedIn) {
+      next({
+        path: '/signin',
+        params: { nextUrl: to.fullPath }
+      })
+    } else {
+      next()
+    }
   } else {
-      next() 
+    next() 
   }
 })
 
