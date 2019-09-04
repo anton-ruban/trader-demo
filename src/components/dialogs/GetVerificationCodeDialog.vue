@@ -29,15 +29,25 @@ export default {
     toggleGetVerificationCodeDialog (e) {
       this.$store.commit('account/toggleGetVerificationCodeDialog', e);
     },
-    handleSubmit() {
+    async handleSubmit() {
       this.toggleGetVerificationCodeDialog(false);
-      // this.$store.commit('account/toggleTwoFactorVerificationDialog', true);
-      this.$store.commit('account/toggleGoogleVerificationDialog', true);
+      try {
+        await this.$store.dispatch('auth/getGAuthQrCode', {
+          userId: this.authInfo.id,
+          userAccount: this.authInfo.username
+        });
+        this.$store.commit('account/toggleGoogleVerificationDialog', true);
+      } catch(e) {
+        this.$toast.error(e);
+      }
     }
   },
   computed: {
     ...mapState('account', {
       isOpenGetVerificationCodeDialog: state => state.isOpenGetVerificationCodeDialog,
+    }),
+    ...mapState('auth', {
+      authInfo: state => state.authInfo,
     }),
   }
 }

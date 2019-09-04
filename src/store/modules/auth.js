@@ -22,6 +22,8 @@ const state = {
     confirmPassword: '',
     inviteCode: ''
   },
+  secretKey: '',
+  qrCode: null,
   authInfo: JSON.parse(localStorage.getItem('authInfo')) || {}
 }
 
@@ -165,13 +167,12 @@ const actions = {
       }
     })
   },
-  // eslint-disable-next-line no-empty-pattern
-  getGAuthQrCode:({}, payload) => {
+  getGAuthQrCode:({commit}, payload) => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await authApi.getGAuthQrCode(payload);
-
         if (res.data.result !== 'false') {
+          commit('updateSecretKeyAndQrCode', res.data);
           resolve(res.data);
         } else {
           reject(res.data.msg);
@@ -211,6 +212,10 @@ const mutations = {
   },
   updateAuthInfo(state, value) {
     state.authInfo = value;
+  },
+  updateSecretKeyAndQrCode(state, value) {
+    state.secretKey = value.secretKey;
+    state.qrCode = value.qrcode;
   }
 }
 

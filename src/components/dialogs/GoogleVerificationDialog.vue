@@ -14,7 +14,7 @@
             <img src="../../assets/ios.png"/>
           </div>
         </div>
-        <h1>2. 安装完成后打开Google Authentication, 点击右上角（安卓为右下角）的“+”， 选择”扫码“，得到6位动态两步验证码</h1>
+        <h1>2. 安装完成后打开Google Authentication, 点击右上角（安卓为右下角）的“+”， 选择”扫码“，得到6位动态谷歌验证码</h1>
         <div class="row-section">
           <div class="section-div">
             <h5 class="mb-2">二维码</h5>
@@ -23,17 +23,17 @@
             <h4>{{secretKey}}</h4>
           </div>
         </div>
-        <h1>3. 请将获得的两步验证码填入下方输入框（需要在验证码时效内），并完成验证</h1>
+        <h1>3. 请将获得的谷歌验证码填入下方输入框（需要在验证码时效内），并完成验证</h1>
         <div class="row-section">
           <div class="section-div">
             <v-text-field
               v-model="firstVerificationCode"
-              label="两步验证码 1"
+              label="谷歌验证码 1"
               required
             ></v-text-field>
             <v-text-field
               v-model="secondVerificationCode"
-              label="两步验证码 2"
+              label="谷歌验证码 2"
               required
             ></v-text-field>
             <v-btn depressed block color="primary" :disabled="!firstVerificationCode || !secondVerificationCode" @click="handleSubmit()">{{$t('submit')}}</v-btn>
@@ -53,9 +53,7 @@ export default {
   data() {
     return {
       firstVerificationCode: '',
-      secretKey: '',
       secondVerificationCode: '',
-      qrCode: ''
     }
   },
   components: {
@@ -78,24 +76,14 @@ export default {
       }
     }
   },
-  async mounted() {
-    try {
-      const res = await this.$store.dispatch('auth/getGAuthQrCode', {
-        userId: this.authInfo.id,
-        userAccount: this.authInfo.username
-      });
-      this.secretKey = res.secretKey;
-      this.qrCode = res.qrcode;
-    } catch(e) {
-      this.$toast.error(e);
-    }
-  },
   computed: {
     ...mapState('account', {
       isOpenGoogleVerificationDialog: state => state.isOpenGoogleVerificationDialog,
     }),
     ...mapState('auth', {
-      authInfo: state => state.authInfo
+      authInfo: state => state.authInfo,
+      secretKey: state => state.secretKey,
+      qrCode: state => state.qrCode,
     }),
   }
 }

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '../components/pages/MainPage';
 import FrontPage from '../components/pages/FrontPage';
-import Home from '../components/front/Home';
 import Warning from '../components/front/Warning';
 import SignIn from '../components/front/SignIn';
 import SignUp from '../components/front/SignUp';
@@ -24,7 +23,7 @@ let router = new Router({
       children: [
         {
           path: '/',
-          component: Home
+          redirect: '/main/trading'
         },
         {
           path: 'warning',

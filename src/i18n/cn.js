@@ -27,5 +27,5 @@ export default {
   submit: '提交',
   cancel: '取消',
   continue: '下一步',
-  two_factor_verification: '两步验证码'
+  two_factor_verification: '谷歌验证码'
 };

@@ -27,7 +27,7 @@
     </div>
     <v-divider></v-divider>
     <div class="setting-row">
-      <div class="setting-label">两步验证码<v-icon>info</v-icon></div>
+      <div class="setting-label">谷歌验证码<v-icon>info</v-icon></div>
       <div class="setting-value">用于提现，修改密码和安全设计验证</div>
       <v-btn depressed color="primary" @click="handleGoogleVerificationClick()">{{authInfo.isGoogle && authInfo.isGoogle === 'y' ? "关闭" : "绑定"}}</v-btn>
     </div>

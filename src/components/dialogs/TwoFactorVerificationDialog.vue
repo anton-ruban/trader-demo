@@ -1,7 +1,7 @@
 <template>
   <v-dialog :value="isOpenTwoFactorVerificationDialog" width="450" @input="toggleTwoFactorVerificationDialog($event)">
     <v-layout class="dialog-layout" column>
-      <TitleBar title="两步验证码" hideBack @close="toggleTwoFactorVerificationDialog(false)" />
+      <TitleBar title="谷歌验证码" hideBack @close="toggleTwoFactorVerificationDialog(false)" />
       <div class="dialog-body">
         <v-text-field
           v-model="emailVerificationCode"
@@ -10,7 +10,7 @@
         ></v-text-field>
         <v-text-field
           v-model="twoFactorVerificationCode"
-          label="两步验证码"
+          label="谷歌验证码"
           required
         ></v-text-field>
         <v-btn depressed block color="primary" @click="toggleTwoFactorVerificationDialog(false)">{{$t('submit')}}</v-btn>
